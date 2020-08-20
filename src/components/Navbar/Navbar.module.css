@@ -1,4 +1,14 @@
 .nav {
     grid-area: nav;
     background: rgba(6, 6, 6, 0.53);
+    padding: 10px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+}
+
+ .nav a:hover {
+    color: greenyellow;
 }
