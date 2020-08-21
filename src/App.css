@@ -11,3 +11,8 @@
     grid-gap: 10px;
 }
 
+.app_wrapper_content {
+    grid-area: content;
+    background: rgba(6, 6, 6, 0.53);
+}
+
