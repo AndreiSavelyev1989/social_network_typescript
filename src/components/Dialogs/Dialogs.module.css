@@ -1,0 +1,24 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogs .dialogItem {
+    padding: 10px;
+    border-right: 2px solid darkgray;
+
+}
+
+.dialogs .dialogItem a {
+    color: white;
+    text-decoration: none;
+}
+
+.dialogs .dialogItem a:hover {
+    color: greenyellow;
+}
+
+.dialogs .messageItem {
+    padding: 10px;
+    color: white;
+}
