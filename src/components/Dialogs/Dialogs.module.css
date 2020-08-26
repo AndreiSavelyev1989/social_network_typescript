@@ -14,6 +14,10 @@
     text-decoration: none;
 }
 
+.dialogs .dialogItem a.active {
+    color: gold;
+}
+
 .dialogs .dialogItem a:hover {
     color: greenyellow;
 }

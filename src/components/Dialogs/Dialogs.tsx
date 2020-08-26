@@ -11,17 +11,29 @@ type DialogsType = {
     dialogs: Array<DialogsPropsType>
 }
 
-export function Dialogs(props:DialogsType) {
+function Dialog(props: DialogsType) {
+    return (
+        <div className={styles.dialogItem}>
+            {props.dialogs.map(d => <div>
+                <NavLink to={`/dialogs/${d.id}`} activeClassName={styles.active}>{d.name}</NavLink>
+            </div>)}
+        </div>
+    )
+}
+
+function Message(props: DialogsType) {
+    return (
+        <div className={styles.messageItem}>
+            {props.dialogs.map(d => <div>{d.message}</div>)}
+        </div>
+    )
+}
+
+export function Dialogs(props: DialogsType) {
     return (
         <div className={styles.dialogs}>
-            <div className={styles.dialogItem}>
-                {props.dialogs.map(d => <div>
-                    <NavLink to={"/dialogs"}>{d.name}</NavLink>
-                </div>)}
-            </div>
-            <div className={styles.messageItem}>
-                {props.dialogs.map(d => <div>{d.message}</div>)}
-            </div>
+            <Dialog dialogs={props.dialogs}/>
+            <Message dialogs={props.dialogs}/>
         </div>
     )
 }
