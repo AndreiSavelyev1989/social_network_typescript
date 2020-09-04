@@ -1,39 +1,21 @@
 import React from "react";
 import styles from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom";
+import {DialogsType, MessagesType} from "../../redux-state/state";
+import {Dialog} from "./Dialog/Dialog";
+import {Message} from "./Message/Message";
 
 type DialogsPropsType = {
-    id: number
-    name: string
-    message: string
-}
-type DialogsType = {
-    dialogs: Array<DialogsPropsType>
+    dialogs: Array<DialogsType>
+    messages: Array<MessagesType>
 }
 
-function Dialog(props: DialogsType) {
-    return (
-        <div className={styles.dialogItem}>
-            {props.dialogs.map(d => <div>
-                <NavLink to={`/dialogs/${d.id}`} activeClassName={styles.active}>{d.name}</NavLink>
-            </div>)}
-        </div>
-    )
-}
-
-function Message(props: DialogsType) {
-    return (
-        <div className={styles.messageItem}>
-            {props.dialogs.map(d => <div>{d.message}</div>)}
-        </div>
-    )
-}
-
-export function Dialogs(props: DialogsType) {
+export function Dialogs(props: DialogsPropsType) {
+    const dialogsElements = props.dialogs.map(d => <Dialog id={d.id} name={d.name}/>)
+    const messagesElements = props.messages.map(m => <Message message={m.message}/>)
     return (
         <div className={styles.dialogs}>
-            <Dialog dialogs={props.dialogs}/>
-            <Message dialogs={props.dialogs}/>
+            <div>{dialogsElements}</div>
+            <div>{messagesElements}</div>
         </div>
     )
 }

@@ -1,0 +1,17 @@
+.dialogItem {
+    padding: 5px;
+    border-right: 2px solid darkgray;
+}
+
+.dialogItem a {
+    color: white;
+    text-decoration: none;
+}
+
+.dialogItem a:hover {
+    color: greenyellow;
+}
+
+.dialogItem a.active {
+    color: gold;
+}
