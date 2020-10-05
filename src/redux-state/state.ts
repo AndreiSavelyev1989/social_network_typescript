@@ -1,5 +1,9 @@
 import {v1} from "uuid";
 
+const ADD_POST = "ADD_POST"
+const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
+
+
 export type DialogsType = {
     id: string
     name: string
@@ -29,11 +33,31 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
 }
 
+
+type AddPostActionType = {
+    type: "ADD_POST"
+    newPostText: string
+}
+type UpdateNewPostTextActionType = {
+    type: "UPDATE_NEW_POST_TEXT"
+    newText: string
+}
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
+
+
 export type StoreType = {
     _state: RootStateType
-
+    _subscriber: () => void
+    subscribe: (observer: () => void) => void
+    getState: () => RootStateType
+    dispatch: (action: ActionsTypes) => void
 }
+
+
 const store: StoreType = {
+    _subscriber() {
+        console.log("State changed")
+    },
     _state: {
         profilePage: {
             posts: [
@@ -59,30 +83,29 @@ const store: StoreType = {
             ]
         }
     },
-}
 
-let rerenderTree = () => {
-    console.log("State changed")
-}
-export const addPost = (newPostMessage: string) =>{
-    newPostMessage = store._state.profilePage.newPostText
-    let newPost: PostsType = {
-        id: v1(),
-        postMessage: newPostMessage,
-        likesCount: 0
+    subscribe(observer) {
+        this._subscriber = observer
+    },
+    getState() {
+        return this._state
+    },
+
+    dispatch(action) {
+        if (action.type === ADD_POST) {
+            let newPost: PostsType = {
+                id: v1(),
+                postMessage: this._state.profilePage.newPostText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ""
+            this._subscriber()
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.profilePage.newPostText = action.newText
+            this._subscriber()
+        }
     }
-    store._state.profilePage.posts.push(newPost)
-    store._state.profilePage.newPostText = ""
-    rerenderTree()
-}
-
-export const onPostChange = (newText: string) =>{
-    store._state.profilePage.newPostText = newText
-    rerenderTree()
-}
-
-export const subscribe = (observer: any) => {
-    rerenderTree = observer
 }
 
 export default store;
