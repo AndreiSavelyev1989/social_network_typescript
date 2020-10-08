@@ -1,10 +1,6 @@
 import {v1} from "uuid";
-
-const ADD_POST = "ADD_POST"
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
-const ADD_NEW_MESSAGE = "ADD_NEW_MESSAGE"
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT"
-
+import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
+import {addNewMessagetAC, dialogsReducer, updateNewMessageTextAC} from "./dialogs-reducer";
 
 export type DialogsType = {
     id: string
@@ -50,12 +46,7 @@ export type ActionsTypes =
     ReturnType<typeof addNewMessagetAC> |
     ReturnType<typeof updateNewMessageTextAC>
 
-export const addPostAC = (newPostText: string) => ({type: ADD_POST, newPostText}) as const
-export const addNewMessagetAC = (newMessage: string) => ({type: ADD_NEW_MESSAGE, newMessage}) as const
-export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText}) as const
-export const updateNewMessageTextAC = (text: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, text}) as const
-
-const store: StoreType = {
+export const store: StoreType = {
     _subscriber() {
         console.log("State changed")
     },
@@ -94,31 +85,9 @@ const store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let newPost: PostsType = {
-                id: v1(),
-                postMessage: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ""
-            this._subscriber()
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText
-            this._subscriber()
-        } else if (action.type === ADD_NEW_MESSAGE) {
-            let newMessageText: MessagesType = {
-                id: v1(),
-                message: this._state.dialogsPage.newMessageText,
-            }
-            this._state.dialogsPage.messages.push(newMessageText)
-            this._state.dialogsPage.newMessageText = ""
-            this._subscriber()
-        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessageText = action.text
-            this._subscriber()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+
+        this._subscriber()
     }
 }
-
-export default store;
