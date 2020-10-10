@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
-import {addNewMessagetAC, dialogsReducer, updateNewMessageTextAC} from "./dialogs-reducer";
+import {addNewMessageAC, dialogsReducer, updateNewMessageTextAC} from "./dialogs-reducer";
 
  type DialogsType = {
     id: string
@@ -43,7 +43,7 @@ import {addNewMessagetAC, dialogsReducer, updateNewMessageTextAC} from "./dialog
  type ActionsTypes =
     ReturnType<typeof addPostAC> |
     ReturnType<typeof updateNewPostTextAC> |
-    ReturnType<typeof addNewMessagetAC> |
+    ReturnType<typeof addNewMessageAC> |
     ReturnType<typeof updateNewMessageTextAC>
 
  const store: StoreType = {

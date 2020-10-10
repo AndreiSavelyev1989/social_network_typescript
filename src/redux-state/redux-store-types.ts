@@ -1,5 +1,5 @@
 import {addPostAC, updateNewPostTextAC} from "./profile-reducer";
-import {addNewMessagetAC, updateNewMessageTextAC} from "./dialogs-reducer";
+import {addNewMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
 
 export type DialogsType = {
     id: string
@@ -40,5 +40,5 @@ export type RootStoreType = {
 export type ActionsTypes =
     ReturnType<typeof addPostAC> |
     ReturnType<typeof updateNewPostTextAC> |
-    ReturnType<typeof addNewMessagetAC> |
+    ReturnType<typeof addNewMessageAC> |
     ReturnType<typeof updateNewMessageTextAC>
