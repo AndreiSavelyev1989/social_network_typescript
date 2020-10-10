@@ -2,37 +2,37 @@ import {v1} from "uuid";
 import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
 import {addNewMessagetAC, dialogsReducer, updateNewMessageTextAC} from "./dialogs-reducer";
 
-export type DialogsType = {
+ type DialogsType = {
     id: string
     name: string
 }
-export type MessagesType = {
+ type MessagesType = {
     id: string
     message: string
 }
-export type PostsType = {
+ type PostsType = {
     id: string
     postMessage: string
     likesCount: number
 }
 
-export type ProfilePageType = {
+ type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
 
-export type DialogsPageType = {
+ type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageText: string
 }
 
-export type RootStateType = {
+ type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
 
-export type StoreType = {
+ type StoreType = {
     _state: RootStateType
     _subscriber: () => void
     subscribe: (observer: () => void) => void
@@ -40,13 +40,13 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes =
+ type ActionsTypes =
     ReturnType<typeof addPostAC> |
     ReturnType<typeof updateNewPostTextAC> |
     ReturnType<typeof addNewMessagetAC> |
     ReturnType<typeof updateNewMessageTextAC>
 
-export const store: StoreType = {
+ const store: StoreType = {
     _subscriber() {
         console.log("State changed")
     },

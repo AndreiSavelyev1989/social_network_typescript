@@ -8,10 +8,10 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
-import {StoreType} from "./redux-state/state"
+import {RootStoreType} from "./redux-state/redux-store-types";
 
 type AppPropsType = {
-    store: StoreType
+    store: RootStoreType
 }
 
 function App(props: AppPropsType) {

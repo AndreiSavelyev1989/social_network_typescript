@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {store} from "./redux-state/state";
+import {store} from "./redux-state/redux-store";
 
 export const rerenderTree = () => {
     ReactDOM.render(

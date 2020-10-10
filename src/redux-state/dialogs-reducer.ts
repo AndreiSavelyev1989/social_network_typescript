@@ -1,10 +1,28 @@
-import {ActionsTypes, DialogsPageType, MessagesType} from "./state";
 import {v1} from "uuid";
+import {ActionsTypes, DialogsPageType, MessagesType} from "./redux-store-types";
 
 const ADD_NEW_MESSAGE = "ADD_NEW_MESSAGE"
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT"
 
-export function dialogsReducer(state: DialogsPageType, action: ActionsTypes) {
+const initialState: DialogsPageType = {
+    dialogs: [
+        {id: v1(), name: "Andrei"},
+        {id: v1(), name: "Pavel"},
+        {id: v1(), name: "Viktor"},
+        {id: v1(), name: "Dima"},
+        {id: v1(), name: "Sveta"}
+    ],
+    messages: [
+        {id: v1(), message: "Hello people!"},
+        {id: v1(), message: "Welcome!"},
+        {id: v1(), message: "How are you?"},
+        {id: v1(), message: "Nice to meet you!"},
+        {id: v1(), message: "What a wonderful day!"}
+    ],
+    newMessageText: "Hello!!!"
+}
+
+export function dialogsReducer(state = initialState, action: ActionsTypes) {
     switch (action.type) {
         case ADD_NEW_MESSAGE:
             let newMessageText: MessagesType = {
