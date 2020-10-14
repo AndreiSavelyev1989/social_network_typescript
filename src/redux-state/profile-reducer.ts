@@ -1,4 +1,3 @@
-
 import {v1} from "uuid";
 import {ActionsTypes, PostsType, ProfilePageType} from "./redux-store-types";
 
@@ -13,20 +12,27 @@ const initialState: ProfilePageType = {
     newPostText: 'it-incubator'
 }
 
-export function profileReducer(state = initialState, action: ActionsTypes){
+export function profileReducer(state = initialState, action: ActionsTypes) {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let newPost: PostsType = {
                 id: v1(),
                 postMessage: state.newPostText,
                 likesCount: 0
             }
-            state.posts.push(newPost)
-            state.newPostText = ""
-            return state
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
-            return state
+            let copyState = {...state}
+            copyState.posts = [...state.posts]
+            copyState.posts.push(newPost)
+            copyState.newPostText = ""
+            return copyState
+        }
+
+        case UPDATE_NEW_POST_TEXT: {
+            let copyState = {...state}
+            copyState.newPostText = action.newText
+            return copyState
+        }
+
         default:
             return state
     }
