@@ -14,27 +14,28 @@ export type PostsType = {
     postMessage: string
     likesCount: number
 }
+export type FriendsType = {
+    id: string
+    name: string
+}
 
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
-
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageText: string
 }
+export type SidebarType = {
+    friends: Array<FriendsType>
+}
 
 export type StoreType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-}
-
-export type RootStoreType = {
-    subscribe: (observer: () => void) => void
-    getState: () => StoreType
-    dispatch: (action: ActionsTypes) => void
+    sidebar: SidebarType
 }
 
 export type ActionsTypes =

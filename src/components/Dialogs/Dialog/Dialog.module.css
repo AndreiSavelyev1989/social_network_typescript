@@ -19,7 +19,12 @@
 .dialogData {
     display: flex;
 }
-.dialogData img{
+
+.dialogData img {
     height: 50px;
     width: 50px;
+}
+
+.dialogUserName {
+    padding-top: 15px;
 }

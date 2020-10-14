@@ -13,6 +13,10 @@
     color: darkorange;
 }
 
- .nav a:hover {
+.nav a:hover {
     color: greenyellow;
+}
+
+.settings {
+    padding-top: 20px;
 }

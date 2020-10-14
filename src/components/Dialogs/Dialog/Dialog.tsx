@@ -13,7 +13,10 @@ export function Dialog(props: DialogPropsType) {
         <div className={styles.dialogItem}>
             <div className={styles.dialogData}>
                 <img src={userAvatar} alt="user-avatar"/>
-                <NavLink to={`/dialogs/${props.id}`} activeClassName={styles.active}>{props.name}</NavLink>
+                <NavLink to={`/dialogs/${props.id}`}
+                         activeClassName={styles.active}
+                className={styles.dialogUserName}
+                >{props.name}</NavLink>
             </div>
         </div>
     )

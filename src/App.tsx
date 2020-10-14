@@ -24,6 +24,7 @@ function App() {
                     <Route path='/music' render={Music}/>
                     <Route path='/settings' render={Settings}/>
                 </div>
+
             </div>
         </BrowserRouter>
     );

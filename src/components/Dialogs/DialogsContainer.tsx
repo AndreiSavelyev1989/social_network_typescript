@@ -4,30 +4,6 @@ import {StoreType} from "../../redux-state/redux-store-types";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 
-
-// export function DialogsContainer() {
-//
-//     const stateDialogsPage = props.store.getState().dialogsPage
-//
-//     const addNewMessage = () => {
-//         props.store.dispatch(addNewMessageAC(stateDialogsPage.newMessageText))
-//     }
-//
-//     const updateNewMessageText = (newText: string) => {
-//         props.store.dispatch(updateNewMessageTextAC(newText))
-//     }
-//
-//     return (
-//         <Dialogs
-//             dialogs={stateDialogsPage.dialogs}
-//             messages={stateDialogsPage.messages}
-//             newMessageText={stateDialogsPage.newMessageText}
-//             addNewMessage={addNewMessage}
-//             updateNewMessageText={updateNewMessageText}
-//         />
-//     )
-// }
-
 const mapStateToProps = (state: StoreType) => {
     return {
         dialogs: state.dialogsPage.dialogs,
