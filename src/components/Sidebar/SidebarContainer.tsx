@@ -1,7 +1,7 @@
-import React from "react";
 import {connect} from "react-redux";
 import {Sidebar} from "./Sidebar";
-import {StoreType} from "../../redux-state/redux-store-types";
+import {StoreType} from "../../redux-state/redux-store";
+
 
 const mapStateToProps = (state: StoreType) => {
     return {

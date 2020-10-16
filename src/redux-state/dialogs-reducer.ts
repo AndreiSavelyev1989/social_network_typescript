@@ -1,8 +1,25 @@
 import {v1} from "uuid";
-import {ActionsTypes, DialogsPageType, MessagesType} from "./redux-store-types";
 
 const ADD_NEW_MESSAGE = "ADD_NEW_MESSAGE"
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT"
+
+type DialogsActionsType =
+    ReturnType<typeof addNewMessageAC> |
+    ReturnType<typeof updateNewMessageTextAC>
+
+export type DialogsType = {
+    id: string
+    name: string
+}
+export type MessagesType = {
+    id: string
+    message: string
+}
+export type DialogsPageType = {
+    dialogs: Array<DialogsType>
+    messages: Array<MessagesType>
+    newMessageText: string
+}
 
 const initialState: DialogsPageType = {
     dialogs: [
@@ -22,7 +39,7 @@ const initialState: DialogsPageType = {
     newMessageText: "Hello!!!"
 }
 
-export function dialogsReducer(state = initialState, action: ActionsTypes) {
+export function dialogsReducer(state = initialState, action: DialogsActionsType) {
     switch (action.type) {
         case ADD_NEW_MESSAGE:
             let newMessageText: MessagesType = {

@@ -1,5 +1,13 @@
 import {v1} from "uuid";
-import {SidebarType} from "./redux-store-types";
+
+export type FriendsType = {
+    id: string
+    name: string
+}
+
+export type SidebarType = {
+    friends: Array<FriendsType>
+}
 
 const initialState: SidebarType = {
     friends: [

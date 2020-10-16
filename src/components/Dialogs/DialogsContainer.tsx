@@ -1,8 +1,7 @@
-import React from "react";
 import {addNewMessageAC, updateNewMessageTextAC} from "../../redux-state/dialogs-reducer";
-import {StoreType} from "../../redux-state/redux-store-types";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
+import {StoreType} from "../../redux-state/redux-store";
 
 const mapStateToProps = (state: StoreType) => {
     return {

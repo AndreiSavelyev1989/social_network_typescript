@@ -8,6 +8,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 function App() {
     return (
@@ -16,13 +17,15 @@ function App() {
                 <Header/>
                 <Navbar/>
                 <div className="app_wrapper_content">
-                    <Route path='/profile'
+                    <Route path="/profile"
                            render={() => <Profile/>}/>
-                    <Route path='/dialogs'
+                    <Route path="/dialogs"
                            render={() => <DialogsContainer/>}/>
-                    <Route path='/news' render={News}/>
-                    <Route path='/music' render={Music}/>
-                    <Route path='/settings' render={Settings}/>
+                    <Route path="/users"
+                           render={() => <UsersContainer/>}/>
+                    <Route path="/news" render={News}/>
+                    <Route path="/music" render={Music}/>
+                    <Route path="/settings" render={Settings}/>
                 </div>
 
             </div>

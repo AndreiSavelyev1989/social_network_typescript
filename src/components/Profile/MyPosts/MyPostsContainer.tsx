@@ -1,8 +1,7 @@
-import React from "react";
 import {addPostAC, updateNewPostTextAC} from "../../../redux-state/profile-reducer";
-import {StoreType} from "../../../redux-state/redux-store-types";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
+import {StoreType} from "../../../redux-state/redux-store";
 
 
 // export function MyPostsContainer() {

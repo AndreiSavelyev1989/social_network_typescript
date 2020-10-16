@@ -13,6 +13,9 @@ export function Navbar() {
                 <NavLink to="/dialogs" activeClassName={styles.activeLink}>Messages</NavLink>
             </div>
             <div>
+                <NavLink to="/users" activeClassName={styles.activeLink}>Users</NavLink>
+            </div>
+            <div>
                 <NavLink to="/news" activeClassName={styles.activeLink}>News</NavLink>
             </div>
             <div>
