@@ -5,7 +5,7 @@ import {StoreType} from "../../redux-state/redux-store";
 
 const mapStateToProps = (state: StoreType) => {
     return {
-        friends: state.sidebar.friends
+        users: state.usersPage.users
     }
 }
 

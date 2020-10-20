@@ -1,25 +1,14 @@
-import {v1} from "uuid";
 
-export type FriendsType = {
-    id: string
-    name: string
-}
+export type SidebarType = {}
 
-export type SidebarType = {
-    friends: Array<FriendsType>
-}
+export type SidebarActionsType = {}
 
 const initialState: SidebarType = {
-    friends: [
-        {id: v1(), name: "Andrei"},
-        {id: v1(), name: "Pavel"},
-        {id: v1(), name: "Viktor"},
-        {id: v1(), name: "Dima"},
-        {id: v1(), name: "Sveta"}
-        ]
+    friends: [ ]
 }
 
-export const sidebarReducer = (state = initialState, action: any) => {
-    return state
+
+export const sidebarReducer = (state = initialState, action: SidebarActionsType) => {
+            return state
 }
 

@@ -1,16 +1,25 @@
 import React from "react";
 import {Friend} from "./Friend/Friend";
-import {FriendsType} from "../../redux-state/sidebar-reducer";
+import {UserType} from "../../redux-state/users-reducer";
 
 type SidebarPropsType = {
-    friends: Array<FriendsType>
+    users: Array<UserType>
 }
 
 export function Sidebar(props: SidebarPropsType) {
     return (
         <div>
             <h3>My Friends:</h3>
-            {props.friends.map(f => <Friend key={f.id} name={f.name}/>)}
+            {props.users.map(f => {
+                    if (f.followed) {
+                        return <Friend
+                            key={f.id}
+                            fullName={f.fullName}
+                            userPhotoUrl={f.userPhotoUrl}
+                        />
+                    }
+                }
+            )}
         </div>
     )
 }
