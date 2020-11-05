@@ -14,8 +14,8 @@ export function Sidebar(props: SidebarPropsType) {
                     if (f.followed) {
                         return <Friend
                             key={f.id}
-                            fullName={f.fullName}
-                            userPhotoUrl={f.userPhotoUrl}
+                            fullName={f.name}
+                            photos={f.photos}
                         />
                     }
                 }

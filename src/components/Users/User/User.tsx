@@ -1,17 +1,17 @@
 import React from "react";
-import {UserLocationType} from "../../../redux-state/users-reducer";
 import userPhoto from "../../../images/friendAvatar.png"
 import styles from "./User.module.css"
+import {PhotosType} from "../../../redux-state/users-reducer";
+import {Button} from "@material-ui/core";
 
 type UserPropsType = {
-    id: string
-    userPhotoUrl: string
+    id: number
+    userPhoto: PhotosType
     fullName: string
     followed: boolean
     status: string
-    location: UserLocationType
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
 export function User(props: UserPropsType) {
@@ -21,23 +21,34 @@ export function User(props: UserPropsType) {
 
     return (
         <div className={styles.userWrapper}>
-            <div className={styles.userBlock_1}>
-                <img src={props.userPhotoUrl ? props.userPhotoUrl : userPhoto} alt="user-photo"/>
-                <div>
-                    {props.followed
-                        ? <button onClick={onUnfollowClick}>unfollow</button>
-                        : <button onClick={onFollowClick}>follow</button>
-                    }
+                <div className={styles.userBlock_1}>
+                    <img src={props.userPhoto.small ? props.userPhoto.small : userPhoto} alt="user-avatar"/>
+                    <div className={styles.button}>
+                        {props.followed
+                            ? <Button
+                                variant={"contained"}
+                                color={"secondary"}
+                                size={"small"}
+                                onClick={onUnfollowClick}>unfollow</Button>
+                            : <Button
+                                variant={"contained"}
+                                color={"primary"}
+                                size={"small"}
+                                onClick={onFollowClick}>follow</Button>
+                        }
+                    </div>
                 </div>
-            </div>
-            <div className={styles.userBlock_2}>
-                <div className={styles.userFullName}>{props.fullName}</div>
-                <div>{props.status}</div>
-            </div>
-            <div className={styles.userBlock_3}>
-                <div className={styles.countryName}>{props.location.countryName}</div>
-                <div>{props.location.cityName}</div>
-            </div>
+                <div className={styles.userBlock_2}>
+                    <div className={styles.userFullName}><label>Name:</label> {props.fullName}</div>
+                    <div className={styles.status}><label>Status:</label> {props.status ? props.status : "I haven't a" +
+                        " status!!!"}</div>
+                </div>
+                <div className={styles.userBlock_2}>
+                    <div><label>Country:</label> {"props.location.countryName"}</div>
+                    <div className={styles.cityName}><label>City:</label> {"props.location.cityName"}</div>
+                </div>
+
+
         </div>
     )
 }

@@ -13,6 +13,8 @@
 
 .app_wrapper_content {
     grid-area: content;
-    background: rgba(6, 6, 6, 0.53);
+    width: 1000px;
+    height: auto;
+    background: rgba(128,128,128,0.71);
 }
 

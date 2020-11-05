@@ -1,50 +1,49 @@
-.userWrapper {
+.userWrapper{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    width: 450px;
-    height: 150px;
-    background: darkgray;
-    border: 1px solid darkgray;
-    border-radius: 10px;
+    background: rgba(6, 6, 6, 0.53);
     margin: 20px;
+    border-radius: 10px;
+    color: white;
 }
 
 .userWrapper img {
     height: 100px;
     width: 100px;
 }
+.userWrapper label {
+    color: green;
+    font-weight: bold;
+}
 
-.userBlock_1{
+.userBlock_1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    height: auto;
+    margin: 10px;
+    justify-content: stretch;
+    padding-left: 10px;
 }
-
-.userBlock_1 button {
-    margin-top: 10px;
-    width: 100px;
-}
-
 .userBlock_2 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 20px;
+    height: auto;
+    margin: 10px;
+    justify-content: stretch;
+    padding-left: 10px;
 }
 
-.userFullName {
-    padding-bottom: 90px;
+.status{
+    padding-top: 50px;
 }
-
-.userBlock_3 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 120px;
+.cityName{
+    padding-top: 50px;
 }
-.countryName {
-    padding-bottom: 90px;
+.button{
+    padding-top: 10px;
 }

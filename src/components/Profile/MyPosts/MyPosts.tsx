@@ -2,6 +2,8 @@ import React, {ChangeEvent} from "react";
 import styles from "./MyPosts.module.css"
 import {Post} from "./Post/Post";
 import {PostsType} from "../../../redux-state/profile-reducer";
+import {Button} from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
@@ -24,8 +26,17 @@ export function MyPosts(props: MyPostsPropsType) {
     return (
         <div className={styles.postsWrapper}>
             <h3>My posts</h3>
-            <textarea onChange={onChangePostText} value={props.newPostText}/>
-            <button onClick={onAddNewPost}>Add post</button>
+            <TextField
+                variant={"outlined"}
+                label={"Add new post!"}
+                onChange={onChangePostText}
+                value={props.newPostText}
+            />
+            <Button
+                variant={"contained"}
+                color={"primary"}
+                size={"small"}
+                onClick={onAddNewPost}>Add post</Button>
             <div>
                 <div>New post:</div>
                 {postElements}
