@@ -16,6 +16,7 @@ export type UsersType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    portionSize: number
 }
 
 export type UsersActionsType =
@@ -30,6 +31,7 @@ const initialState: UsersType = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
+    portionSize: 10,
 }
 
 export const followAC = (userId: number) => ({type: "FOLLOW", userId}) as const

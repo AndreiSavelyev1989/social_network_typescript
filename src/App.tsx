@@ -8,7 +8,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {UsersContainer} from "./components/Users/UsersContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 function App() {
     return (
