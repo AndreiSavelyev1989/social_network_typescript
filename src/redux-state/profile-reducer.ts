@@ -2,6 +2,7 @@ import {v1} from "uuid";
 
 const ADD_POST = "ADD_POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
+const SET_LIKES_COUNT = "SET_LIKES_COUNT"
 
 
 export type PostsType = {
@@ -15,7 +16,8 @@ export type ProfilePageType = {
 }
 export type ActionsProfileTypes =
     ReturnType<typeof addPostAC> |
-    ReturnType<typeof updateNewPostTextAC>
+    ReturnType<typeof updateNewPostTextAC> |
+    ReturnType<typeof setLikesCount>
 
 const initialState: ProfilePageType = {
     posts: [
@@ -43,6 +45,19 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
                 ...state,
                 newPostText: action.newText
             }
+        case SET_LIKES_COUNT:
+            return {
+                ...state,
+                posts: state.posts.map(p => {
+                        if (p.id === action.id) {
+                            return {...p, likesCount: p.likesCount + 1}
+                        }
+                        else {
+                            return p
+                        }
+                    }
+                )
+            }
         default:
             return state
     }
@@ -50,3 +65,4 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
 
 export const addPostAC = (newPostText: string) => ({type: ADD_POST, newPostText}) as const
 export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText}) as const
+export const setLikesCount = (id: string) => ({type: SET_LIKES_COUNT, id}) as const

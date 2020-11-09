@@ -1,34 +1,13 @@
-import {addPostAC, updateNewPostTextAC} from "../../../redux-state/profile-reducer";
+import {addPostAC, setLikesCount, updateNewPostTextAC} from "../../../redux-state/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {StoreType} from "../../../redux-state/redux-store";
 
 
-// export function MyPostsContainer() {
-//
-//     const stateProfilePage = props.store.getState().profilePage
-//
-//     const addPost = () => {
-//         props.store.dispatch(addPostAC(stateProfilePage.newPostText))
-//     }
-//
-//     const updateNewPostText = (text: string) => {
-//         props.store.dispatch(updateNewPostTextAC(text))
-//     }
-//
-//     return (
-//         <MyPosts posts={stateProfilePage.posts}
-//                  newPostText={stateProfilePage.newPostText}
-//                  addPost={addPost}
-//                  updateNewPostText={updateNewPostText}
-//         />
-//     )
-// }
-
 const mapStateToProps = (state: StoreType) => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        newPostText: state.profilePage.newPostText,
     }
 }
 
@@ -39,6 +18,9 @@ const mapDispatchToProps = (dispatch: any) => {
         },
         updateNewPostText: (text: string) => {
             dispatch(updateNewPostTextAC(text))
+        },
+        setLikesCount: (id: string) => {
+            dispatch(setLikesCount(id))
         }
     }
 }

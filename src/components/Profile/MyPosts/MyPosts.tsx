@@ -10,10 +10,17 @@ type MyPostsPropsType = {
     addPost: (newPostText: string) => void
     updateNewPostText: (text: string) => void
     newPostText: string
+    setLikesCount: (id: string) => void
 }
 
 export function MyPosts(props: MyPostsPropsType) {
-    const postElements = props.posts.map(p => <Post key={p.id} postMessage={p.postMessage} likesCount={p.likesCount}/>)
+    const postElements = props.posts.map(p => <Post
+        id={p.id}
+        key={p.id}
+        postMessage={p.postMessage}
+        likesCount={p.likesCount}
+        setLikesCount={props.setLikesCount}
+    />)
 
     const onAddNewPost = () => {
         props.addPost(props.newPostText)
