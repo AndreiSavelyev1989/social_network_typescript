@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch: any) => {
         updateNewPostText: (text: string) => {
             dispatch(updateNewPostTextAC(text))
         },
-        setLikesCount: (id: string) => {
-            dispatch(setLikesCount(id))
+        setLikesCount: (id: string, likes: number) => {
+            dispatch(setLikesCount(id, likes))
         }
     }
 }

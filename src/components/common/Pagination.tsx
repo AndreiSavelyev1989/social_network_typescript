@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import styles from "../Users/Users.module.css";
+import styles from "./Pagination.module.css";
 import {Button} from "@material-ui/core";
 
 type PaginationPropsType = {
@@ -23,33 +23,34 @@ export function Pagination(props: PaginationPropsType) {
     const leftPortionPageNumber = (portionNumber - 1) * props.portionSize + 1
     const rightPortionPageNumber = portionNumber * props.portionSize
 
-        return (
-            <div className={styles.pagination}>
-                {portionNumber > 1 && <Button
-                    onClick={() => setPortionNumber(portionNumber - 1)}
-                    variant={"outlined"}
-                    color={"primary"}
+    return (
+        <div className={styles.pagination}>
+            {portionNumber > 1 && <Button
+                onClick={() => setPortionNumber(portionNumber - 1)}
+                variant={"outlined"}
+                color={"primary"}
+                size={"small"}
+            >Prev</Button>}
+            {pages
+                .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                .map(p => <Button
+                    key={p}
+                    className={styles.paginationButton}
+                    onClick={() => props.onCurrentPage(p)}
+                    variant={props.currentPage === p
+                        ? "outlined"
+                        : "text"}
                     size={"small"}
-                >Prev</Button>}
-                {pages
-                    .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-                    .map(p => <Button key={p} onClick={() => props.onCurrentPage(p)}
-                                      variant={props.currentPage === p
-                                          ? "outlined"
-                                          : "text"}
-                                      size={"small"}
-                                      color={props.currentPage === p
-                                          ? "secondary"
-                                          : "primary"}
-                                      className={props.currentPage === p
-                                          ? styles.currentPage
-                                          : ""}>{p} </Button>)}
-                {portionCount > portionNumber && <Button
-                    onClick={() => setPortionNumber(portionNumber + 1)}
-                    variant={"outlined"}
-                    color={"primary"}
-                    size={"small"}
-                >Next</Button>}
-            </div>
-        )
+                    color={props.currentPage === p
+                        ? "secondary"
+                        : "primary"}
+                >{p} </Button>)}
+            {portionCount > portionNumber && <Button
+                onClick={() => setPortionNumber(portionNumber + 1)}
+                variant={"outlined"}
+                color={"primary"}
+                size={"small"}
+            >Next</Button>}
+        </div>
+    )
 }

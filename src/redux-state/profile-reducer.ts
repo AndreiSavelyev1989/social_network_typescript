@@ -50,7 +50,7 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
                 ...state,
                 posts: state.posts.map(p => {
                         if (p.id === action.id) {
-                            return {...p, likesCount: p.likesCount + 1}
+                            return  {...p, likesCount: action.likes}
                         }
                         else {
                             return p
@@ -65,4 +65,4 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
 
 export const addPostAC = (newPostText: string) => ({type: ADD_POST, newPostText}) as const
 export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText}) as const
-export const setLikesCount = (id: string) => ({type: SET_LIKES_COUNT, id}) as const
+export const setLikesCount = (id: string, likes: number) => ({type: SET_LIKES_COUNT, id, likes}) as const

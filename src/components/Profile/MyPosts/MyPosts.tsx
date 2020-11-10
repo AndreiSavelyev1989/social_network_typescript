@@ -10,7 +10,7 @@ type MyPostsPropsType = {
     addPost: (newPostText: string) => void
     updateNewPostText: (text: string) => void
     newPostText: string
-    setLikesCount: (id: string) => void
+    setLikesCount: (id: string, likes: number) => void
 }
 
 export function MyPosts(props: MyPostsPropsType) {
