@@ -6,7 +6,7 @@ import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 export function Profile() {
     return (
-        <div className={styles.content}>
+        <div className={styles.profileWrapper}>
             <ProfileInfo/>
             <MyPostsContainer/>
         </div>

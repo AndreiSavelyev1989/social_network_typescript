@@ -2,14 +2,13 @@ import {connect} from "react-redux";
 import {Users} from "./Users";
 import {StoreType} from "../../redux-state/redux-store";
 import {
-    followAC, setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC, toogleIsFetchingAC,
-    unfollowAC,
-    UsersActionsType,
+    follow, setCurrentPage,
+    setTotalUsersCount,
+    setUsers, toogleIsFetching,
+    unfollow,
     UserType
 } from "../../redux-state/users-reducer";
-import React, {Dispatch} from "react";
+import React from "react";
 import * as axios from "axios";
 
 type UsersContainerPropsType = {
@@ -76,27 +75,30 @@ const mapStateToProps = (state: StoreType) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<UsersActionsType>) => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId: number) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users: Array<UserType>) => {
-            dispatch(setUsersAC(users))
-        },
-        setTotalUsersCount: (totalUsersCount: number) => {
-            dispatch(setTotalUsersCountAC(totalUsersCount))
-        },
-        setCurrentPage: (page: number) => {
-            dispatch(setCurrentPageAC(page))
-        },
-        toogleIsFetching: (isFetching: boolean) => {
-          dispatch(toogleIsFetchingAC(isFetching))
-        },
-    }
-}
+// const mapDispatchToProps = (dispatch: Dispatch<UsersActionsType>) => {
+//     return {
+//         follow: (userId: number) => {
+//             dispatch(followAC(userId))
+//         },
+//         unfollow: (userId: number) => {
+//             dispatch(unfollowAC(userId))
+//         },
+//         setUsers: (users: Array<UserType>) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setTotalUsersCount: (totalUsersCount: number) => {
+//             dispatch(setTotalUsersCountAC(totalUsersCount))
+//         },
+//         setCurrentPage: (page: number) => {
+//             dispatch(setCurrentPageAC(page))
+//         },
+//         toogleIsFetching: (isFetching: boolean) => {
+//           dispatch(toogleIsFetchingAC(isFetching))
+//         },
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+
+export default connect(mapStateToProps,
+     {follow, unfollow, setUsers, setTotalUsersCount, setCurrentPage, toogleIsFetching}
+    )(UsersContainer)

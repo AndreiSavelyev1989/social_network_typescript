@@ -4,8 +4,8 @@ const ADD_NEW_MESSAGE = "ADD_NEW_MESSAGE"
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT"
 
 type DialogsActionsType =
-    ReturnType<typeof addNewMessageAC> |
-    ReturnType<typeof updateNewMessageTextAC>
+    ReturnType<typeof addNewMessage> |
+    ReturnType<typeof updateNewMessageText>
 
 export type DialogsType = {
     id: string
@@ -62,5 +62,5 @@ export function dialogsReducer(state = initialState, action: DialogsActionsType)
     }
 }
 
-export const addNewMessageAC = (newMessage: string) => ({type: ADD_NEW_MESSAGE, newMessage}) as const
-export const updateNewMessageTextAC = (text: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, text}) as const
+export const addNewMessage = (newMessage: string) => ({type: ADD_NEW_MESSAGE, newMessage}) as const
+export const updateNewMessageText = (text: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, text}) as const

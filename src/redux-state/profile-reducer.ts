@@ -15,8 +15,8 @@ export type ProfilePageType = {
     newPostText: string
 }
 export type ActionsProfileTypes =
-    ReturnType<typeof addPostAC> |
-    ReturnType<typeof updateNewPostTextAC> |
+    ReturnType<typeof addPost> |
+    ReturnType<typeof updateNewPostText> |
     ReturnType<typeof setLikesCount>
 
 const initialState: ProfilePageType = {
@@ -63,6 +63,6 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
     }
 }
 
-export const addPostAC = (newPostText: string) => ({type: ADD_POST, newPostText}) as const
-export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText}) as const
+export const addPost = (newPostText: string) => ({type: ADD_POST, newPostText}) as const
+export const updateNewPostText = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText}) as const
 export const setLikesCount = (id: string, likes: number) => ({type: SET_LIKES_COUNT, id, likes}) as const

@@ -1,4 +1,4 @@
-import {addPostAC, setLikesCount, updateNewPostTextAC} from "../../../redux-state/profile-reducer";
+import {addPost, setLikesCount, updateNewPostText} from "../../../redux-state/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {StoreType} from "../../../redux-state/redux-store";
@@ -11,18 +11,6 @@ const mapStateToProps = (state: StoreType) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        addPost: (newPostText: string) => {
-            dispatch(addPostAC(newPostText))
-        },
-        updateNewPostText: (text: string) => {
-            dispatch(updateNewPostTextAC(text))
-        },
-        setLikesCount: (id: string, likes: number) => {
-            dispatch(setLikesCount(id, likes))
-        }
-    }
-}
-
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export const MyPostsContainer = connect(mapStateToProps, {
+    addPost, updateNewPostText, setLikesCount
+})(MyPosts)
