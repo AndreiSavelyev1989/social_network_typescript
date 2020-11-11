@@ -1,10 +1,11 @@
 
+
 export type SidebarType = {}
 
 export type SidebarActionsType = {}
 
 const initialState: SidebarType = {
-    friends: [ ]
+    friends: []
 }
 
 

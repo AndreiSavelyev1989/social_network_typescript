@@ -4,7 +4,7 @@ import {StoreType} from "../../redux-state/redux-store";
 import {
     followAC, setCurrentPageAC,
     setTotalUsersCountAC,
-    setUsersAC,
+    setUsersAC, toogleIsFetchingAC,
     unfollowAC,
     UsersActionsType,
     UserType
@@ -23,24 +23,30 @@ type UsersContainerPropsType = {
     setTotalUsersCount: (totalUsersCount: number) => void
     setCurrentPage: (page: number) => void
     portionSize: number
+    toogleIsFetching: (isFetching: boolean) => void
+    isFetching: boolean
 }
 
 class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
 
     componentDidMount(): void {
+        this.props.toogleIsFetching(true)
         // @ts-ignore
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
             .then((response: { data: { items: UserType[]; totalCount: number; }; }) => {
+                this.props.toogleIsFetching(false)
                 this.props.setUsers(response.data.items)
                 this.props.setTotalUsersCount(response.data.totalCount)
             })
     }
 
     onCurrentPage = (pageNumber: any) => {
+        this.props.toogleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
         // @ts-ignore
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`)
             .then((response: { data: { items: UserType[] }; }) => {
+                this.props.toogleIsFetching(false)
                 this.props.setUsers(response.data.items)
             })
     }
@@ -55,6 +61,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
             currentPage={this.props.currentPage}
             onCurrentPage={this.onCurrentPage}
             portionSize={this.props.portionSize}
+            isFetching={this.props.isFetching}
         />
     }
 }
@@ -65,6 +72,7 @@ const mapStateToProps = (state: StoreType) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         portionSize: state.usersPage.portionSize,
+        isFetching: state.usersPage.isFetching,
     }
 }
 
@@ -84,6 +92,9 @@ const mapDispatchToProps = (dispatch: Dispatch<UsersActionsType>) => {
         },
         setCurrentPage: (page: number) => {
             dispatch(setCurrentPageAC(page))
+        },
+        toogleIsFetching: (isFetching: boolean) => {
+          dispatch(toogleIsFetchingAC(isFetching))
         },
     }
 }

@@ -2,7 +2,8 @@ import React from "react";
 import {User} from "./User/User";
 import {UserType} from "../../redux-state/users-reducer";
 import styles from "./Users.module.css"
-import {Pagination} from "../common/Pagination";
+import {Pagination} from "../common/Pagination/Pagination";
+import {Preloader} from "../common/Preloader/Preloader";
 
 type UsersPropsType = {
     users: Array<UserType>
@@ -13,14 +14,14 @@ type UsersPropsType = {
     currentPage: number
     onCurrentPage: (pageNumber: any) => void
     portionSize: number
+    isFetching: boolean
 }
 
 
 export function Users(props: UsersPropsType) {
-
     return (
-
         <div>
+            {props.isFetching ? <Preloader/> : null}
             <div className={styles.pagination}>
                 <Pagination
                     totalItemsCount={props.totalUsersCount}
@@ -28,9 +29,9 @@ export function Users(props: UsersPropsType) {
                     currentPage={props.currentPage}
                     onCurrentPage={props.onCurrentPage}
                     portionSize={props.portionSize}
+                    isFetching={props.isFetching}
                 />
             </div>
-
             {props.users.map(u => <User
                 key={u.id}
                 id={u.id}

@@ -8,6 +8,7 @@ type PaginationPropsType = {
     currentPage: number
     onCurrentPage: (pageNumber: any) => void
     portionSize: number
+    isFetching: boolean
 }
 
 export function Pagination(props: PaginationPropsType) {
@@ -30,6 +31,7 @@ export function Pagination(props: PaginationPropsType) {
                 variant={"outlined"}
                 color={"primary"}
                 size={"small"}
+                disabled={props.isFetching}
             >Prev</Button>}
             {pages
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
@@ -44,12 +46,14 @@ export function Pagination(props: PaginationPropsType) {
                     color={props.currentPage === p
                         ? "secondary"
                         : "primary"}
+                    disabled={props.isFetching}
                 >{p} </Button>)}
             {portionCount > portionNumber && <Button
                 onClick={() => setPortionNumber(portionNumber + 1)}
                 variant={"outlined"}
                 color={"primary"}
                 size={"small"}
+                disabled={props.isFetching}
             >Next</Button>}
         </div>
     )
