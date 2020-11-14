@@ -3,6 +3,7 @@ import userPhoto from "../../../images/friendAvatar.png"
 import styles from "./User.module.css"
 import {PhotosType} from "../../../redux-state/users-reducer";
 import {Button} from "@material-ui/core";
+import {NavLink} from "react-router-dom";
 
 type UserPropsType = {
     id: number
@@ -22,7 +23,9 @@ export function User(props: UserPropsType) {
     return (
         <div className={styles.userWrapper}>
                 <div className={styles.userBlock_1}>
-                    <img src={props.userPhoto.small ? props.userPhoto.small : userPhoto} alt="user-avatar"/>
+                    <NavLink to={"/profile/" + props.id}>
+                        <img src={props.userPhoto.small ? props.userPhoto.small : userPhoto} alt="user-avatar"/>
+                    </NavLink>
                     <div className={styles.button}>
                         {props.followed
                             ? <Button
