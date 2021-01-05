@@ -16,7 +16,7 @@ export function ProfileInfo(props: ProfileInfoPropsType) {
         <div className={styles.content}>
             <div>
                <h2>Profile:</h2>
-                <img src={props.profile.photos.large ? props.profile.photos.large : samurai} alt="samurai"/>
+                <img src={props.profile.photos.large ? props.profile.photos.large : samurai} alt="samurai-photo"/>
             </div>
         </div>
     )

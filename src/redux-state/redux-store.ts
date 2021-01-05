@@ -1,21 +1,19 @@
-import {combineReducers, createStore} from "redux";
-import {ProfilePageType, profileReducer} from "./profile-reducer";
-import {DialogsPageType, dialogsReducer} from "./dialogs-reducer";
-import {sidebarReducer, SidebarType} from "./sidebar-reducer";
-import {usersReducer, UsersType} from "./users-reducer";
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
+import {usersReducer} from "./users-reducer";
+import {authReducer} from "./auth-reducer";
+import thunk from "redux-thunk";
 
-export type StoreType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    sidebar: SidebarType
-    usersPage: UsersType
-}
+export type StoreType = ReturnType<typeof reducer>
 
-const reducers = combineReducers({
+const reducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
-export const store = createStore(reducers)
+export const store = createStore(reducer, applyMiddleware(thunk))

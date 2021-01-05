@@ -16,7 +16,7 @@ export type ProfileType = {
     photos: ProfilePhotosType
 }
 
-type ProfilePhotosType = {
+export type ProfilePhotosType = {
     small: string
     large: string
 }
