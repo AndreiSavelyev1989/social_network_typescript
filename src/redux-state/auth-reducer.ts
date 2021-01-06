@@ -1,19 +1,21 @@
 import {Dispatch} from "redux";
 import {authAPI, profileAPI} from "../components/api/api";
-import {setUserProfile} from "./profile-reducer";
+import {ProfileType, setUserProfile} from "./profile-reducer";
 
 export type AuthUserType = {
     id: number | null
     email: string | null
     login: string | null
     isAuth: boolean
+    profile: ProfileType | null
 }
 
 const initialState: AuthUserType = {
     id: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    profile: null
 }
 
 export function authReducer(state = initialState, action: ActionsType) {
@@ -24,6 +26,11 @@ export function authReducer(state = initialState, action: ActionsType) {
                 ...action.payload,
                 isAuth: true
             }
+        case "SET_AUTH_USER_PROFILE":
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             return state
     }
@@ -31,10 +38,11 @@ export function authReducer(state = initialState, action: ActionsType) {
 
 type ActionsType =
     | ReturnType<typeof setAuthUserDataAC>
-    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setAuthUserProfile>
 
 //action-creators
 export const setAuthUserDataAC = (id: number, email: string, login: string) => ({ type: "SET_AUTH_USER_DATA", payload: {id, email, login}} as const)
+export const setAuthUserProfile = (profile: ProfileType) => ({type: "SET_AUTH_USER_PROFILE", profile} as const)
 
 type ThunkDispatch = Dispatch<ActionsType>
 //thunk-creators
@@ -49,7 +57,7 @@ export const setAuthUserDataTC = () => {
             .then((id) => {
                profileAPI.getUserProfile(id)
                     .then((res) => {
-                        dispatch(setUserProfile(res.data))
+                            dispatch(setAuthUserProfile(res.data))
                     })
             })
     }

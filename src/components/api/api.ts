@@ -9,7 +9,6 @@ const instance = axios.create({
     }
 })
 
-
 type ResponseType<D = {}> = {
     resultCode: number
     messages: Array<string>

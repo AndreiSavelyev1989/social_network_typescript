@@ -24,7 +24,7 @@ export function User(props: UserPropsType) {
         <div className={styles.userWrapper}>
                 <div className={styles.userBlock_1}>
                     <NavLink to={"/profile/" + props.id}>
-                        <img src={props.userPhoto.small ? props.userPhoto.small : userPhoto} alt="user-avatar"/>
+                        <img src={props.userPhoto.large ? props.userPhoto.large : userPhoto} alt="user-avatar"/>
                     </NavLink>
                     <div className={styles.button}>
                         {props.followed

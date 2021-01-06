@@ -12,7 +12,7 @@ export function Header() {
     const dispatch = useDispatch()
     const isAuth = useSelector<StoreType, boolean>(state => state.auth.isAuth)
     const login = useSelector<StoreType, string | null>(state => state.auth.login)
-    const userProfile = useSelector<StoreType, ProfileType | null>(state => state.profilePage.profile)
+    const userProfile = useSelector<StoreType, ProfileType | null>(state => state.auth.profile)
 
     useEffect(() => {
         dispatch(setAuthUserDataTC())
