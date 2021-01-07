@@ -13,6 +13,7 @@ type UsersPropsType = {
     onCurrentPage: (pageNumber: any) => void
     portionSize: number
     isFetching: boolean
+    followingInProgress: Array<number>
 }
 
 
@@ -37,6 +38,7 @@ export function Users(props: UsersPropsType) {
                 followed={u.followed}
                 fullName={u.name}
                 status={u.status}
+                followingInProgress={props.followingInProgress}
             />)}
         </div>
     )

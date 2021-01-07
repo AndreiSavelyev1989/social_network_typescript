@@ -12,6 +12,7 @@ type UserPropsType = {
     fullName: string
     followed: boolean
     status: string | null
+    followingInProgress: Array<number>
 }
 
 export function User(props: UserPropsType) {
@@ -32,11 +33,13 @@ export function User(props: UserPropsType) {
                                 variant={"contained"}
                                 color={"secondary"}
                                 size={"small"}
+                                disabled={props.followingInProgress.some(id => id === props.id)}
                                 onClick={onUnfollowClick}>unfollow</Button>
                             : <Button
                                 variant={"contained"}
                                 color={"primary"}
                                 size={"small"}
+                                disabled={props.followingInProgress.some(id => id === props.id)}
                                 onClick={onFollowClick}>follow</Button>
                         }
                     </div>

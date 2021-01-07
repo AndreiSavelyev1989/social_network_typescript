@@ -22,6 +22,7 @@ type UsersContainerPropsType = {
     portionSize: number
     toogleIsFetching: (isFetching: boolean) => void
     isFetching: boolean
+    followingInProgress: Array<number>
 }
 
 class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
@@ -55,6 +56,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
             onCurrentPage={this.onCurrentPage}
             portionSize={this.props.portionSize}
             isFetching={this.props.isFetching}
+            followingInProgress={this.props.followingInProgress}
         />
     }
 }
@@ -66,6 +68,7 @@ const mapStateToProps = (state: StoreType) => {
         currentPage: state.usersPage.currentPage,
         portionSize: state.usersPage.portionSize,
         isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress,
     }
 }
 
