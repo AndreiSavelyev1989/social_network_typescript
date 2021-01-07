@@ -7,8 +7,6 @@ import {Preloader} from "../common/Preloader/Preloader";
 
 type UsersPropsType = {
     users: Array<UserType>
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -39,8 +37,6 @@ export function Users(props: UsersPropsType) {
                 followed={u.followed}
                 fullName={u.name}
                 status={u.status}
-                follow={props.follow}
-                unfollow={props.unfollow}
             />)}
         </div>
     )

@@ -2,19 +2,17 @@ import {connect} from "react-redux";
 import {Users} from "./Users";
 import {StoreType} from "../../redux-state/redux-store";
 import {
-    follow, setCurrentPage,
+    setCurrentPage,
     setTotalUsersCount,
-    setUsers, toogleIsFetching,
-    unfollow,
+    setUsers,
+    toogleIsFetching,
     UserType
 } from "../../redux-state/users-reducer";
 import React from "react";
-import * as axios from "axios";
+import {usersAPI} from "../api/api";
 
 type UsersContainerPropsType = {
     users: Array<UserType>
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
     pageSize: number
     totalUsersCount: number
@@ -28,11 +26,10 @@ type UsersContainerPropsType = {
 
 class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
 
-    componentDidMount(): void {
+    componentDidMount(){
         this.props.toogleIsFetching(true)
-        // @ts-ignore
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
-            .then((response: { data: { items: UserType[]; totalCount: number; }; }) => {
+        usersAPI.getUsers(this.props.pageSize, this.props.currentPage)
+            .then((response) => {
                 this.props.toogleIsFetching(false)
                 this.props.setUsers(response.data.items)
                 this.props.setTotalUsersCount(response.data.totalCount)
@@ -42,9 +39,8 @@ class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
     onCurrentPage = (pageNumber: any) => {
         this.props.toogleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
-        // @ts-ignore
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`)
-            .then((response: { data: { items: UserType[] }; }) => {
+        usersAPI.getUsers(this.props.pageSize, pageNumber)
+            .then((response) => {
                 this.props.toogleIsFetching(false)
                 this.props.setUsers(response.data.items)
             })
@@ -53,8 +49,6 @@ class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
     render() {
         return <Users
             users={this.props.users}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
             pageSize={this.props.pageSize}
             totalUsersCount={this.props.totalUsersCount}
             currentPage={this.props.currentPage}
@@ -75,30 +69,7 @@ const mapStateToProps = (state: StoreType) => {
     }
 }
 
-// const mapDispatchToProps = (dispatch: Dispatch<UsersActionsType>) => {
-//     return {
-//         follow: (userId: number) => {
-//             dispatch(followAC(userId))
-//         },
-//         unfollow: (userId: number) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (users: Array<UserType>) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setTotalUsersCount: (totalUsersCount: number) => {
-//             dispatch(setTotalUsersCountAC(totalUsersCount))
-//         },
-//         setCurrentPage: (page: number) => {
-//             dispatch(setCurrentPageAC(page))
-//         },
-//         toogleIsFetching: (isFetching: boolean) => {
-//           dispatch(toogleIsFetchingAC(isFetching))
-//         },
-//     }
-// }
-
 
 export default connect(mapStateToProps,
-     {follow, unfollow, setUsers, setTotalUsersCount, setCurrentPage, toogleIsFetching}
+     {setUsers, setTotalUsersCount, setCurrentPage, toogleIsFetching}
     )(UsersContainer)

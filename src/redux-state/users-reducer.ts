@@ -1,14 +1,17 @@
+import {usersAPI} from "../components/api/api";
+import {Dispatch} from "redux";
+
 export type UserType = {
     id: number
     name: string
-    status: string
+    status: string | null
     photos: PhotosType
     followed: boolean
 }
 
 export type PhotosType = {
-    small: string
-    large: string
+    small: string | null
+    large: string | null
 }
 
 export type UsersType = {
@@ -88,4 +91,25 @@ export const usersReducer = (state = initialState, action: UsersActionsType) => 
         default:
             return state
     }
+}
+
+
+export type ThunkUsersDispatch = Dispatch<UsersActionsType>
+
+export const followThunk = (userId: number) => (dispatch: ThunkUsersDispatch) => {
+    return usersAPI.follow(userId)
+        .then(res => {
+            if(res.data.resultCode === 0){
+                dispatch(follow(userId))
+            }
+        })
+}
+
+export const unfollowThunk = (userId: number) => (dispatch: ThunkUsersDispatch) => {
+    return usersAPI.unfollow(userId)
+        .then(res => {
+            if(res.data.resultCode === 0){
+                dispatch(unfollow(userId))
+            }
+        })
 }

@@ -1,24 +1,24 @@
 import React from "react";
 import userPhoto from "../../../images/friendAvatar.png"
 import styles from "./User.module.css"
-import {PhotosType} from "../../../redux-state/users-reducer";
+import {followThunk, PhotosType, unfollowThunk} from "../../../redux-state/users-reducer";
 import {Button} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 type UserPropsType = {
     id: number
     userPhoto: PhotosType
     fullName: string
     followed: boolean
-    status: string
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    status: string | null
 }
 
 export function User(props: UserPropsType) {
 
-    const onFollowClick = () => props.follow(props.id)
-    const onUnfollowClick = () => props.unfollow(props.id)
+    const dispatch = useDispatch()
+    const onFollowClick = () => dispatch(followThunk(props.id))
+    const onUnfollowClick = () => dispatch(unfollowThunk(props.id))
 
     return (
         <div className={styles.userWrapper}>
@@ -50,8 +50,6 @@ export function User(props: UserPropsType) {
                     <div><label>Country:</label> {"props.location.countryName"}</div>
                     <div className={styles.cityName}><label>City:</label> {"props.location.cityName"}</div>
                 </div>
-
-
         </div>
     )
 }
