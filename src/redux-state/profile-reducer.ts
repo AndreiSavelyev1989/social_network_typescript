@@ -1,4 +1,7 @@
 import {v1} from "uuid";
+import {ThunkAction} from "redux-thunk";
+import {StoreType} from "./redux-store";
+import {profileAPI} from "../components/api/api";
 
 export type PostsType = {
     id: string
@@ -37,11 +40,7 @@ export type ProfilePageType = {
     newPostText: string
     profile: ProfileType | null
 }
-export type ActionsProfileTypes =
-    ReturnType<typeof addPost> |
-    ReturnType<typeof updateNewPostText> |
-    ReturnType<typeof setLikesCount> |
-    ReturnType<typeof setUserProfile>
+
 
 const initialState: ProfilePageType = {
     posts: [
@@ -51,12 +50,6 @@ const initialState: ProfilePageType = {
     newPostText: 'it-incubator',
     profile: null,
 }
-
-
-export const addPost = (newPostText: string) => ({type: "ADD_POST", newPostText}) as const
-export const updateNewPostText = (newText: string) => ({type: "UPDATE_NEW_POST_TEXT", newText}) as const
-export const setLikesCount = (id: string, likes: number) => ({type: "SET_LIKES_COUNT", id, likes}) as const
-export const setUserProfile = (profile: ProfileType) => ({type: "SET_USER_PROFILE", profile}) as const
 
 export function profileReducer(state = initialState, action: ActionsProfileTypes) {
     switch (action.type) {
@@ -97,4 +90,27 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
         default:
             return state
     }
+}
+
+//action-creators
+export type ActionsProfileTypes =
+    | ReturnType<typeof addPost>
+    | ReturnType<typeof updateNewPostText>
+    | ReturnType<typeof setLikesCount>
+    | ReturnType<typeof setUserProfile>
+
+export const addPost = (newPostText: string) => ({type: "ADD_POST", newPostText} as const)
+export const updateNewPostText = (newText: string) => ({type: "UPDATE_NEW_POST_TEXT", newText} as const)
+export const setLikesCount = (id: string, likes: number) => ({type: "SET_LIKES_COUNT", id, likes} as const)
+export const setUserProfile = (profile: ProfileType) => ({type: "SET_USER_PROFILE", profile} as const)
+
+
+//thunk-creators
+type ThunkProfileType = ThunkAction<Promise<void>, StoreType, unknown, ActionsProfileTypes>
+
+export const requestUserProfile = (userId: number):ThunkProfileType  => (dispatch) => {
+    return profileAPI.getUserProfile(userId)
+        .then((response) => {
+            dispatch(setUserProfile(response.data))
+        })
 }

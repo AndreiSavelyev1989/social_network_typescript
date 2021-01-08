@@ -1,6 +1,7 @@
-import {Dispatch} from "redux";
 import {authAPI, profileAPI} from "../components/api/api";
-import {ProfileType, setUserProfile} from "./profile-reducer";
+import {ProfileType} from "./profile-reducer";
+import {ThunkAction} from "redux-thunk";
+import {StoreType} from "./redux-store";
 
 export type AuthUserType = {
     id: number | null
@@ -18,7 +19,7 @@ const initialState: AuthUserType = {
     profile: null
 }
 
-export function authReducer(state = initialState, action: ActionsType) {
+export function authReducer(state = initialState, action: ActionsAuthType) {
     switch (action.type) {
         case "SET_AUTH_USER_DATA":
             return {
@@ -36,7 +37,7 @@ export function authReducer(state = initialState, action: ActionsType) {
     }
 }
 
-type ActionsType =
+type ActionsAuthType =
     | ReturnType<typeof setAuthUserDataAC>
     | ReturnType<typeof setAuthUserProfile>
 
@@ -44,11 +45,12 @@ type ActionsType =
 export const setAuthUserDataAC = (id: number, email: string, login: string) => ({ type: "SET_AUTH_USER_DATA", payload: {id, email, login}} as const)
 export const setAuthUserProfile = (profile: ProfileType) => ({type: "SET_AUTH_USER_PROFILE", profile} as const)
 
-type ThunkDispatch = Dispatch<ActionsType>
 //thunk-creators
-export const setAuthUserDataTC = () => {
-    return (dispatch: ThunkDispatch) => {
-        authAPI.authMe()
+type ThunkAuthType = ThunkAction<Promise<void>, StoreType, unknown, ActionsAuthType>
+
+export const setAuthUserDataTC = (): ThunkAuthType => {
+    return (dispatch) => {
+        return authAPI.authMe()
             .then((res) => {
                 let {id, email, login} = res.data.data
                 dispatch(setAuthUserDataAC(id, email, login))

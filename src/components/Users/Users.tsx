@@ -14,6 +14,8 @@ type UsersPropsType = {
     portionSize: number
     isFetching: boolean
     followingInProgress: Array<number>
+    follow: (userId: number) => Promise<void>
+    unfollow: (userId: number) => Promise<void>
 }
 
 
@@ -39,6 +41,8 @@ export function Users(props: UsersPropsType) {
                 fullName={u.name}
                 status={u.status}
                 followingInProgress={props.followingInProgress}
+                follow={props.follow}
+                unfollow={props.unfollow}
             />)}
         </div>
     )
