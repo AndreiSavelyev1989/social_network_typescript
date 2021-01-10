@@ -14,8 +14,8 @@ type UsersPropsType = {
     portionSize: number
     isFetching: boolean
     followingInProgress: Array<number>
-    follow: (userId: number) => Promise<void>
-    unfollow: (userId: number) => Promise<void>
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
 

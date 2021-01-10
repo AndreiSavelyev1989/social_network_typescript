@@ -13,9 +13,9 @@ type UsersContainerPropsType = {
     portionSize: number
     isFetching: boolean
     followingInProgress: Array<number>
-    follow: (userId: number) => Promise<void>
-    unfollow: (userId: number) => Promise<void>
-    requestUsers: (pageSize: number, currentPage: number) => Promise<void>
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    requestUsers: (pageSize: number, currentPage: number) => void
 }
 
 class UsersContainer extends React.Component<UsersContainerPropsType, {}> {

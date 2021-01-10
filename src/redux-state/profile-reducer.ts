@@ -106,7 +106,7 @@ export const setUserProfile = (profile: ProfileType) => ({type: "SET_USER_PROFIL
 
 
 //thunk-creators
-type ThunkProfileType = ThunkAction<Promise<void>, StoreType, unknown, ActionsProfileTypes>
+type ThunkProfileType = ThunkAction<void, StoreType, unknown, ActionsProfileTypes>
 
 export const requestUserProfile = (userId: number):ThunkProfileType  => (dispatch) => {
     return profileAPI.getUserProfile(userId)

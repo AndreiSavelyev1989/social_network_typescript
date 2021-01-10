@@ -111,7 +111,7 @@ export const toogleFollowingProgress = (isFetching: boolean, userId: number) => 
 
 
 //thunk-creators
-type ThunkUsersType = ThunkAction<Promise<void>, StoreType, unknown, ActionsUsersType>
+type ThunkUsersType = ThunkAction<void, StoreType, unknown, ActionsUsersType>
 
 export const requestUsers = (pageSize: number, currentPage: number): ThunkUsersType => (dispatch) => {
     dispatch(toogleIsFetching(true))

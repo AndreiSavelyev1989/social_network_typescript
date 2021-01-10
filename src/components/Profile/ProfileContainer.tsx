@@ -15,7 +15,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    requestUserProfile: (userId: number) => Promise<void>
+    requestUserProfile: (userId: number) => void
 }
 
 type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType

@@ -46,7 +46,7 @@ export const setAuthUserDataAC = (id: number, email: string, login: string) => (
 export const setAuthUserProfile = (profile: ProfileType) => ({type: "SET_AUTH_USER_PROFILE", profile} as const)
 
 //thunk-creators
-type ThunkAuthType = ThunkAction<Promise<void>, StoreType, unknown, ActionsAuthType>
+type ThunkAuthType = ThunkAction<void, StoreType, unknown, ActionsAuthType>
 
 export const setAuthUserDataTC = (): ThunkAuthType => {
     return (dispatch) => {

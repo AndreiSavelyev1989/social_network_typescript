@@ -12,8 +12,8 @@ type UserPropsType = {
     followed: boolean
     status: string | null
     followingInProgress: Array<number>
-    follow: (userId: number) => Promise<void>
-    unfollow: (userId: number) => Promise<void>
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
 export function User(props: UserPropsType) {
