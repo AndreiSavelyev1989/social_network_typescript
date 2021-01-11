@@ -42,7 +42,10 @@ type ActionsAuthType =
     | ReturnType<typeof setAuthUserProfile>
 
 //action-creators
-export const setAuthUserDataAC = (id: number, email: string, login: string) => ({ type: "SET_AUTH_USER_DATA", payload: {id, email, login}} as const)
+export const setAuthUserDataAC = (id: number, email: string, login: string) => ({
+    type: "SET_AUTH_USER_DATA",
+    payload: {id, email, login}
+} as const)
 export const setAuthUserProfile = (profile: ProfileType) => ({type: "SET_AUTH_USER_PROFILE", profile} as const)
 
 //thunk-creators
@@ -53,13 +56,17 @@ export const setAuthUserDataTC = (): ThunkAuthType => {
         return authAPI.authMe()
             .then((res) => {
                 let {id, email, login} = res.data.data
-                dispatch(setAuthUserDataAC(id, email, login))
+                if (id) {
+                    dispatch(setAuthUserDataAC(id, email, login))
+                }
                 return id
             })
             .then((id) => {
-               profileAPI.getUserProfile(id)
+                profileAPI.getUserProfile(id)
                     .then((res) => {
+                        if (id) {
                             dispatch(setAuthUserProfile(res.data))
+                        }
                     })
             })
     }

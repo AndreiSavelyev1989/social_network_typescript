@@ -5,6 +5,7 @@ import {Message} from "./Message/Message";
 import {DialogsType, MessagesType} from "../../redux-state/dialogs-reducer";
 import TextField from "@material-ui/core/TextField";
 import {Button} from "@material-ui/core";
+import { Redirect } from "react-router-dom";
 
 type DialogsPropsType = {
     dialogs: Array<DialogsType>
@@ -12,9 +13,13 @@ type DialogsPropsType = {
     newMessageText: string
     addNewMessage: (newMessageText: string) => void
     updateNewMessageText: (newText: string) => void
+    isAuth: boolean
 }
 
 export function Dialogs(props: DialogsPropsType) {
+
+    if(!props.isAuth) return <Redirect to="/login"/>
+
     const dialogsElements = props.dialogs.map(d => <Dialog key={d.id} id={d.id} name={d.name}/>)
     const messagesElements = props.messages.map(m => <Message key={m.id} message={m.message}/>)
 
@@ -25,6 +30,8 @@ export function Dialogs(props: DialogsPropsType) {
     const onChangeNewMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.updateNewMessageText(e.currentTarget.value)
     }
+
+
 
     return (
         <div className={styles.dialogs}>
