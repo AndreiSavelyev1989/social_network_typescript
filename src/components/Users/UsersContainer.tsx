@@ -3,7 +3,7 @@ import {Users} from "./Users";
 import {StoreType} from "../../redux-state/redux-store";
 import {follow, requestUsers, setCurrentPage, unfollow, UserType} from "../../redux-state/users-reducer";
 import React from "react";
-import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
 
 type UsersContainerPropsType = {
     users: Array<UserType>
@@ -17,7 +17,6 @@ type UsersContainerPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     requestUsers: (pageSize: number, currentPage: number) => void
-    isAuth: boolean
 }
 
 class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
@@ -44,7 +43,6 @@ class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
             followingInProgress={this.props.followingInProgress}
             follow={this.props.follow}
             unfollow={this.props.unfollow}
-            isAuth={this.props.isAuth}
         />
     }
 }
@@ -57,11 +55,10 @@ const mapStateToProps = (state: StoreType) => {
         portionSize: state.usersPage.portionSize,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress,
-        isAuth: state.auth.isAuth
     }
 }
 
 
-export default connect(mapStateToProps,
+export default withAuthRedirect(connect(mapStateToProps,
      {follow, unfollow, requestUsers, setCurrentPage}
-    )(UsersContainer)
+    )(UsersContainer))

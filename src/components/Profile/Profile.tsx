@@ -7,11 +7,9 @@ import {Redirect} from "react-router-dom";
 
 type ProfilePropsType = {
     profile: ProfileType | null
-    isAuth: boolean
 }
 
 export function Profile(props: ProfilePropsType) {
-    if(!props.isAuth) return <Redirect to="/login"/>
     return (
         <div className={styles.profileWrapper}>
             <ProfileInfo profile={props.profile}/>

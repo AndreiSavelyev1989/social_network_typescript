@@ -4,7 +4,6 @@ import {UserType} from "../../redux-state/users-reducer";
 import styles from "./Users.module.css"
 import {Pagination} from "../common/Pagination/Pagination";
 import {Preloader} from "../common/Preloader/Preloader";
-import {Redirect} from "react-router-dom";
 
 type UsersPropsType = {
     users: Array<UserType>
@@ -17,13 +16,10 @@ type UsersPropsType = {
     followingInProgress: Array<number>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    isAuth: boolean
 }
 
 
 export function Users(props: UsersPropsType) {
-debugger
-    if(!props.isAuth) return <Redirect to="/login"/>
 
     return (
         <div>

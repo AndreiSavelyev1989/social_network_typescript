@@ -13,12 +13,9 @@ type DialogsPropsType = {
     newMessageText: string
     addNewMessage: (newMessageText: string) => void
     updateNewMessageText: (newText: string) => void
-    isAuth: boolean
 }
 
 export function Dialogs(props: DialogsPropsType) {
-
-    if(!props.isAuth) return <Redirect to="/login"/>
 
     const dialogsElements = props.dialogs.map(d => <Dialog key={d.id} id={d.id} name={d.name}/>)
     const messagesElements = props.messages.map(m => <Message key={m.id} message={m.message}/>)
