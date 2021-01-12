@@ -9,8 +9,8 @@ type LoginPropsType = {
     login: string | null
     userProfile: ProfileType | null
 }
+
 export const AuthMe: React.FC<LoginPropsType> = (props) => {
-    debugger
     return (
         <div className={styles.loginBlock}>
             {props.isAuth && props.login

@@ -4,6 +4,7 @@ import {StoreType} from "../../redux-state/redux-store";
 import {follow, requestUsers, setCurrentPage, unfollow, UserType} from "../../redux-state/users-reducer";
 import React from "react";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 type UsersContainerPropsType = {
     users: Array<UserType>
@@ -21,7 +22,7 @@ type UsersContainerPropsType = {
 
 class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.requestUsers(this.props.pageSize, this.props.currentPage)
     }
 
@@ -46,6 +47,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
         />
     }
 }
+
 const mapStateToProps = (state: StoreType) => {
     return {
         users: state.usersPage.users,
@@ -59,6 +61,7 @@ const mapStateToProps = (state: StoreType) => {
 }
 
 
-export default withAuthRedirect(connect(mapStateToProps,
-     {follow, unfollow, requestUsers, setCurrentPage}
-    )(UsersContainer))
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {follow, unfollow, requestUsers, setCurrentPage}),
+        withAuthRedirect
+    )(UsersContainer)
