@@ -1,14 +1,23 @@
+.loginBlock {
+    display: flex;
+    width: 150px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .userBlock {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
     color: white;
-    padding-top: 20px;
+    padding-top: 5px;
     padding-right: 20px;
 }
 
-.userBlock .userPhoto{
+.userBlock .userPhoto {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -16,11 +25,10 @@
 
 .login {
     font-weight: bold;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
-.loginBlock a{
+.loginLink a {
     color: white;
-    padding: 20px;
     text-decoration: none;
 }

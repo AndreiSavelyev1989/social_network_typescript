@@ -39,10 +39,22 @@ type UserType = {
     followed: boolean
 }
 
+type LoginType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: boolean
+}
 
 export const authAPI = {
     authMe() {
         return instance.get<ResponseType<AuthMeType>>(`auth/me`)
+    },
+    login(email: string, password: string, rememberMe: boolean) {
+        return instance.post<ResponseType<{userId: string}>>(`auth/login`, {email, password, rememberMe})
+    },
+    logout() {
+        return instance.delete<ResponseType>(`auth/login`)
     }
 }
 

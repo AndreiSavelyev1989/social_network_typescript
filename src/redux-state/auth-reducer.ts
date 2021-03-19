@@ -9,6 +9,8 @@ export type AuthUserType = {
     login: string | null
     isAuth: boolean
     profile: ProfileType | null
+    error: string
+    isLoggedIn: boolean
 }
 
 const initialState: AuthUserType = {
@@ -16,7 +18,9 @@ const initialState: AuthUserType = {
     email: null,
     login: null,
     isAuth: false,
-    profile: null
+    profile: null,
+    error: '',
+    isLoggedIn: false
 }
 
 export function authReducer(state = initialState, action: ActionsAuthType) {
@@ -32,6 +36,16 @@ export function authReducer(state = initialState, action: ActionsAuthType) {
                 ...state,
                 profile: action.profile
             }
+        case "SET_IS_LOGGED_IN":
+            return {
+                ...state,
+                isLoggedIn: action.isLoggedIn
+            }
+        case "SET_ERROR":
+            return {
+                ...state,
+                error: action.error
+            }
         default:
             return state
     }
@@ -40,6 +54,8 @@ export function authReducer(state = initialState, action: ActionsAuthType) {
 type ActionsAuthType =
     | ReturnType<typeof setAuthUserDataAC>
     | ReturnType<typeof setAuthUserProfile>
+    | ReturnType<typeof setIsLoggedIn>
+    | ReturnType<typeof setError>
 
 //action-creators
 export const setAuthUserDataAC = (id: number, email: string, login: string) => ({
@@ -47,16 +63,27 @@ export const setAuthUserDataAC = (id: number, email: string, login: string) => (
     payload: {id, email, login}
 } as const)
 export const setAuthUserProfile = (profile: ProfileType) => ({type: "SET_AUTH_USER_PROFILE", profile} as const)
+export const setIsLoggedIn = (isLoggedIn: boolean) => ({type: "SET_IS_LOGGED_IN", isLoggedIn} as const)
+export const setError = (error: string) => ({type: "SET_ERROR", error} as const)
 
 //thunk-creators
 type ThunkAuthType = ThunkAction<void, StoreType, unknown, ActionsAuthType>
 
-export const setAuthUserDataTC = (): ThunkAuthType => {
+// export const authMe = (): ThunkAuthType => (dispatch) => {
+//     return authAPI.authMe()
+//         .then((res) => {
+//             let {id, email, login} = res.data.data
+//             if(res.data.resultCode === 0){
+//                 dispatch(setAuthUserDataAC(id, email, login))
+//             }
+//         })
+// }
+export const authMe = (): ThunkAuthType => {
     return (dispatch) => {
         return authAPI.authMe()
             .then((res) => {
                 let {id, email, login} = res.data.data
-                if (id) {
+                if (res.data.resultCode === 0) {
                     dispatch(setAuthUserDataAC(id, email, login))
                 }
                 return id
@@ -70,4 +97,27 @@ export const setAuthUserDataTC = (): ThunkAuthType => {
                     })
             })
     }
+}
+
+export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkAuthType => (dispatch) => {
+    return authAPI.login(email, password, rememberMe)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setIsLoggedIn(true))
+            }
+        })
+        .catch(e => {
+            dispatch(setError(e))
+        })
+}
+export const logoutTC = (): ThunkAuthType => (dispatch) => {
+    return authAPI.logout()
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setIsLoggedIn(false))
+            }
+        })
+        .catch(e => {
+            dispatch(setError(e))
+        })
 }
