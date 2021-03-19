@@ -39,6 +39,7 @@ export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
     profile: ProfileType | null
+    status: string
 }
 
 
@@ -47,8 +48,9 @@ const initialState: ProfilePageType = {
         {id: v1(), postMessage: "Hello World", likesCount: 20},
         {id: v1(), postMessage: "It is my first post", likesCount: 10}
     ],
-    newPostText: 'it-incubator',
+    newPostText: "it-incubator",
     profile: null,
+    status: ""
 }
 
 export function profileReducer(state = initialState, action: ActionsProfileTypes) {
@@ -74,9 +76,8 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
                 ...state,
                 posts: state.posts.map(p => {
                         if (p.id === action.id) {
-                            return  {...p, likesCount: action.likes}
-                        }
-                        else {
+                            return {...p, likesCount: action.likes}
+                        } else {
                             return p
                         }
                     }
@@ -87,6 +88,11 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
                 ...state, profile: action.profile
             }
         }
+        case "SET_USER_STATUS":
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state
     }
@@ -98,19 +104,36 @@ export type ActionsProfileTypes =
     | ReturnType<typeof updateNewPostText>
     | ReturnType<typeof setLikesCount>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setUserStatus>
 
 export const addPost = (newPostText: string) => ({type: "ADD_POST", newPostText} as const)
 export const updateNewPostText = (newText: string) => ({type: "UPDATE_NEW_POST_TEXT", newText} as const)
 export const setLikesCount = (id: string, likes: number) => ({type: "SET_LIKES_COUNT", id, likes} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: "SET_USER_PROFILE", profile} as const)
+export const setUserStatus = (status: string) => ({type: "SET_USER_STATUS", status} as const)
 
 
 //thunk-creators
 type ThunkProfileType = ThunkAction<void, StoreType, unknown, ActionsProfileTypes>
 
-export const requestUserProfile = (userId: number):ThunkProfileType  => (dispatch) => {
+export const requestUserProfile = (userId: number): ThunkProfileType => (dispatch) => {
     return profileAPI.getUserProfile(userId)
         .then((response) => {
             dispatch(setUserProfile(response.data))
+        })
+}
+
+export const requestUserStatus = (userId: number): ThunkProfileType => (dispatch) => {
+    return profileAPI.getUserStatus(userId)
+        .then(res => {
+            dispatch(setUserStatus(res.data))
+        })
+}
+export const changeUserStatus = (status: string): ThunkProfileType => (dispatch) => {
+    return profileAPI.updateUserStatus(status)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setUserStatus(status))
+            }
         })
 }

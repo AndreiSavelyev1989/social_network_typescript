@@ -49,6 +49,12 @@ export const authAPI = {
 export const profileAPI = {
     getUserProfile(userId: number) {
         return instance.get<ProfileType>(`profile/${userId}`)
+    },
+    getUserStatus(userId: number) {
+        return instance.get<string>(`profile/status/${userId}`)
+    },
+    updateUserStatus(status: string) {
+        return instance.put<ResponseType>(`profile/status`, {status})
     }
 }
 
@@ -59,7 +65,7 @@ export const usersAPI = {
     unfollow(userId: number) {
         return instance.delete<ResponseType>(`follow/${userId}`)
     },
-    getUsers(pageSize: number, currentPage: number){
+    getUsers(pageSize: number, currentPage: number) {
         return instance.get<UsersType>(`users?count=${pageSize}&page=${currentPage}`)
     }
 }
