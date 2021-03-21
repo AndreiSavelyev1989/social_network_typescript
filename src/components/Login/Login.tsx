@@ -1,7 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
-import {Preloader} from "../common/Preloader/Preloader";
 import {useFormik} from "formik";
 import {StoreType} from "../../redux-state/redux-store";
 import {AuthUserType, loginTC} from "../../redux-state/auth-reducer";

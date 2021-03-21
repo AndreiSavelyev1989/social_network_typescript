@@ -28,8 +28,7 @@ export function authReducer(state = initialState, action: ActionsAuthType) {
         case "SET_AUTH_USER_DATA":
             return {
                 ...state,
-                ...action.payload,
-                isAuth: true
+                ...action.payload
             }
         case "SET_AUTH_USER_PROFILE":
             return {
@@ -46,6 +45,11 @@ export function authReducer(state = initialState, action: ActionsAuthType) {
                 ...state,
                 error: action.error
             }
+        case "SET_IS_AUTH":
+            return {
+                ...state,
+                isAuth: action.isAuth
+            }
         default:
             return state
     }
@@ -56,6 +60,7 @@ type ActionsAuthType =
     | ReturnType<typeof setAuthUserProfile>
     | ReturnType<typeof setIsLoggedIn>
     | ReturnType<typeof setError>
+    | ReturnType<typeof setIsAuth>
 
 //action-creators
 export const setAuthUserDataAC = (id: number, email: string, login: string) => ({
@@ -65,36 +70,33 @@ export const setAuthUserDataAC = (id: number, email: string, login: string) => (
 export const setAuthUserProfile = (profile: ProfileType) => ({type: "SET_AUTH_USER_PROFILE", profile} as const)
 export const setIsLoggedIn = (isLoggedIn: boolean) => ({type: "SET_IS_LOGGED_IN", isLoggedIn} as const)
 export const setError = (error: string) => ({type: "SET_ERROR", error} as const)
+export const setIsAuth = (isAuth: boolean) => ({type: "SET_IS_AUTH", isAuth} as const)
 
 //thunk-creators
 type ThunkAuthType = ThunkAction<void, StoreType, unknown, ActionsAuthType>
 
-// export const authMe = (): ThunkAuthType => (dispatch) => {
-//     return authAPI.authMe()
-//         .then((res) => {
-//             let {id, email, login} = res.data.data
-//             if(res.data.resultCode === 0){
-//                 dispatch(setAuthUserDataAC(id, email, login))
-//             }
-//         })
-// }
 export const authMe = (): ThunkAuthType => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const isAuth = getState().auth.isAuth
         return authAPI.authMe()
             .then((res) => {
                 let {id, email, login} = res.data.data
                 if (res.data.resultCode === 0) {
                     dispatch(setAuthUserDataAC(id, email, login))
+                    dispatch(setIsAuth(true))
+                    dispatch(setIsLoggedIn(true))
                 }
                 return id
             })
             .then((id) => {
-                profileAPI.getUserProfile(id)
-                    .then((res) => {
-                        if (id) {
-                            dispatch(setAuthUserProfile(res.data))
-                        }
-                    })
+                if (isAuth) {
+                    profileAPI.getUserProfile(id)
+                        .then((res) => {
+                            if (id) {
+                                dispatch(setAuthUserProfile(res.data))
+                            }
+                        })
+                }
             })
     }
 }
@@ -115,6 +117,7 @@ export const logoutTC = (): ThunkAuthType => (dispatch) => {
         .then(res => {
             if (res.data.resultCode === 0) {
                 dispatch(setIsLoggedIn(false))
+                dispatch(setIsAuth(false))
             }
         })
         .catch(e => {

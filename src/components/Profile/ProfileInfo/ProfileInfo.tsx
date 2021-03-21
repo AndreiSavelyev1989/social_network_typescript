@@ -12,13 +12,13 @@ type ProfileInfoPropsType = {
 }
 
 export function ProfileInfo(props: ProfileInfoPropsType) {
-    if(!props.profile){
+    if (!props.profile) {
         return <Preloader/>
     }
     return (
         <div className={styles.content}>
             <div>
-               <h2>Profile:</h2>
+                <h2>Profile:</h2>
                 <img src={props.profile.photos.large ? props.profile.photos.large : samurai} alt="samurai-photo"/>
             </div>
             <ProfileStatus status={props.status} changeUserStatus={props.changeUserStatus}/>
