@@ -58,13 +58,12 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
         case "ADD_POST":
             let newPost: PostsType = {
                 id: v1(),
-                postMessage: state.newPostText,
+                postMessage: action.newPostText,
                 likesCount: 0
             }
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: ""
             }
         case "UPDATE_NEW_POST_TEXT":
             return {

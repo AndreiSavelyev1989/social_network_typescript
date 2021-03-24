@@ -7,7 +7,6 @@ import {StoreType} from "../../../redux-state/redux-store";
 const mapStateToProps = (state: StoreType) => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText,
     }
 }
 
