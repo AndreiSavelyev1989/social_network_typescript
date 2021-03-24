@@ -9,9 +9,13 @@
 .input {
     display: block;
 }
+
 .checkbox {
     display: flex;
     width: 100%;
 }
 
+.registrationError {
+    color: red;
+}
 

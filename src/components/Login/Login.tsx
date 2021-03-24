@@ -58,6 +58,7 @@ export const Login = () => {
                         className={style.input}
                         type={"text"}
                         placeholder={"Email"}
+                        required
                         {...formik.getFieldProps("email")}/>
                     {formik.touched.email && formik.errors.email ?
                         <div className={style.registrationError}>{formik.errors.email}</div> : null}
@@ -66,6 +67,7 @@ export const Login = () => {
                         className={style.input}
                         type={"password"}
                         placeholder={"Password"}
+                        required
                         {...formik.getFieldProps("password")}/>
                     {formik.touched.password && formik.errors.password ?
                         <div className={style.registrationError}>{formik.errors.password}</div> : null}

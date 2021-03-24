@@ -78,6 +78,7 @@ type ThunkAuthType = ThunkAction<void, StoreType, unknown, ActionsAuthType>
 export const authMe = (): ThunkAuthType => {
     return (dispatch, getState) => {
         const isAuth = getState().auth.isAuth
+        const isLoggedIn = getState().auth.isLoggedIn
         return authAPI.authMe()
             .then((res) => {
                 let {id, email, login} = res.data.data
@@ -89,7 +90,7 @@ export const authMe = (): ThunkAuthType => {
                 return id
             })
             .then((id) => {
-                if (isAuth) {
+                if (isAuth || isLoggedIn) {
                     profileAPI.getUserProfile(id)
                         .then((res) => {
                             if (id) {

@@ -22,7 +22,7 @@ export const AuthMe: React.FC<LoginPropsType> = (props) => {
     return (
         <>
             <div className={styles.loginBlock}>
-                {props.isAuth && props.isLoggedIn
+                {props.isAuth
                     ? <div className={styles.userBlock}>
                         {props.userProfile
                             ? <img className={styles.userPhoto}
