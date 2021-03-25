@@ -9,11 +9,11 @@ import {BrowserRouter, Route} from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
-import {Login} from "./components/login/Login";
 import {useDispatch, useSelector} from "react-redux";
 import {isInitializedTC} from "./redux-state/app-reducer";
 import {StoreType} from "./redux-state/redux-store";
 import {Preloader} from "./components/common/preloader/Preloader";
+import {LoginContainer} from "./components/login/LoginContainer";
 
 function App() {
     const dispatch = useDispatch()
@@ -40,7 +40,7 @@ function App() {
                     <Route path="/news" render={News}/>
                     <Route path="/music" render={Music}/>
                     <Route path="/settings" render={Settings}/>
-                    <Route path="/login" render={() => <Login/>}/>
+                    <Route path="/login" render={() => <LoginContainer/>}/>
                 </div>
 
             </div>

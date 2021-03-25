@@ -19,10 +19,8 @@ export const ProfilePostForm: React.FC<PropsType> = ({addPost}) => {
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
-            if (!values.newPost) {
-                errors.newPost = 'Required';
-            } else if (values.newPost.length > 100) {
-                errors.newPost = 'Your post must be less then 100 symbols';
+            if (values.newPost && values.newPost.length > 100) {
+                errors.newPost = 'Max length is 100 symbols';
             }
             return errors;
         },

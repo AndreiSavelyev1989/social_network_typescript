@@ -18,10 +18,8 @@ export const DialogsMessageForm: React.FC<PropsType> = ({addNewMessage}) => {
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
-            if (!values.newMessage) {
-                errors.newMessage = 'Required';
-            } else if (values.newMessage.length > 100) {
-                errors.newMessage = 'Your message must be less then 100 symbols';
+            if (values.newMessage.length > 100) {
+                errors.newMessage = 'Max length is 100 symbols';
             }
             return errors;
         },

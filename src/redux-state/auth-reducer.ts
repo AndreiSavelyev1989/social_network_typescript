@@ -55,7 +55,7 @@ export function authReducer(state = initialState, action: ActionsAuthType) {
     }
 }
 
-type ActionsAuthType =
+export type ActionsAuthType =
     | ReturnType<typeof setAuthUserDataAC>
     | ReturnType<typeof setAuthUserProfile>
     | ReturnType<typeof setIsLoggedIn>
