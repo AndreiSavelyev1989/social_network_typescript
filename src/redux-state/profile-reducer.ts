@@ -37,7 +37,6 @@ type ProfileContactsType = {
 
 export type ProfilePageType = {
     posts: Array<PostsType>
-    newPostText: string
     profile: ProfileType | null
     status: string
 }
@@ -48,7 +47,6 @@ const initialState: ProfilePageType = {
         {id: v1(), postMessage: "Hello World", likesCount: 20},
         {id: v1(), postMessage: "It is my first post", likesCount: 10}
     ],
-    newPostText: "it-incubator",
     profile: null,
     status: ""
 }
@@ -64,11 +62,6 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-            }
-        case "UPDATE_NEW_POST_TEXT":
-            return {
-                ...state,
-                newPostText: action.newText
             }
         case "SET_LIKES_COUNT":
             return {
@@ -100,13 +93,11 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
 //action-creators
 export type ActionsProfileTypes =
     | ReturnType<typeof addPost>
-    | ReturnType<typeof updateNewPostText>
     | ReturnType<typeof setLikesCount>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserStatus>
 
 export const addPost = (newPostText: string) => ({type: "ADD_POST", newPostText} as const)
-export const updateNewPostText = (newText: string) => ({type: "UPDATE_NEW_POST_TEXT", newText} as const)
 export const setLikesCount = (id: string, likes: number) => ({type: "SET_LIKES_COUNT", id, likes} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: "SET_USER_PROFILE", profile} as const)
 export const setUserStatus = (status: string) => ({type: "SET_USER_STATUS", status} as const)

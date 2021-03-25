@@ -1,4 +1,4 @@
-import {addPost, setLikesCount, updateNewPostText} from "../../../redux-state/profile-reducer";
+import {addPost, setLikesCount} from "../../../redux-state/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {StoreType} from "../../../redux-state/redux-store";
@@ -11,5 +11,5 @@ const mapStateToProps = (state: StoreType) => {
 }
 
 export const MyPostsContainer = connect(mapStateToProps, {
-    addPost, updateNewPostText, setLikesCount
+    addPost, setLikesCount
 })(MyPosts)

@@ -1,11 +1,9 @@
 import {v1} from "uuid";
 
 const ADD_NEW_MESSAGE = "ADD_NEW_MESSAGE"
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT"
 
 type DialogsActionsType =
-    ReturnType<typeof addNewMessage> |
-    ReturnType<typeof updateNewMessageText>
+    ReturnType<typeof addNewMessage>
 
 export type DialogsType = {
     id: string
@@ -18,7 +16,6 @@ export type MessagesType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
-    newMessageText: string
 }
 
 const initialState: DialogsPageType = {
@@ -36,7 +33,6 @@ const initialState: DialogsPageType = {
         {id: v1(), message: "Nice to meet you!"},
         {id: v1(), message: "What a wonderful day!"}
     ],
-    newMessageText: "Hello!!!"
 }
 
 export function dialogsReducer(state = initialState, action: DialogsActionsType) {
@@ -44,18 +40,11 @@ export function dialogsReducer(state = initialState, action: DialogsActionsType)
         case ADD_NEW_MESSAGE:
             let newMessageText: MessagesType = {
                 id: v1(),
-                message: state.newMessageText,
+                message: action.newMessage,
             }
             return {
                 ...state,
                 messages: [...state.messages, newMessageText],
-                newMessageText: ""
-            }
-
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.text
             }
         default:
             return state
@@ -63,4 +52,3 @@ export function dialogsReducer(state = initialState, action: DialogsActionsType)
 }
 
 export const addNewMessage = (newMessage: string) => ({type: ADD_NEW_MESSAGE, newMessage}) as const
-export const updateNewMessageText = (text: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, text}) as const
