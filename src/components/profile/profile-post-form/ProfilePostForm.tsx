@@ -27,6 +27,9 @@ export const ProfilePostForm: React.FC<PropsType> = ({addPost}) => {
 
         onSubmit: values => {
             addPost(values.newPost)
+            formik.resetForm({
+                values: {newPost: '',}
+            })
         },
     })
     return (

@@ -26,7 +26,10 @@ export const DialogsMessageForm: React.FC<PropsType> = ({addNewMessage}) => {
 
         onSubmit: values => {
             addNewMessage(values.newMessage)
-        },
+            formik.resetForm({
+                values: {newMessage: '',}
+            })
+        }
     })
     return (
         <form className={style.formBlock} onSubmit={formik.handleSubmit}>
