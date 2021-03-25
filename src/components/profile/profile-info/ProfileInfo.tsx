@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./ProfileInfo.module.css"
 import samurai from "../../../images/profileImg.png"
-import {Preloader} from "../../common/Preloader/Preloader";
+import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileType} from "../../../redux-state/profile-reducer";
-import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
+import {ProfileStatus} from "./profile-status/ProfileStatus";
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./MyPosts.module.css"
-import {Post} from "./Post/Post";
+import {Post} from "./post/Post";
 import {PostsType} from "../../../redux-state/profile-reducer";
 import {ProfilePostForm} from "../profile-post-form/ProfilePostForm";
 

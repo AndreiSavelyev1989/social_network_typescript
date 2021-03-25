@@ -4,7 +4,7 @@ import {ProfileType} from "../../redux-state/profile-reducer";
 import styles from "./AuthMe.module.css"
 import samurai from "../../images/profileImg.png"
 import {logoutTC} from "../../redux-state/auth-reducer";
-import {Preloader} from "../common/Preloader/Preloader";
+import {Preloader} from "../common/preloader/Preloader";
 
 type LoginPropsType = {
     isAuth: boolean

@@ -1,19 +1,19 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {Header} from "./components/Header/Header";
-import {Navbar} from "./components/Navbar/Navbar";
-import {News} from "./components/News/News";
-import {Music} from "./components/Music/Music";
-import {Settings} from "./components/Settings/Settings";
+import {Header} from "./components/header/Header";
+import {Navbar} from "./components/navbar/Navbar";
+import {News} from "./components/news/News";
+import {Music} from "./components/music/Music";
+import {Settings} from "./components/settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import {Login} from "./components/Login/Login";
+import DialogsContainer from "./components/dialogs/DialogsContainer";
+import UsersContainer from "./components/users/UsersContainer";
+import ProfileContainer from "./components/profile/ProfileContainer";
+import {Login} from "./components/login/Login";
 import {useDispatch, useSelector} from "react-redux";
 import {isInitializedTC} from "./redux-state/app-reducer";
 import {StoreType} from "./redux-state/redux-store";
-import {Preloader} from "./components/common/Preloader/Preloader";
+import {Preloader} from "./components/common/preloader/Preloader";
 
 function App() {
     const dispatch = useDispatch()

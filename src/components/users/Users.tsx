@@ -1,9 +1,9 @@
 import React from "react";
-import {User} from "./User/User";
+import {User} from "./user/User";
 import {UserType} from "../../redux-state/users-reducer";
 import styles from "./Users.module.css"
-import {Pagination} from "../common/Pagination/Pagination";
-import {Preloader} from "../common/Preloader/Preloader";
+import {Pagination} from "../common/pagination/Pagination";
+import {Preloader} from "../common/preloader/Preloader";
 
 type UsersPropsType = {
     users: Array<UserType>

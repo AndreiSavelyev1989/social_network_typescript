@@ -1,4 +1,4 @@
-import style from "../../Login/Login.module.css";
+import style from "../../login/Login.module.css";
 import TextField from "@material-ui/core/TextField";
 import {Button} from "@material-ui/core";
 import React from "react";

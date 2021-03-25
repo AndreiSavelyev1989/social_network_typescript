@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import styles from "./Header.module.css"
 import mainLogo from "../../images/main_logo.png"
-import {AuthMe} from "../AuthMe/AuthMe";
+import {AuthMe} from "../auth-me/AuthMe";
 import {useDispatch, useSelector} from "react-redux";
 import {StoreType} from "../../redux-state/redux-store";
 import {AuthUserType, authMe} from "../../redux-state/auth-reducer";

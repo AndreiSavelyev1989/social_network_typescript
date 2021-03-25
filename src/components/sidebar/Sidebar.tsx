@@ -1,5 +1,5 @@
 import React from "react";
-import {Friend} from "./Friend/Friend";
+import {Friend} from "./friend/Friend";
 import {UserType} from "../../redux-state/users-reducer";
 
 type SidebarPropsType = {
