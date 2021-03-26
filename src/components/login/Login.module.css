@@ -15,7 +15,7 @@
     width: 100%;
 }
 
-.registrationError {
+.registrationError, .error {
     color: red;
 }
 

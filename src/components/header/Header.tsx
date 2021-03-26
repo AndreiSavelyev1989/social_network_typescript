@@ -11,7 +11,7 @@ import {ProfileType} from "../../redux-state/profile-reducer";
 export function Header() {
 
     const dispatch = useDispatch()
-    const {isAuth, login, isLoggedIn} = useSelector<StoreType, AuthUserType>(state => state.auth)
+    const {isAuth, login, isLoggedIn, error} = useSelector<StoreType, AuthUserType>(state => state.auth)
     const userProfile = useSelector<StoreType, ProfileType | null>(state => state.auth.profile)
 
     useEffect(() => {
@@ -23,6 +23,7 @@ export function Header() {
             <img src={mainLogo} alt="logo"/>
             <div className={styles.loginBlock}>
                 <AuthMe
+                    error={error}
                     isAuth={isAuth}
                     isLoggedIn={isLoggedIn}
                     login={login}

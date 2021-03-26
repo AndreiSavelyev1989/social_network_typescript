@@ -107,10 +107,12 @@ export const loginTC = (email: string, password: string, rememberMe: boolean): T
         .then(res => {
             if (res.data.resultCode === 0) {
                 dispatch(setIsLoggedIn(true))
+            } else {
+                dispatch(setError(res.data.messages[0]))
             }
         })
         .catch(e => {
-            dispatch(setError(e))
+            dispatch(setError(e.message))
         })
 }
 export const logoutTC = (): ThunkAuthType => (dispatch) => {
@@ -119,9 +121,11 @@ export const logoutTC = (): ThunkAuthType => (dispatch) => {
             if (res.data.resultCode === 0) {
                 dispatch(setIsLoggedIn(false))
                 dispatch(setIsAuth(false))
+            } else {
+                dispatch(setError(res.data.messages[0]))
             }
         })
         .catch(e => {
-            dispatch(setError(e))
+            dispatch(setError(e.message))
         })
 }

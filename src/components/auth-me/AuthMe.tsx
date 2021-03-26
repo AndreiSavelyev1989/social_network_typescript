@@ -1,7 +1,8 @@
 import React, {Dispatch} from "react";
 import {NavLink} from "react-router-dom";
 import {ProfileType} from "../../redux-state/profile-reducer";
-import styles from "./AuthMe.module.css"
+import styles from "./AuthMe.module.css";
+import style from "../login/Login.module.css";
 import samurai from "../../images/profileImg.png"
 import {logoutTC} from "../../redux-state/auth-reducer";
 import {Preloader} from "../common/preloader/Preloader";
@@ -12,6 +13,7 @@ type LoginPropsType = {
     userProfile: ProfileType | null
     dispatch: Dispatch<any>
     isLoggedIn: boolean
+    error: string
 }
 
 export const AuthMe: React.FC<LoginPropsType> = (props) => {
@@ -34,6 +36,7 @@ export const AuthMe: React.FC<LoginPropsType> = (props) => {
                         <div>
                             <button onClick={logout}>Logout</button>
                         </div>
+                        {props.error && <div className={style.error}>{props.error}</div>}
                     </div>
                     : <div className={styles.loginLink}>
                         <NavLink to={'/login'}>Login</NavLink>

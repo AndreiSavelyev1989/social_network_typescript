@@ -12,9 +12,10 @@ type FormikErrorType = {
 
 type PropsType = {
     dispatch: Dispatch<any>
+    error: string
 }
 
-export const LoginForm: React.FC<PropsType> = ({dispatch}) => {
+export const LoginForm: React.FC<PropsType> = ({dispatch, error}) => {
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -70,7 +71,7 @@ export const LoginForm: React.FC<PropsType> = ({dispatch}) => {
                     {...formik.getFieldProps("rememberMe")}/>
                 <span>RememberMe</span>
             </div>
-
+            <div className={style.error}>{error ? error : null}</div>
             <button type={"submit"}>Login</button>
         </form>
     )
