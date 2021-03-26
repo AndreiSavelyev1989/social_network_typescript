@@ -5,6 +5,13 @@ import {follow, requestUsers, setCurrentPage, unfollow, UserType} from "../../re
 import React from "react";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage, getFollowingInProgress, getIsFetching,
+    getPageSize,
+    getPortionSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux-state/selectors/users-selectors";
 
 type UsersContainerPropsType = {
     users: Array<UserType>
@@ -48,15 +55,26 @@ class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
     }
 }
 
+// const mapStateToProps = (state: StoreType) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         portionSize: state.usersPage.portionSize,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress,
+//     }
+// }
 const mapStateToProps = (state: StoreType) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        portionSize: state.usersPage.portionSize,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        portionSize: getPortionSize(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state),
     }
 }
 
