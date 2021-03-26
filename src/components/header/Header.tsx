@@ -12,7 +12,7 @@ export function Header() {
 
     const dispatch = useDispatch()
     const {isAuth, login, isLoggedIn, error} = useSelector<StoreType, AuthUserType>(state => state.auth)
-    const userProfile = useSelector<StoreType, ProfileType | null>(state => state.auth.profile)
+    const userProfile = useSelector<StoreType, ProfileType | null>(state => state.profilePage.profile)
 
     useEffect(() => {
         dispatch(authMe())
@@ -25,7 +25,6 @@ export function Header() {
                 <AuthMe
                     error={error}
                     isAuth={isAuth}
-                    isLoggedIn={isLoggedIn}
                     login={login}
                     userProfile={userProfile}
                     dispatch={dispatch}/>

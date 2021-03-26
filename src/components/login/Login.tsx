@@ -7,11 +7,11 @@ import {Dispatch} from "redux";
 type PropsType = {
     dispatch: Dispatch<any>
     error: string
-    isLoggedIn: boolean
+    isAuth: boolean
 }
-export const Login: React.FC<PropsType> = ({dispatch, error, isLoggedIn}) => {
+export const Login: React.FC<PropsType> = ({dispatch, error, isAuth}) => {
 
-    if (isLoggedIn) {
+    if (isAuth) {
         return <Redirect to={"/profile"}/>
     }
     return (

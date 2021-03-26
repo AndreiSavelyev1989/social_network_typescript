@@ -12,7 +12,6 @@ type LoginPropsType = {
     login: string | null
     userProfile: ProfileType | null
     dispatch: Dispatch<any>
-    isLoggedIn: boolean
     error: string
 }
 

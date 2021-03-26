@@ -63,5 +63,5 @@ const mapStateToProps = (state: StoreType) => {
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {follow, unfollow, requestUsers, setCurrentPage}),
-        withAuthRedirect
+        // withAuthRedirect
     )(UsersContainer)
