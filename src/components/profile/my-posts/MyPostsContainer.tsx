@@ -2,6 +2,7 @@ import {addPost, setLikesCount} from "../../../redux-state/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {StoreType} from "../../../redux-state/redux-store";
+import React from "react";
 
 
 const mapStateToProps = (state: StoreType) => {
@@ -10,6 +11,6 @@ const mapStateToProps = (state: StoreType) => {
     }
 }
 
-export const MyPostsContainer = connect(mapStateToProps, {
+export const MyPostsContainer = React.memo(connect(mapStateToProps, {
     addPost, setLikesCount
-})(MyPosts)
+})(MyPosts))

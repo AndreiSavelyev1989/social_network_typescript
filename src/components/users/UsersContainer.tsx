@@ -27,7 +27,7 @@ type UsersContainerPropsType = {
     requestUsers: (pageSize: number, currentPage: number) => void
 }
 
-class UsersContainer extends React.Component<UsersContainerPropsType, {}> {
+class UsersContainer extends React.PureComponent<UsersContainerPropsType, {}> {
 
     componentDidMount() {
         this.props.requestUsers(this.props.pageSize, this.props.currentPage)

@@ -11,7 +11,7 @@ type PaginationPropsType = {
     isFetching: boolean
 }
 
-export function Pagination(props: PaginationPropsType) {
+export const Pagination = React.memo((props: PaginationPropsType) => {
     let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
 
     let pages: number[] = []
@@ -57,4 +57,4 @@ export function Pagination(props: PaginationPropsType) {
             >Next</Button>}
         </div>
     )
-}
+});

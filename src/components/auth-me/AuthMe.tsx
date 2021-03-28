@@ -15,11 +15,12 @@ type LoginPropsType = {
     error: string
 }
 
-export const AuthMe: React.FC<LoginPropsType> = (props) => {
+export const AuthMe: React.FC<LoginPropsType> = React.memo((props) => {
 
     const logout = () => {
         props.dispatch(logoutTC())
     }
+
     return (
         <>
             <div className={styles.loginBlock}>
@@ -28,7 +29,7 @@ export const AuthMe: React.FC<LoginPropsType> = (props) => {
                         {props.userProfile
                             ? <img className={styles.userPhoto}
                                    src={props.userProfile ? props.userProfile.photos.large : samurai}
-                                   alt={'user-photo'}/>
+                                   alt={'userPhoto'}/>
                             : <Preloader/>
                         }
                         <div className={styles.login}>{props.login}</div>
@@ -44,4 +45,4 @@ export const AuthMe: React.FC<LoginPropsType> = (props) => {
             </div>
         </>
     )
-}
+})

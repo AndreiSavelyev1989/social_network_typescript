@@ -11,7 +11,7 @@ type FormikErrorType = {
 type PropsType = {
     addNewMessage: (newMessage: string) => void
 }
-export const DialogsMessageForm: React.FC<PropsType> = ({addNewMessage}) => {
+export const DialogsMessageForm: React.FC<PropsType> = React.memo(({addNewMessage}) => {
     const formik = useFormik({
         initialValues: {
             newMessage: '',
@@ -50,4 +50,4 @@ export const DialogsMessageForm: React.FC<PropsType> = ({addNewMessage}) => {
                 type={"submit"}>Send message</Button>
         </form>
     )
-}
+})

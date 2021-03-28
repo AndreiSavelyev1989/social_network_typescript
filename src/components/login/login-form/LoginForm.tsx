@@ -15,7 +15,7 @@ type PropsType = {
     error: string
 }
 
-export const LoginForm: React.FC<PropsType> = ({dispatch, error}) => {
+export const LoginForm: React.FC<PropsType> = React.memo(({dispatch, error}) => {
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -75,4 +75,4 @@ export const LoginForm: React.FC<PropsType> = ({dispatch, error}) => {
             <button type={"submit"}>Login</button>
         </form>
     )
-}
+})

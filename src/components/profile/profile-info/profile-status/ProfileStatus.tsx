@@ -5,7 +5,7 @@ type ProfileStatusPropsType = {
     changeUserStatus: (status: string) => void
 }
 
-export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
+export class ProfileStatus extends React.PureComponent<ProfileStatusPropsType> {
     state = {
         editMode: false,
         status: this.props.status
@@ -39,6 +39,7 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     }
 
     render() {
+        console.log("status class")
         return (
             <div>Status:
                 {this.state.editMode

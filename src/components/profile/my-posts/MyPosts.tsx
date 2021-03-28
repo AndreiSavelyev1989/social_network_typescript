@@ -10,7 +10,7 @@ type MyPostsPropsType = {
     setLikesCount: (id: string, likes: number) => void
 }
 
-export const MyPosts = (props: MyPostsPropsType) => {
+export const MyPosts = React.memo((props: MyPostsPropsType) => {
 
     const postElements = props.posts.map(p => <Post
         id={p.id}
@@ -30,4 +30,4 @@ export const MyPosts = (props: MyPostsPropsType) => {
             </div>
         </div>
     )
-}
+})

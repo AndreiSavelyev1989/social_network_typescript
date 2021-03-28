@@ -9,7 +9,7 @@ type PropsType = {
     error: string
     isAuth: boolean
 }
-export const Login: React.FC<PropsType> = ({dispatch, error, isAuth}) => {
+export const Login: React.FC<PropsType> = React.memo(({dispatch, error, isAuth}) => {
 
     if (isAuth) {
         return <Redirect to={"/profile"}/>
@@ -22,4 +22,4 @@ export const Login: React.FC<PropsType> = ({dispatch, error, isAuth}) => {
             </div>
         </>
     )
-}
+})

@@ -16,7 +16,7 @@ type UserPropsType = {
     unfollow: (userId: number) => void
 }
 
-export function User(props: UserPropsType) {
+export const User = React.memo((props: UserPropsType) => {
 
     const onFollowClick = () => props.follow(props.id)
     const onUnfollowClick = () => props.unfollow(props.id)
@@ -55,4 +55,4 @@ export function User(props: UserPropsType) {
                 </div>
         </div>
     )
-}
+});

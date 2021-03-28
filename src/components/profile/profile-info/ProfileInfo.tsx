@@ -12,7 +12,7 @@ type ProfileInfoPropsType = {
     changeUserStatus: (status: string) => void
 }
 
-export function ProfileInfo(props: ProfileInfoPropsType) {
+export const ProfileInfo = React.memo((props: ProfileInfoPropsType) => {
     if (!props.profile) {
         return <Preloader/>
     }
@@ -20,10 +20,10 @@ export function ProfileInfo(props: ProfileInfoPropsType) {
         <div className={styles.content}>
             <div>
                 <h2>Profile:</h2>
-                <img src={props.profile.photos.large ? props.profile.photos.large : samurai} alt="samurai-photo"/>
+                <img src={props.profile.photos.large ? props.profile.photos.large : samurai} alt="samuraiPhoto"/>
             </div>
             {/*<ProfileStatus status={props.status} changeUserStatus={props.changeUserStatus}/>*/}
             <ProfileStatusWithHooks status={props.status} changeUserStatus={props.changeUserStatus}/>
         </div>
     )
-}
+});

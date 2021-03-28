@@ -1,7 +1,5 @@
 import React from "react";
 
-export function Settings() {
-    return (
-        <div>Settings</div>
-    )
-}
+export const Settings = React.memo(() => (
+    <div>Settings</div>
+));

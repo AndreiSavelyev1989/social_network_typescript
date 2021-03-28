@@ -8,7 +8,7 @@ import {AuthUserType, authMe} from "../../redux-state/auth-reducer";
 import {ProfileType} from "../../redux-state/profile-reducer";
 
 
-export function Header() {
+export const Header = React.memo(() => {
 
     const dispatch = useDispatch()
     const {isAuth, login, isLoggedIn, error} = useSelector<StoreType, AuthUserType>(state => state.auth)
@@ -31,4 +31,4 @@ export function Header() {
             </div>
         </header>
     )
-}
+});

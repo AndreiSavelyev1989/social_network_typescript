@@ -19,32 +19,29 @@ type UsersPropsType = {
 }
 
 
-export function Users(props: UsersPropsType) {
-
-    return (
-        <div>
-            {props.isFetching ? <Preloader/> : null}
-            <div className={styles.pagination}>
-                <Pagination
-                    totalItemsCount={props.totalUsersCount}
-                    pageSize={props.pageSize}
-                    currentPage={props.currentPage}
-                    onCurrentPage={props.onCurrentPage}
-                    portionSize={props.portionSize}
-                    isFetching={props.isFetching}
-                />
-            </div>
-            {props.users.map(u => <User
-                key={u.id}
-                id={u.id}
-                userPhoto={u.photos}
-                followed={u.followed}
-                fullName={u.name}
-                status={u.status}
-                followingInProgress={props.followingInProgress}
-                follow={props.follow}
-                unfollow={props.unfollow}
-            />)}
+export const Users = React.memo((props: UsersPropsType) => (
+    <div>
+        {props.isFetching ? <Preloader/> : null}
+        <div className={styles.pagination}>
+            <Pagination
+                totalItemsCount={props.totalUsersCount}
+                pageSize={props.pageSize}
+                currentPage={props.currentPage}
+                onCurrentPage={props.onCurrentPage}
+                portionSize={props.portionSize}
+                isFetching={props.isFetching}
+            />
         </div>
-    )
-}
+        {props.users.map(u => <User
+            key={u.id}
+            id={u.id}
+            userPhoto={u.photos}
+            followed={u.followed}
+            fullName={u.name}
+            status={u.status}
+            followingInProgress={props.followingInProgress}
+            follow={props.follow}
+            unfollow={props.unfollow}
+        />)}
+    </div>
+));

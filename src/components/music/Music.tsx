@@ -1,7 +1,5 @@
 import React from "react";
 
-export function Music() {
-    return (
-        <div>Music</div>
-    )
-}
+export const Music = React.memo(() => (
+    <div>Music</div>
+));

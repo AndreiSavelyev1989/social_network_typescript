@@ -15,7 +15,7 @@ import {StoreType} from "./redux-state/redux-store";
 import {Preloader} from "./components/common/preloader/Preloader";
 import {LoginContainer} from "./components/login/LoginContainer";
 
-function App() {
+const App = React.memo(() => {
     const dispatch = useDispatch()
     const isInitialized = useSelector<StoreType, boolean>(state => state.app.isInitialized)
     useEffect(() => {
@@ -37,15 +37,15 @@ function App() {
                            render={() => <DialogsContainer/>}/>
                     <Route path="/users"
                            render={() => <UsersContainer/>}/>
-                    <Route path="/news" render={News}/>
-                    <Route path="/music" render={Music}/>
-                    <Route path="/settings" render={Settings}/>
+                    <Route path="/news" render={() => <News/>}/>
+                    <Route path="/music" render={() => <Music/>}/>
+                    <Route path="/settings" render={() => <Settings/>}/>
                     <Route path="/login" render={() => <LoginContainer/>}/>
                 </div>
 
             </div>
         </BrowserRouter>
     );
-}
+});
 
 export default App;

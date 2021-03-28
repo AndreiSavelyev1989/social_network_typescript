@@ -13,7 +13,7 @@ type DialogsPropsType = {
     updateNewMessageText: (newText: string) => void
 }
 
-export function Dialogs(props: DialogsPropsType) {
+export const Dialogs = React.memo((props: DialogsPropsType) => {
 
     const dialogsElements = props.dialogs.map(d => <Dialog key={d.id} id={d.id} name={d.name}/>)
     const messagesElements = props.messages.map(m => <Message key={m.id} message={m.message}/>)
@@ -27,4 +27,4 @@ export function Dialogs(props: DialogsPropsType) {
             </div>
         </div>
     )
-}
+});

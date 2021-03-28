@@ -1,7 +1,5 @@
 import React from "react";
 
-export function News() {
-    return (
-        <div>News</div>
-    )
-}
+export const News = React.memo(() => (
+    <div>News</div>
+));
