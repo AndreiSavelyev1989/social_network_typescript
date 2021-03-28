@@ -51,17 +51,24 @@ const initialState: ProfilePageType = {
     status: ""
 }
 
+export const newPostId = v1()
+
 export function profileReducer(state = initialState, action: ActionsProfileTypes) {
     switch (action.type) {
         case "ADD_POST":
             let newPost: PostsType = {
-                id: v1(),
+                id: newPostId,
                 postMessage: action.newPostText,
                 likesCount: 0
             }
             return {
                 ...state,
                 posts: [...state.posts, newPost],
+            }
+        case "DELETE_POST":
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !== action.postId)
             }
         case "SET_LIKES_COUNT":
             return {
@@ -96,8 +103,10 @@ export type ActionsProfileTypes =
     | ReturnType<typeof setLikesCount>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserStatus>
+    | ReturnType<typeof deletePost>
 
 export const addPost = (newPostText: string) => ({type: "ADD_POST", newPostText} as const)
+export const deletePost = (postId: string) => ({type: "DELETE_POST", postId} as const)
 export const setLikesCount = (id: string, likes: number) => ({type: "SET_LIKES_COUNT", id, likes} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: "SET_USER_PROFILE", profile} as const)
 export const setUserStatus = (status: string) => ({type: "SET_USER_STATUS", status} as const)
