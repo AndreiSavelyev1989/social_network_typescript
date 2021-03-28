@@ -1,9 +1,7 @@
 import {v1} from "uuid";
 
 const ADD_NEW_MESSAGE = "ADD_NEW_MESSAGE"
-
-type DialogsActionsType =
-    ReturnType<typeof addNewMessage>
+const DELETE_MESSAGE = "DELETE_MESSAGE"
 
 export type DialogsType = {
     id: string
@@ -34,21 +32,32 @@ const initialState: DialogsPageType = {
         {id: v1(), message: "What a wonderful day!"}
     ],
 }
+export const newMessageId = v1()
 
 export function dialogsReducer(state = initialState, action: DialogsActionsType) {
     switch (action.type) {
         case ADD_NEW_MESSAGE:
             let newMessageText: MessagesType = {
-                id: v1(),
+                id: newMessageId,
                 message: action.newMessage,
             }
             return {
                 ...state,
                 messages: [...state.messages, newMessageText],
             }
+        case DELETE_MESSAGE:
+            return {
+                ...state,
+                messages: state.messages.filter(m => m.id !== action.messageId)
+            }
         default:
             return state
     }
 }
 
-export const addNewMessage = (newMessage: string) => ({type: ADD_NEW_MESSAGE, newMessage}) as const
+type DialogsActionsType =
+    | ReturnType<typeof addNewMessage>
+    | ReturnType<typeof deleteMessage>
+
+export const addNewMessage = (newMessage: string) => ({type: ADD_NEW_MESSAGE, newMessage} as const)
+export const deleteMessage = (messageId: string) => ({type: DELETE_MESSAGE, messageId} as const)
