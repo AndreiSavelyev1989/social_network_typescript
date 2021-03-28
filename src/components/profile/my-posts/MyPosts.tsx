@@ -12,7 +12,10 @@ type MyPostsPropsType = {
 
 export const MyPosts = React.memo((props: MyPostsPropsType) => {
 
-    const postElements = props.posts.map(p => <Post
+    const postElements =
+        [...props.posts]
+            .reverse()
+            .map(p => <Post
         id={p.id}
         key={p.id}
         postMessage={p.postMessage}
