@@ -1,6 +1,7 @@
 import {usersAPI} from "../components/api/api";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./redux-store";
+import {followUnfollowFlow} from "../utils/utils";
 
 export type UserType = {
     id: number
@@ -123,24 +124,10 @@ export const requestUsers = (pageSize: number, currentPage: number): ThunkUsersT
         })
 }
 
-export const follow = (userId: number): ThunkUsersType => (dispatch) => {
-    dispatch(toogleFollowingProgress(true, userId))
-    return usersAPI.follow(userId)
-        .then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(followSuccess(userId))
-            }
-            dispatch(toogleFollowingProgress(false, userId))
-        })
+export const follow = (userId: number): ThunkUsersType => async (dispatch) => {
+    return followUnfollowFlow(dispatch, toogleFollowingProgress, usersAPI.follow, userId, followSuccess)
 }
 
-export const unfollow = (userId: number): ThunkUsersType => (dispatch) => {
-    dispatch(toogleFollowingProgress(true, userId))
-    return usersAPI.unfollow(userId)
-        .then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(unfollowSuccess(userId))
-            }
-            dispatch(toogleFollowingProgress(false, userId))
-        })
+export const unfollow = (userId: number): ThunkUsersType => async (dispatch) => {
+    return followUnfollowFlow(dispatch, toogleFollowingProgress, usersAPI.unfollow, userId, unfollowSuccess)
 }
