@@ -3,7 +3,7 @@ import {StoreType} from "./redux-store";
 import {authMe} from "./auth-reducer";
 
 
-type  AppInitialType = {
+export type  AppInitialType = {
     isInitialized: boolean
 }
 const initialState: AppInitialType = {
