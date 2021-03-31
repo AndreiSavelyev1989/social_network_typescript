@@ -2,6 +2,7 @@ import {v1} from "uuid";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./redux-store";
 import {profileAPI} from "../components/api/api";
+import {setError} from "./auth-reducer";
 
 export type PostsType = {
     id: string
@@ -104,6 +105,7 @@ export type ActionsProfileTypes =
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof deletePost>
+    | ReturnType<typeof setError>
 
 export const addPost = (newPostText: string) => ({type: "ADD_POST", newPostText} as const)
 export const deletePost = (postId: string) => ({type: "DELETE_POST", postId} as const)
@@ -115,24 +117,31 @@ export const setUserStatus = (status: string) => ({type: "SET_USER_STATUS", stat
 //thunk-creators
 type ThunkProfileType = ThunkAction<void, StoreType, unknown, ActionsProfileTypes>
 
-export const requestUserProfile = (userId: number): ThunkProfileType => (dispatch) => {
-    return profileAPI.getUserProfile(userId)
-        .then((response) => {
-            dispatch(setUserProfile(response.data))
-        })
+export const requestUserProfile = (userId: number): ThunkProfileType => async (dispatch) => {
+    try {
+        const res = await profileAPI.getUserProfile(userId)
+        dispatch(setUserProfile(res.data))
+    } catch (e) {
+        dispatch(setError(e.message))
+    }
 }
 
-export const requestUserStatus = (userId: number): ThunkProfileType => (dispatch) => {
-    return profileAPI.getUserStatus(userId)
-        .then(res => {
-            dispatch(setUserStatus(res.data))
-        })
+export const requestUserStatus = (userId: number): ThunkProfileType => async (dispatch) => {
+    try {
+        const res = await profileAPI.getUserStatus(userId)
+        dispatch(setUserStatus(res.data))
+    } catch (e) {
+        dispatch(setError(e.message))
+    }
+
 }
-export const changeUserStatus = (status: string): ThunkProfileType => (dispatch) => {
-    return profileAPI.updateUserStatus(status)
-        .then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(setUserStatus(status))
-            }
-        })
+export const changeUserStatus = (status: string): ThunkProfileType => async (dispatch) => {
+    try {
+        const res = await profileAPI.updateUserStatus(status)
+        if (res.data.resultCode === 0) {
+            dispatch(setUserStatus(status))
+        }
+    } catch (e) {
+        dispatch(setError(e.message))
+    }
 }

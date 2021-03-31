@@ -104,14 +104,12 @@ export const toogleFollowingProgress = (isFetching: boolean, userId: number) => 
 //thunk-creators
 type ThunkUsersType = ThunkAction<void, StoreType, unknown, ActionsUsersType>
 
-export const requestUsers = (pageSize: number, currentPage: number): ThunkUsersType => (dispatch) => {
+export const requestUsers = (pageSize: number, currentPage: number): ThunkUsersType => async (dispatch) => {
     dispatch(toogleIsFetching(true))
-    return usersAPI.getUsers(pageSize, currentPage)
-        .then(response=> {
-            dispatch(toogleIsFetching(false))
-            dispatch(setUsers(response.data.items))
-            dispatch(setTotalUsersCount(response.data.totalCount))
-        })
+    let res = await usersAPI.getUsers(pageSize, currentPage)
+    dispatch(toogleIsFetching(false))
+    dispatch(setUsers(res.data.items))
+    dispatch(setTotalUsersCount(res.data.totalCount))
 }
 
 export const follow = (userId: number): ThunkUsersType => async (dispatch) => {

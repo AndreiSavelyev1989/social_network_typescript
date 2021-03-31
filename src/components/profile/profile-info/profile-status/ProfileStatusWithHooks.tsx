@@ -1,12 +1,14 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import {Preloader} from "../../../common/preloader/Preloader";
+import style from "../../../login/Login.module.css";
 
 type PropsType = {
     status: string
+    error: string
     changeUserStatus: (status: string) => void
 }
 
-export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, changeUserStatus}) => {
+export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, changeUserStatus, error}) => {
     const [editMode, setEditMode] = React.useState(false)
     const [localStatus, setLocalStatus] = React.useState(status)
 
@@ -14,7 +16,7 @@ export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, 
         setLocalStatus(status)
     }, [status])
 
-    const activateEditMode =() => {
+    const activateEditMode = () => {
         setEditMode(true)
     }
 
@@ -35,17 +37,21 @@ export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, 
     }
     console.log("Status")
     return (
-        <div>Status:
-            {editMode
-                ? <input type="text"
-                         autoFocus={true}
-                         onChange={onChangeStatusHandler}
-                         onBlur={deactivateEditMode}
-                         onKeyUp={onKeyDeactivateEditMode}
-                         value={localStatus}/>
-                :
-                <span onDoubleClick={activateEditMode}>{status === localStatus ? status || "Empty status" : <Preloader/>}</span>
-            }
-        </div>
+        <>
+            <div>Status:
+                {editMode
+                    ? <input type="text"
+                             autoFocus={true}
+                             onChange={onChangeStatusHandler}
+                             onBlur={deactivateEditMode}
+                             onKeyUp={onKeyDeactivateEditMode}
+                             value={localStatus}/>
+                    :
+                    <span onDoubleClick={activateEditMode}>{status === localStatus ? status || "Empty status" :
+                        <Preloader/>}</span>
+                }
+            </div>
+            {error && <div className={style.error}>{error}</div>}
+        </>
     )
 })

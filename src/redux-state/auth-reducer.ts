@@ -93,30 +93,30 @@ export const authMe = (): ThunkAuthType => {
     }
 }
 
-export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkAuthType => (dispatch) => {
-    return authAPI.login(email, password, rememberMe)
-        .then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(setIsLoggedIn(true))
-            } else {
-                dispatch(setError(res.data.messages[0]))
-            }
-        })
-        .catch(e => {
-            dispatch(setError(e.message))
-        })
+export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkAuthType => async (dispatch) => {
+    try {
+        const res = await authAPI.login(email, password, rememberMe)
+        if (res.data.resultCode === 0) {
+            dispatch(setIsLoggedIn(true))
+        } else {
+            dispatch(setError(res.data.messages[0]))
+        }
+    } catch (e) {
+        dispatch(setError(e.message))
+    }
 }
-export const logoutTC = (): ThunkAuthType => (dispatch) => {
-    return authAPI.logout()
-        .then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(setIsLoggedIn(false))
-                dispatch(setIsAuth(false))
-            } else {
-                dispatch(setError(res.data.messages[0]))
-            }
-        })
-        .catch(e => {
+
+export const logoutTC = (): ThunkAuthType => async (dispatch) => {
+    try {
+        const res = await authAPI.logout()
+        if (res.data.resultCode === 0) {
+            dispatch(setIsLoggedIn(false))
+            dispatch(setIsAuth(false))
+            dispatch(setError(""))
+        } else {
+            dispatch(setError(res.data.messages[0]))
+        }
+    } catch (e) {
             dispatch(setError(e.message))
-        })
+    }
 }

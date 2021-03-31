@@ -7,13 +7,18 @@ import {ProfileType} from "../../redux-state/profile-reducer";
 type ProfilePropsType = {
     profile: ProfileType | null
     status: string
+    error: string
     changeUserStatus: (status: string) => void
 }
 
-export const Profile = React.memo((props: ProfilePropsType) => {
+export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, error, status, changeUserStatus} ) => {
     return (
         <div className={styles.profileWrapper}>
-            <ProfileInfo profile={props.profile} status={props.status} changeUserStatus={props.changeUserStatus}/>
+            <ProfileInfo
+                profile={profile}
+                error={error}
+                status={status}
+                changeUserStatus={changeUserStatus}/>
             <MyPostsContainer/>
         </div>
     )

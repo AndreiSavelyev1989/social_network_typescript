@@ -28,10 +28,7 @@ export const setIsInitialized = (value: boolean) => ({type: "IS_INITIALIZED", va
 
 type ThunkAppType = ThunkAction<void, StoreType, unknown, ActionsAppType>
 
-export const isInitializedTC = (): ThunkAppType => (dispatch) => {
-    const promise = dispatch(authMe())
-    // @ts-ignore
-    promise.then(() => {
-        dispatch(setIsInitialized(true))
-    })
+export const isInitializedTC = (): ThunkAppType => async (dispatch) => {
+    await dispatch(authMe())
+    dispatch(setIsInitialized(true))
 }
