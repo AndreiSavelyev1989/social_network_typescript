@@ -1,11 +1,12 @@
 import {
     addPost,
     deletePost,
-    newPostId, ProfileContactsType,
-    ProfilePageType, ProfilePhotosType,
+    newPostId,
+    ProfilePageType,
     profileReducer,
     setLikesCount,
-    setUserProfile, setUserStatus
+    setUserProfile,
+    setUserStatus
 } from "./profile-reducer";
 
 let startState: ProfilePageType = {
