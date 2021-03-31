@@ -1,4 +1,12 @@
-import {addPost, deletePost, newPostId, ProfilePageType, profileReducer, setLikesCount} from "./profile-reducer";
+import {
+    addPost,
+    deletePost,
+    newPostId, ProfileContactsType,
+    ProfilePageType, ProfilePhotosType,
+    profileReducer,
+    setLikesCount,
+    setUserProfile, setUserStatus
+} from "./profile-reducer";
 
 let startState: ProfilePageType = {
     posts: [
@@ -67,6 +75,80 @@ test('selected post should be deleted from posts', () => {
         ],
         profile: null,
         status: ""
+        }
+    )
+});
+
+test('user profile should be added into state', () => {
+
+    const action = setUserProfile({
+        userId: 6251,
+        fullName: "Andrei",
+        aboutMe: "Frontend developer",
+        lookingForAJob: true,
+        lookingForAJobDescription: "Looking for a job",
+        contacts: {
+            facebook: "facebook.com",
+            website: "website.com",
+            vk: "vk.com",
+            twitter: "twitter.com",
+            instagram: "instagram.com",
+            youtube: "youtube.com",
+            github: "github.com",
+            mainLink: "mainLink.com"
+        },
+        photos: {
+            small: "small.png",
+            large: "large.png"
+        }
+    });
+
+    const endState = profileReducer(startState, action)
+
+    expect(endState).toEqual({
+        posts: [
+            {id: "1", postMessage: "Hello World", likesCount: 20},
+            {id: "2", postMessage: "It is my first post", likesCount: 10},
+        ],
+        profile: {
+            userId: 6251,
+            fullName: "Andrei",
+            aboutMe: "Frontend developer",
+            lookingForAJob: true,
+            lookingForAJobDescription: "Looking for a job",
+            contacts: {
+                facebook: "facebook.com",
+                website: "website.com",
+                vk: "vk.com",
+                twitter: "twitter.com",
+                instagram: "instagram.com",
+                youtube: "youtube.com",
+                github: "github.com",
+                mainLink: "mainLink.com"
+            },
+            photos: {
+                small: "small.png",
+                large: "large.png"
+            }
+        },
+        status: ""
+        }
+    )
+});
+
+test('user status should be added into state', () => {
+
+    const action = setUserStatus("IT-INCUBATOR");
+
+    const endState = profileReducer(startState, action)
+
+    expect(endState).toEqual({
+            posts: [
+                {id: "1", postMessage: "Hello World", likesCount: 20},
+                {id: "2", postMessage: "It is my first post", likesCount: 10},
+            ],
+            profile: null,
+            status: "IT-INCUBATOR"
         }
     )
 });
