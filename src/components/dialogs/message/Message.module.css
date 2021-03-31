@@ -1,3 +1,9 @@
+.messageContainer {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .messageItem {
     padding: 5px;
     color: white;

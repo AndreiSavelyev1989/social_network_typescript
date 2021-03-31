@@ -1,4 +1,4 @@
-import {addNewMessage} from "../../redux-state/dialogs-reducer";
+import {addNewMessage, deleteMessage} from "../../redux-state/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {StoreType} from "../../redux-state/redux-store";
@@ -14,6 +14,6 @@ const mapStateToProps = (state: StoreType) => {
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, { addNewMessage }),
+    connect(mapStateToProps, { addNewMessage, deleteMessage }),
     withAuthRedirect
 )(Dialogs)

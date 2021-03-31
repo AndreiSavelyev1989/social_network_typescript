@@ -10,20 +10,25 @@ type DialogsPropsType = {
     messages: Array<MessagesType>
     newMessageText: string
     addNewMessage: (newMessageText: string) => void
+    deleteMessage: (messageId: string) => void
     updateNewMessageText: (newText: string) => void
 }
 
-export const Dialogs = React.memo((props: DialogsPropsType) => {
+export const Dialogs: React.FC<DialogsPropsType> = React.memo(({dialogs, messages, deleteMessage, addNewMessage}) => {
 
-    const dialogsElements = props.dialogs.map(d => <Dialog key={d.id} id={d.id} name={d.name}/>)
-    const messagesElements = props.messages.map(m => <Message key={m.id} message={m.message}/>)
+    const dialogsElements = dialogs.map(d => <Dialog key={d.id} id={d.id} name={d.name}/>)
+    const messagesElements = messages.map(m => <Message
+        key={m.id}
+        deleteMessage={deleteMessage}
+        message={m.message}
+        messageId={m.id}/>)
 
     return (
         <div className={styles.dialogs}>
             <div>{dialogsElements}</div>
             <div>
                 {messagesElements}
-                <DialogsMessageForm addNewMessage={props.addNewMessage}/>
+                <DialogsMessageForm addNewMessage={addNewMessage}/>
             </div>
         </div>
     )
