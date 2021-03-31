@@ -1,21 +1,27 @@
 import React from "react";
 import styles from "./Post.module.css"
 import avatar from "./../../../../images/userAvatar.png"
-import {Fab} from "@material-ui/core";
+import {Fab, IconButton} from "@material-ui/core";
 import likes from "./../../../../images/likes.png"
+import DeleteIcon from "@material-ui/icons/Delete";
 
 type PostPropsType = {
     id: string
     postMessage: string
     likesCount: number
     setLikesCount: (id: string, likes: number) => void
+    deletePost: (id: string) => void
 }
 
-export function Post(props: PostPropsType) {
+export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMessage, id, deletePost}) => {
 
     const onLikesClick = () => {
-        let likes = props.likesCount + 1
-        props.setLikesCount(props.id, likes)
+        let likes = likesCount + 1
+        setLikesCount(id, likes)
+    }
+
+    const onDeleteHandler = () => {
+        deletePost(id)
     }
 
     const today = new Date()
@@ -39,13 +45,18 @@ export function Post(props: PostPropsType) {
                             onClick={onLikesClick}
                             src={likes}
                             alt="heart"/>
-                    </Fab> {props.likesCount}
+                    </Fab> {likesCount}
                 </div>
             </div>
 
             <div className={styles.messageWrapper}>
                 <div className={styles.message}>
-                    {props.postMessage}
+                    <div>
+                        {postMessage}
+                    </div>
+                    <IconButton aria-label="delete" onClick={onDeleteHandler}>
+                        <DeleteIcon fontSize="small"/>
+                    </IconButton>
                 </div>
                 <div className={styles.date}>
                     {date}
@@ -54,4 +65,4 @@ export function Post(props: PostPropsType) {
 
         </div>
     )
-}
+};

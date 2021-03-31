@@ -8,25 +8,27 @@ type MyPostsPropsType = {
     posts: Array<PostsType>
     addPost: (newPostText: string) => void
     setLikesCount: (id: string, likes: number) => void
+    deletePost: (id: string) => void
 }
 
-export const MyPosts = React.memo((props: MyPostsPropsType) => {
+export const MyPosts: React.FC<MyPostsPropsType> = React.memo(({posts, setLikesCount, addPost, deletePost} ) => {
 
     const postElements =
-        [...props.posts]
+        [...posts]
             .reverse()
             .map(p => <Post
         id={p.id}
         key={p.id}
+        deletePost={deletePost}
         postMessage={p.postMessage}
         likesCount={p.likesCount}
-        setLikesCount={props.setLikesCount}
+        setLikesCount={setLikesCount}
     />)
 
     return (
         <div className={styles.postsWrapper}>
             <h3>My posts</h3>
-            <ProfilePostForm addPost={props.addPost}/>
+            <ProfilePostForm addPost={addPost}/>
             <div>
                 <div>New post:</div>
                 {postElements}
