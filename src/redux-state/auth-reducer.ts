@@ -49,14 +49,14 @@ export function authReducer(state = initialState, action: ActionsAuthType) {
 }
 
 export type ActionsAuthType =
-    | ReturnType<typeof setAuthUserDataAC>
+    | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setIsLoggedIn>
     | ReturnType<typeof setError>
     | ReturnType<typeof setIsAuth>
 
 //action-creators
-export const setAuthUserDataAC = (id: number, email: string, login: string) => ({
+export const setAuthUserData = (id: number, email: string, login: string) => ({
     type: "SET_AUTH_USER_DATA",
     payload: {id, email, login}
 } as const)
@@ -74,7 +74,7 @@ export const authMe = (): ThunkAuthType => {
             .then((res) => {
                 let {id, email, login} = res.data.data
                 if (res.data.resultCode === 0) {
-                    dispatch(setAuthUserDataAC(id, email, login))
+                    dispatch(setAuthUserData(id, email, login))
                     dispatch(setIsAuth(true))
                     dispatch(setIsLoggedIn(true))
                 }
