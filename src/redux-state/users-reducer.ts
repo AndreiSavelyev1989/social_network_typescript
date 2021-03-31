@@ -1,7 +1,7 @@
 import {usersAPI} from "../components/api/api";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./redux-store";
-import {followUnfollowFlow} from "../utils/utils";
+import {followUnfollowCase, followUnfollowFlow} from "../utils/utils";
 
 export type UserType = {
     id: number
@@ -41,22 +41,12 @@ export const usersReducer = (state = initialState, action: ActionsUsersType) => 
         case "FOLLOW":
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: true}
-                    }
-                    return u
-                })
+                users: followUnfollowCase(state, action.userId, true)
             }
         case "UNFOLLOW":
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: false}
-                    }
-                    return u
-                })
+                users: followUnfollowCase(state, action.userId, false)
             }
         case "SET_USERS":
             return {
