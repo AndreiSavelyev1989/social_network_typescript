@@ -4,7 +4,7 @@ import mainLogo from "../../images/main_logo.png"
 import {AuthMe} from "./auth-me/AuthMe";
 import {useDispatch, useSelector} from "react-redux";
 import {StoreType} from "../../redux-state/redux-store";
-import {AuthUserType, authMe} from "../../redux-state/auth-reducer";
+import {authMe, AuthUserType} from "../../redux-state/auth-reducer";
 import {ProfileType} from "../../redux-state/profile-reducer";
 
 

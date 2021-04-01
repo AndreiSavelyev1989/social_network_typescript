@@ -9,15 +9,19 @@ type ProfilePropsType = {
     status: string
     error: string
     changeUserStatus: (status: string) => void
+    changeUserPhoto: (photos: File) => void
+    isOwner: boolean
 }
 
-export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, error, status, changeUserStatus} ) => {
+export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, error, status, changeUserStatus, changeUserPhoto, isOwner} ) => {
     return (
         <div className={styles.profileWrapper}>
             <ProfileInfo
+                isOwner={isOwner}
                 profile={profile}
                 error={error}
                 status={status}
+                changeUserPhoto={changeUserPhoto}
                 changeUserStatus={changeUserStatus}/>
             <MyPostsContainer/>
         </div>

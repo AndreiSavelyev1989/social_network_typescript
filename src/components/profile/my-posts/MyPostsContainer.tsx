@@ -6,9 +6,8 @@ import React from "react";
 
 
 const mapStateToProps = (state: StoreType) => {
-    return {
-        posts: state.profilePage.posts,
-    }
+    const {posts} = state.profilePage;
+    return { posts }
 }
 
 export const MyPostsContainer = React.memo(connect(mapStateToProps, {

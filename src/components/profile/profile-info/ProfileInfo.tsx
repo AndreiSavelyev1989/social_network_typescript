@@ -1,9 +1,8 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import styles from "./ProfileInfo.module.css"
 import samurai from "../../../images/profileImg.png"
 import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileType} from "../../../redux-state/profile-reducer";
-import {ProfileStatus} from "./profile-status/ProfileStatus";
 import {ProfileStatusWithHooks} from "./profile-status/ProfileStatusWithHooks";
 
 type ProfileInfoPropsType = {
@@ -11,23 +10,35 @@ type ProfileInfoPropsType = {
     status: string
     error: string
     changeUserStatus: (status: string) => void
+    changeUserPhoto: (photos: File) => void
+    isOwner: boolean
 }
 
-export const ProfileInfo: React.FC<ProfileInfoPropsType> = React.memo(({changeUserStatus, status, error, profile} ) => {
+export const ProfileInfo: React.FC<ProfileInfoPropsType> = React.memo(({changeUserStatus, status, error, profile, changeUserPhoto, isOwner}) => {
     if (!profile) {
         return <Preloader/>
+    }
+
+    const onChangeUserPhoto = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            changeUserPhoto(e.target.files[0])
+        }
+
     }
     return (
         <div className={styles.content}>
             <div>
                 <h2>Profile:</h2>
                 <img src={profile.photos.large ? profile.photos.large : samurai} alt="samuraiPhoto"/>
+                {isOwner && <div>
+                    <input type="file" onChange={onChangeUserPhoto}/>
+                </div>}
             </div>
             {/*<ProfileStatus status={props.status} changeUserStatus={props.changeUserStatus}/>*/}
-            <ProfileStatusWithHooks
-                status={status}
-                error={error}
-                changeUserStatus={changeUserStatus}/>
+            <ProfileStatusWithHooks status={status}
+                                    isOwner={isOwner}
+                                    error={error}
+                                    changeUserStatus={changeUserStatus}/>
         </div>
     )
 });

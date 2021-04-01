@@ -27,14 +27,15 @@ type UsersType = {
     totalCount: number
     error: string
 }
+export type UserPhotosType = {
+    small: null | string
+    large: null | string
+}
 
 type UserType = {
     id: number
     name: string
-    photos: {
-        small: null | string
-        large: null | string
-    }
+    photos: UserPhotosType
     status: null | string
     followed: boolean
 }
@@ -60,6 +61,16 @@ export const profileAPI = {
     },
     updateUserStatus(status: string) {
         return instance.put<ResponseType>(`profile/status`, {status})
+    },
+    saveProfilePhoto(photoFile: any) {
+        const formData = new FormData();
+        formData.append('image', photoFile)
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+        return instance.put<ResponseType<{photos: UserPhotosType}>>(`profile/photo`, formData, config)
     }
 }
 

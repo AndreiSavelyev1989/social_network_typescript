@@ -1,7 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 import {StoreType} from "../../redux-state/redux-store";
-import {changeUserStatus, ProfileType, requestUserProfile, requestUserStatus} from "../../redux-state/profile-reducer";
+import {
+    changeUserPhoto,
+    changeUserStatus,
+    ProfileType,
+    requestUserProfile,
+    requestUserStatus
+} from "../../redux-state/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom"
 import {compose} from "redux";
 import {Profile} from "./Profile";
@@ -15,7 +21,7 @@ type PathParamsType = {
 type MapStatePropsType = {
     profile: ProfileType | null
     status: string
-    autorizedUserId: number | null
+    id: number | null
     isAuth: boolean
     error: string
 }
@@ -24,6 +30,7 @@ type MapDispatchPropsType = {
     requestUserProfile: (userId: number) => void
     requestUserStatus: (userId: number) => void
     changeUserStatus: (status: string) => void
+    changeUserPhoto: (photos: File) => void
 }
 
 type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
@@ -35,7 +42,7 @@ class ProfileContainer extends React.PureComponent<PropsType> {
     refreshProfile() {
         let userId: number | null = Number(this.props.match.params.userId)
         if (!userId) {
-            userId = this.props.autorizedUserId
+            userId = this.props.id
             if (!userId) {
                 this.props.history.push("/login")
             }
@@ -61,23 +68,23 @@ class ProfileContainer extends React.PureComponent<PropsType> {
     render() {
         return (
             <Profile profile={this.props.profile}
+                     isOwner={!this.props.match.params.userId}
                      status={this.props.status}
                      error={this.props.error}
+                     changeUserPhoto={this.props.changeUserPhoto}
                      changeUserStatus={this.props.changeUserStatus}/>
         )
     }
 }
 
-const mapStateToProps = (state: StoreType): MapStatePropsType => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    autorizedUserId: state.auth.id,
-    isAuth: state.auth.isAuth,
-    error: state.auth.error
-})
+const mapStateToProps = (state: StoreType): MapStatePropsType => {
+    const {profile, status} = state.profilePage;
+    const {id, error, isAuth} = state.auth;
+    return {profile, status, id, isAuth, error};
+}
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {requestUserProfile, requestUserStatus, changeUserStatus}),
+    connect(mapStateToProps, {requestUserProfile, requestUserStatus, changeUserStatus, changeUserPhoto}),
     withRouter,
     withAuthRedirect,
 )(ProfileContainer)

@@ -1,8 +1,8 @@
 import {v1} from "uuid";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./redux-store";
-import {profileAPI} from "../components/api/api";
-import {setError} from "./auth-reducer";
+import {profileAPI, UserPhotosType} from "../components/api/api";
+import {authMe, setError} from "./auth-reducer";
 
 export type PostsType = {
     id: string
@@ -74,14 +74,7 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
         case "SET_LIKES_COUNT":
             return {
                 ...state,
-                posts: state.posts.map(p => {
-                        if (p.id === action.id) {
-                            return {...p, likesCount: action.likes}
-                        } else {
-                            return p
-                        }
-                    }
-                )
+                posts: state.posts.map(p => p.id === action.id ? {...p, likesCount: action.likes} : p)
             }
         case "SET_USER_PROFILE": {
             return {
@@ -92,6 +85,11 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
             return {
                 ...state,
                 status: action.status
+            }
+        case "SET_USER_PHOTO":
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
             }
         default:
             return state
@@ -106,12 +104,14 @@ export type ActionsProfileTypes =
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof deletePost>
     | ReturnType<typeof setError>
+    | ReturnType<typeof setUserPhoto>
 
 export const addPost = (newPostText: string) => ({type: "ADD_POST", newPostText} as const)
 export const deletePost = (postId: string) => ({type: "DELETE_POST", postId} as const)
 export const setLikesCount = (id: string, likes: number) => ({type: "SET_LIKES_COUNT", id, likes} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: "SET_USER_PROFILE", profile} as const)
 export const setUserStatus = (status: string) => ({type: "SET_USER_STATUS", status} as const)
+export const setUserPhoto = (photos: UserPhotosType) => ({type: "SET_USER_PHOTO", photos} as const)
 
 
 //thunk-creators
@@ -140,6 +140,18 @@ export const changeUserStatus = (status: string): ThunkProfileType => async (dis
         const res = await profileAPI.updateUserStatus(status)
         if (res.data.resultCode === 0) {
             dispatch(setUserStatus(status))
+        }
+    } catch (e) {
+        dispatch(setError(e.message))
+    }
+}
+
+export const changeUserPhoto = (file: File): ThunkProfileType => async (dispatch) => {
+    try {
+        const res = await profileAPI.saveProfilePhoto(file)
+        if (res.data.resultCode === 0) {
+            dispatch(setUserPhoto(res.data.data.photos))
+            dispatch(authMe())
         }
     } catch (e) {
         dispatch(setError(e.message))

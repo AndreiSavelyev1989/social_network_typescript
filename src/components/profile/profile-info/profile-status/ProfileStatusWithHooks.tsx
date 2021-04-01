@@ -6,9 +6,10 @@ type PropsType = {
     status: string
     error: string
     changeUserStatus: (status: string) => void
+    isOwner: boolean
 }
 
-export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, changeUserStatus, error}) => {
+export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, changeUserStatus, error, isOwner}) => {
     const [editMode, setEditMode] = React.useState(false)
     const [localStatus, setLocalStatus] = React.useState(status)
 
@@ -39,7 +40,7 @@ export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, 
     return (
         <>
             <div>Status:
-                {editMode
+                {editMode && isOwner
                     ? <input type="text"
                              autoFocus={true}
                              onChange={onChangeStatusHandler}
