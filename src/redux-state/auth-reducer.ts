@@ -1,5 +1,5 @@
 import {authAPI, profileAPI} from "../components/api/api";
-import {setUserProfile} from "./profile-reducer";
+import {ProfileType, setUserProfile} from "./profile-reducer";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./redux-store";
 
@@ -10,6 +10,7 @@ export type AuthUserType = {
     isAuth: boolean
     error: string
     isLoggedIn: boolean
+    authProfile: ProfileType | null
 }
 
 const initialState: AuthUserType = {
@@ -18,7 +19,8 @@ const initialState: AuthUserType = {
     login: null,
     isAuth: false,
     error: '',
-    isLoggedIn: false
+    isLoggedIn: false,
+    authProfile: null
 }
 
 export function authReducer(state = initialState, action: ActionsAuthType) {
@@ -43,6 +45,11 @@ export function authReducer(state = initialState, action: ActionsAuthType) {
                 ...state,
                 isAuth: action.isAuth
             }
+        case "SET_AUTH_USER_PROFILE":
+            return {
+                ...state,
+                authProfile: action.profile
+            }
         default:
             return state
     }
@@ -50,7 +57,7 @@ export function authReducer(state = initialState, action: ActionsAuthType) {
 
 export type ActionsAuthType =
     | ReturnType<typeof setAuthUserData>
-    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setAuthUserProfile>
     | ReturnType<typeof setIsLoggedIn>
     | ReturnType<typeof setError>
     | ReturnType<typeof setIsAuth>
@@ -63,6 +70,7 @@ export const setAuthUserData = (id: number, email: string, login: string) => ({
 export const setIsLoggedIn = (isLoggedIn: boolean) => ({type: "SET_IS_LOGGED_IN", isLoggedIn} as const)
 export const setError = (error: string) => ({type: "SET_ERROR", error} as const)
 export const setIsAuth = (isAuth: boolean) => ({type: "SET_IS_AUTH", isAuth} as const)
+export const setAuthUserProfile = (profile: ProfileType) => ({type: "SET_AUTH_USER_PROFILE", profile} as const)
 
 //thunk-creators
 type ThunkAuthType = ThunkAction<void, StoreType, unknown, ActionsAuthType>
@@ -85,7 +93,7 @@ export const authMe = (): ThunkAuthType => {
                     profileAPI.getUserProfile(id)
                         .then((res) => {
                             if (id) {
-                                dispatch(setUserProfile(res.data))
+                                dispatch(setAuthUserProfile(res.data))
                             }
                         })
                 }

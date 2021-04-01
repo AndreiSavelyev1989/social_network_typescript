@@ -1,11 +1,11 @@
 import React, {Dispatch} from "react";
 import {NavLink} from "react-router-dom";
-import {ProfileType} from "../../redux-state/profile-reducer";
+import {ProfileType} from "../../../redux-state/profile-reducer";
 import styles from "./AuthMe.module.css";
-import style from "../login/Login.module.css";
-import samurai from "../../images/profileImg.png"
-import {logoutTC} from "../../redux-state/auth-reducer";
-import {Preloader} from "../common/preloader/Preloader";
+import style from "../../login/Login.module.css";
+import samurai from "../../../images/profileImg.png"
+import {logoutTC} from "../../../redux-state/auth-reducer";
+import {Preloader} from "../../common/preloader/Preloader";
 
 type LoginPropsType = {
     isAuth: boolean

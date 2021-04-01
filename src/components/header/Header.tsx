@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import styles from "./Header.module.css"
 import mainLogo from "../../images/main_logo.png"
-import {AuthMe} from "../auth-me/AuthMe";
+import {AuthMe} from "./auth-me/AuthMe";
 import {useDispatch, useSelector} from "react-redux";
 import {StoreType} from "../../redux-state/redux-store";
 import {AuthUserType, authMe} from "../../redux-state/auth-reducer";
@@ -12,7 +12,7 @@ export const Header = React.memo(() => {
 
     const dispatch = useDispatch()
     const {isAuth, login, isLoggedIn, error} = useSelector<StoreType, AuthUserType>(state => state.auth)
-    const userProfile = useSelector<StoreType, ProfileType | null>(state => state.profilePage.profile)
+    const userProfile = useSelector<StoreType, ProfileType | null>(state => state.auth.authProfile)
 
     useEffect(() => {
         dispatch(authMe())
