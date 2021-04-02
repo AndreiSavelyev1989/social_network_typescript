@@ -1,0 +1,13 @@
+@import "assets/common-styles/common-mixins";
+
+.app_wrapper {
+  @include flexWrapper(column, null, null, wrap);
+  position: relative;
+
+  .app_wrapper_content {
+    width: 1200px;
+    margin: 150px auto 0;
+  }
+}
+
+

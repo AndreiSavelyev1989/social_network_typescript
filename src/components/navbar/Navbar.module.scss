@@ -1,0 +1,78 @@
+@import "./../../assets/common-styles/common-variables";
+@import "./../../assets/common-styles/common-mixins";
+
+@mixin commonMenuItemsStyle($borderLeft, $marginLeft, $transition) {
+  .navMenuItems {
+    width: 100%;
+
+    .navText {
+      @include flexWrapper(null, start, center, wrap);
+      padding: 8px 0 8px 16px;
+      list-style: none;
+      height: 60px;
+    }
+
+    a {
+      @include flexWrapper(null, null, center, null);
+      text-decoration: none;
+      color: $textColor;
+      font-size: 18px;
+      width: 95%;
+      height: 100%;
+      padding: 0 16px;
+
+      .navbarTitle {
+        margin-left: 16px;
+      }
+
+      &:hover {
+        border-left: $borderLeft;
+        margin-left: $marginLeft;
+        transition: $transition;
+      }
+    }
+  }
+}
+
+.navbar {
+  .menuBars {
+    margin-left: 1rem;
+    font-size: 2rem;
+    background: none;
+  }
+
+  .navMenu {
+    margin-top: 100px;
+    background-color: $blockBackground;
+    width: 250px;
+    height: 100vh;
+    @include flexWrapper(null, center, null, null);
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 0.85s;
+    @include commonMenuItemsStyle(null, null, null);
+  }
+
+  .navMenu.active {
+    left: 0;
+    transition: 0.35s;
+    @include commonMenuItemsStyle(3px solid $textColor, 10px, 0.3s)
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

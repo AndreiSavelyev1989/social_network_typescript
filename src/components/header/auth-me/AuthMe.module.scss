@@ -1,0 +1,40 @@
+@import "./../../../assets/common-styles/common-mixins";
+@import "./../../../assets/common-styles/common-variables";
+
+.loginBlock {
+  @include flexWrapper(null, flex-end, center, wrap);
+  margin-right: 50px;
+  width: 300px;
+
+
+  .userBlock {
+    width: 100%;
+    @include flexWrapper(null, space-around, center, wrap);
+    color: $textColor;
+
+    img {
+      display: block;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    .login {
+      font-weight: bold;
+      padding-top: 5px;
+    }
+  }
+
+  a {
+    color: $textColor;
+    text-decoration: none;
+    &:hover{
+      border-left: 2px solid $textColor;
+      padding-left: 5px;
+      transition: 0.3s;
+    }
+  }
+}
+
+
+

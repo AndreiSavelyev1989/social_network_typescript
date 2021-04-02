@@ -36,7 +36,6 @@ export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, 
             changeUserStatus(localStatus)
         }
     }
-    console.log("Status")
     return (
         <>
             <div>Status:

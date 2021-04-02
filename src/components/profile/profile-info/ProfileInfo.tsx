@@ -4,6 +4,7 @@ import samurai from "../../../images/profileImg.png"
 import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileType} from "../../../redux-state/profile-reducer";
 import {ProfileStatusWithHooks} from "./profile-status/ProfileStatusWithHooks";
+import {UploadButton} from "./upload-button/UploadButton";
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
@@ -23,16 +24,16 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = React.memo(({changeUs
         if (e.target.files) {
             changeUserPhoto(e.target.files[0])
         }
-
     }
     return (
         <div className={styles.content}>
-            <div>
-                <h2>Profile:</h2>
+            <h2>Profile:</h2>
+            <div className={styles.imageContainer}>
                 <img src={profile.photos.large ? profile.photos.large : samurai} alt="samuraiPhoto"/>
-                {isOwner && <div>
-                    <input type="file" onChange={onChangeUserPhoto}/>
-                </div>}
+                {/*{isOwner && <div className={styles.fileContainer}>*/}
+                {/*    <input type="file" onChange={onChangeUserPhoto}/>*/}
+                {/*</div>}*/}
+                {isOwner && <div className={styles.fileContainer}><UploadButton changeUserPhoto={changeUserPhoto}/></div>}
             </div>
             {/*<ProfileStatus status={props.status} changeUserStatus={props.changeUserStatus}/>*/}
             <ProfileStatusWithHooks status={status}

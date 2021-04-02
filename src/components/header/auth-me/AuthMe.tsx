@@ -1,7 +1,7 @@
 import React, {Dispatch} from "react";
 import {NavLink} from "react-router-dom";
 import {ProfileType} from "../../../redux-state/profile-reducer";
-import styles from "./AuthMe.module.css";
+import styles from "./AuthMe.module.scss";
 import style from "../../login/Login.module.css";
 import samurai from "../../../images/profileImg.png"
 import {logoutTC} from "../../../redux-state/auth-reducer";
@@ -27,8 +27,7 @@ export const AuthMe: React.FC<LoginPropsType> = React.memo((props) => {
                 {props.isAuth
                     ? <div className={styles.userBlock}>
                         {props.userProfile
-                            ? <img className={styles.userPhoto}
-                                   src={props.userProfile ? props.userProfile.photos.large : samurai}
+                            ? <img src={props.userProfile ? props.userProfile.photos.large : samurai}
                                    alt={'userPhoto'}/>
                             : <Preloader/>
                         }

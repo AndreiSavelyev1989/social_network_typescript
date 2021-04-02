@@ -1,11 +1,13 @@
 import React, {useEffect} from "react";
-import styles from "./Header.module.css"
+import styles from "./Header.module.scss"
 import mainLogo from "../../images/main_logo.png"
 import {AuthMe} from "./auth-me/AuthMe";
 import {useDispatch, useSelector} from "react-redux";
 import {StoreType} from "../../redux-state/redux-store";
 import {authMe, AuthUserType} from "../../redux-state/auth-reducer";
 import {ProfileType} from "../../redux-state/profile-reducer";
+import {Navbar} from "../navbar/Navbar";
+import {TiSocialDribbble} from "react-icons/all";
 
 
 export const Header = React.memo(() => {
@@ -20,14 +22,22 @@ export const Header = React.memo(() => {
 
     return (
         <header className={styles.header}>
-            <img src={mainLogo} alt="logo"/>
-            <div className={styles.loginBlock}>
-                <AuthMe
-                    error={error}
-                    isAuth={isAuth}
-                    login={login}
-                    userProfile={userProfile}
-                    dispatch={dispatch}/>
+            <div className={styles.headerMainBlock}>
+                <div className={styles.headerNavBlock}>
+                    <div className={styles.mainLogo}>
+                        <TiSocialDribbble/>
+                        <span className={styles.mainLogoText}>SocialJS</span>
+                    </div>
+                    <Navbar/>
+                </div>
+                <div className={styles.loginBlock}>
+                    <AuthMe
+                        error={error}
+                        isAuth={isAuth}
+                        login={login}
+                        userProfile={userProfile}
+                        dispatch={dispatch}/>
+                </div>
             </div>
         </header>
     )
