@@ -33,22 +33,20 @@ export const ProfilePostForm: React.FC<PropsType> = ({addPost}) => {
         },
     })
     return (
-        <form className={style.formBlock} onSubmit={formik.handleSubmit}>
-            <TextField
-                className={style.input}
-                type={"text"}
-                placeholder={"New post"}
-                variant={"outlined"}
-                label={"Add new post!"}
-                required
-                {...formik.getFieldProps("newPost")}/>
-            {formik.touched.newPost && formik.errors.newPost ?
-                <div className={style.registrationError}>{formik.errors.newPost}</div> : null}
-            <Button
-                variant={"contained"}
-                color={"primary"}
-                size={"small"}
-                type={"submit"}>Add post</Button>
-        </form>
+        <div>
+            <form className={style.formBlock} onSubmit={formik.handleSubmit}>
+                <input
+                    className={style.input}
+                    type={"text"}
+                    placeholder={"New post"}
+                    required
+                    {...formik.getFieldProps("newPost")}/>
+                {formik.touched.newPost && formik.errors.newPost ?
+                    <div className={style.registrationError}>{formik.errors.newPost}</div> : null}
+                <button
+                    color={"primary"}
+                    type={"submit"}>Add post</button>
+            </form>
+        </div>
     )
 }

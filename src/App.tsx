@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './App.scss';
+import styles from './App.module.scss';
 import {Header} from "./components/header/Header";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
@@ -30,9 +30,9 @@ const App = React.memo(() => {
     }
     return (
         <BrowserRouter>
-            <div className="app_wrapper">
+            <div className={styles.appWrapper}>
                 <Header/>
-                <div className="app_wrapper_content">
+                <div className={styles.appWrapperContent}>
                     <Route path={`${PATH.PROFILE}/:userId?`}
                            render={withSuspense(ProfileContainer)}/>
                     <Route path={`${PATH.DIALOGS}`}

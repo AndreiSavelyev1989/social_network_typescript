@@ -4,15 +4,16 @@
 @mixin commonMenuItemsStyle($borderLeft, $marginLeft, $transition) {
   .navMenuItems {
     width: 100%;
-
+    @include testBorder;
     .navText {
       @include flexWrapper(null, start, center, wrap);
       padding: 8px 0 8px 16px;
       list-style: none;
       height: 60px;
+      @include testBorder;
     }
 
-    a {
+    & a {
       @include flexWrapper(null, null, center, null);
       text-decoration: none;
       color: $textColor;
@@ -23,6 +24,7 @@
 
       .navbarTitle {
         margin-left: 16px;
+        @include testBorder;
       }
 
       &:hover {
@@ -35,7 +37,10 @@
 }
 
 .navbar {
+
+  border: 2px solid white;
   .menuBars {
+    @include flexWrapper(null, center, center, null);
     margin-left: 1rem;
     font-size: 2rem;
     background: none;
@@ -45,18 +50,19 @@
     margin-top: 100px;
     background-color: $blockBackground;
     width: 250px;
-    height: 100vh;
+    min-height: 100vh;
     @include flexWrapper(null, center, null, null);
     position: fixed;
     top: 0;
     left: -100%;
-    transition: 0.85s;
+    transition: 1s;
     @include commonMenuItemsStyle(null, null, null);
+    @include testBorder;
   }
 
   .navMenu.active {
     left: 0;
-    transition: 0.35s;
+    transition: 0.5s;
     @include commonMenuItemsStyle(3px solid $textColor, 10px, 0.3s)
   }
 }

@@ -5,3 +5,7 @@
   align-items: $alignItems;
   flex-wrap: $flexWrap;
 }
+
+@mixin testBorder {
+  border: 2px solid white;
+}

@@ -1,0 +1,36 @@
+@import "./../../../assets/common-styles/common-mixins";
+@import "./../../../assets/common-styles/common-variables";
+
+.content {
+  max-width: 400px;
+  max-height: 400px;
+  @include flexWrapper(column, center, center, null);
+  position: relative;
+
+  .imageContainer {
+    width: 100%;
+
+    img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+    }
+
+    &:hover .fileContainer {
+      opacity: 0.8;
+      transition: opacity .3s;
+    }
+  }
+
+  .fileContainer {
+    position: absolute;
+    opacity: 0;
+    @include flexWrapper(null, center, center, null);
+    width: auto;
+    height: 40px;
+    top: 50%;
+    background: $textColor;
+    left: calc(50% - 30px);
+    transition: opacity .3s;
+  }
+}

@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import styles from "./ProfileInfo.module.css"
+import styles from "./ProfileInfo.module.scss"
 import samurai from "../../../images/profileImg.png"
 import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileType} from "../../../redux-state/profile-reducer";
@@ -20,11 +20,11 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = React.memo(({changeUs
         return <Preloader/>
     }
 
-    const onChangeUserPhoto = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            changeUserPhoto(e.target.files[0])
-        }
-    }
+    // const onChangeUserPhoto = (e: ChangeEvent<HTMLInputElement>) => {
+    //     if (e.target.files) {
+    //         changeUserPhoto(e.target.files[0])
+    //     }
+    // }
     return (
         <div className={styles.content}>
             <h2>Profile:</h2>
