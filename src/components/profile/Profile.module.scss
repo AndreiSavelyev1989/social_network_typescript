@@ -1,6 +1,6 @@
 @import "./../../assets/common-styles/common-mixins";
 .profileWrapper {
-    @include flexWrapper(null, space-around, null, wrap);
+    @include flexWrapper(column, center, center, wrap);
     width: 100%;
     min-height: 100vh;
     border: 2px solid white;

@@ -8,6 +8,7 @@ import {authMe, AuthUserType} from "../../redux-state/auth-reducer";
 import {ProfileType} from "../../redux-state/profile-reducer";
 import {Navbar} from "../navbar/Navbar";
 import {TiSocialDribbble} from "react-icons/all";
+import {IconContext} from "react-icons/lib";
 
 
 export const Header = React.memo(() => {
@@ -25,7 +26,9 @@ export const Header = React.memo(() => {
             <div className={styles.headerMainBlock}>
                 <div className={styles.headerNavBlock}>
                     <div className={styles.mainLogo}>
-                        <TiSocialDribbble/>
+                        <IconContext.Provider value={{color: "#007bff"}}>
+                            <TiSocialDribbble/>
+                        </IconContext.Provider>
                         <span className={styles.mainLogoText}>SocialJS</span>
                     </div>
                     <Navbar/>

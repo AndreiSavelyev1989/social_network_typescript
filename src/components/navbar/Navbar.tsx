@@ -19,7 +19,9 @@ export const Navbar = () => {
                         <VscThreeBars onClick={showSidebar}/>
                     </NavLink>
                 </div>
-                <nav className={sidebar ? `${style.navMenu} ${style.active}` : style.navMenu}>
+            </IconContext.Provider>
+            <IconContext.Provider value={{color: '#007bff'}}>
+            <nav className={sidebar ? `${style.navMenu} ${style.active}` : style.navMenu}>
                     <ul className={style.navMenuItems} onClick={showSidebar}>
                         {sidebarData.map((item, index) => {
                             return (

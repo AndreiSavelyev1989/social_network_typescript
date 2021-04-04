@@ -12,6 +12,7 @@ import {StoreType} from "./redux-state/redux-store";
 import {Preloader} from "./components/common/preloader/Preloader";
 import {withSuspense} from "./components/hoc/withSuspense";
 import {PATH} from "./components/navbar/SidebarData";
+import {MainPreloaderPage} from "./components/common/preloader/MainPreloaderPage";
 
 const ProfileContainer = React.lazy(() => import("./components/profile/ProfileContainer"));
 const DialogsContainer = React.lazy(() => import("./components/dialogs/DialogsContainer"));
@@ -26,7 +27,7 @@ const App = React.memo(() => {
     }, [])
 
     if (!isInitialized) {
-        return <Preloader/>
+        return <MainPreloaderPage/>
     }
     return (
         <BrowserRouter>
