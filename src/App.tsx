@@ -9,7 +9,6 @@ import UsersContainer from "./components/users/UsersContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {isInitializedTC} from "./redux-state/app-reducer";
 import {StoreType} from "./redux-state/redux-store";
-import {Preloader} from "./components/common/preloader/Preloader";
 import {withSuspense} from "./components/hoc/withSuspense";
 import {PATH} from "./components/navbar/SidebarData";
 import {MainPreloaderPage} from "./components/common/preloader/MainPreloaderPage";

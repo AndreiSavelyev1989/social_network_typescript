@@ -1,19 +1,14 @@
 @import "assets/common-styles/common-mixins";
 
 .appWrapper {
-  @include flexWrapper(column, null, null, wrap);
+  @include flexWrapper(column, null, null, wrap, null);
   position: relative;
 
   .appWrapperContent {
-    @include flexWrapper(column, flex-start, center, wrap);
+    @include flexWrapper(column, flex-start, center, wrap, null);
     width: 80%;
     height: 100%;
     margin: 150px auto 0;
   }
 }
 
-@media only screen and (max-width: 969px){
-  .appWrapperContent {
-    width: 670px;
-  }
-}

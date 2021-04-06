@@ -23,7 +23,6 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = React.memo(({changeUs
 
     return (
         <div className={styles.content} style={{backgroundImage: `url(${profileBackgroundImg})`}}>
-            <h2>Profile:</h2>
             <div className={styles.imageContainer}>
                 <img src={profile.photos.large ? profile.photos.large : samurai} alt="samuraiPhoto"/>
                 <div className={styles.fileContainer}>

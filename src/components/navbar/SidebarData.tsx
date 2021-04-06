@@ -8,9 +8,12 @@ export const PATH = {
     LOGIN: "/login",
     NEWS: "/news",
     MUSIC: "/music",
-    SETTINGS: "/settings"
-
+    SETTINGS: "/settings",
+    ABOUT_ME: "/profile/about-me",
+    MY_POSTS: "/profile/my-posts",
+    MY_FRIENDS: "/profile/my-friends"
 }
+
 export const sidebarData = [
     {
         title: "Profile",
@@ -48,4 +51,19 @@ export const sidebarData = [
         icon: <IoSettingsSharp/>
     },
 
+]
+
+export const profileNavData = [
+    {
+        title: "About me",
+        path: PATH.ABOUT_ME,
+    },
+    {
+        title: "My posts",
+        path: PATH.MY_POSTS,
+    },
+    {
+        title: "My friends",
+        path: PATH.MY_FRIENDS,
+    },
 ]

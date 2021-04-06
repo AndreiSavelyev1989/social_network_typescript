@@ -2,14 +2,13 @@
 @import "./../../../assets/common-styles/common-variables";
 
 .loginBlock {
-  @include flexWrapper(null, flex-end, center, wrap);
+  @include flexWrapper(null, flex-end, center, wrap, null);
   margin-right: 50px;
   width: 300px;
-  @include testBorder;
 
   .userBlock {
     width: 100%;
-    @include flexWrapper(null, space-around, center, wrap);
+    @include flexWrapper(null, space-around, center, wrap, null);
     color: $textColor;
 
     img {

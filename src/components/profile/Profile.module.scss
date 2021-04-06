@@ -1,7 +1,12 @@
 @import "./../../assets/common-styles/common-mixins";
+
 .profileWrapper {
-    @include flexWrapper(column, center, center, wrap);
-    width: 100%;
-    min-height: 100vh;
-    border: 2px solid white;
+  @include flexWrapper(column, flex-start, center, wrap, null);
+  width: 100%;
+  min-height: 100vh;
+
+  .profileNavPanel {
+    width: 80%;
+    @include flexWrapper(column, center, center, wrap, null);
+  }
 }

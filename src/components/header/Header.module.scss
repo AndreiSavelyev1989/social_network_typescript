@@ -2,26 +2,24 @@
 @import "./../../assets/common-styles/common-variables";
 
 .header {
-  @include flexWrapper(null, space-between, center, wrap);
+  @include flexWrapper(null, space-between, center, wrap, $boxShadowBlockColor);
   width: 100%;
   min-height: 100px;
   background: $blockBackground;
   position: fixed;
   z-index: 2;
-  border: 2px solid white;
 
   .headerMainBlock {
     width: 100%;
-    @include flexWrapper(null, space-between, center, wrap);
+    @include flexWrapper(null, space-between, center, wrap, null);
 
     .headerNavBlock {
-      @include flexWrapper(null, center, center, null);
+      @include flexWrapper(null, center, center, null, null);
 
       .mainLogo {
-        @include flexWrapper(null, center, center, null);
+        @include flexWrapper(null, center, center, null, null);
         font-size: 5rem;
         background: none;
-        @include testBorder;
 
         .mainLogoText {
           font-size: 2rem;

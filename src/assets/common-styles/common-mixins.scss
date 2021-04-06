@@ -1,9 +1,12 @@
-@mixin flexWrapper ($direction, $justifyContent, $alignItems, $flexWrap){
+@import "./common-variables";
+
+@mixin flexWrapper ($direction, $justifyContent, $alignItems, $flexWrap, $boxShadow){
   display: flex;
   flex-direction: $direction;
   justify-content: $justifyContent;
   align-items: $alignItems;
   flex-wrap: $flexWrap;
+  box-shadow: $boxShadow;
 }
 
 @mixin testBorder {

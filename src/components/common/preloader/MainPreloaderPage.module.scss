@@ -3,7 +3,7 @@
 .mainLogo {
   width: 100%;
   height: 100vh;
-  @include flexWrapper(null, center, center, null);
+  @include flexWrapper(null, center, center, null, null);
   font-size: 7rem;
   .mainLogoText {
     font-size: 5rem;
