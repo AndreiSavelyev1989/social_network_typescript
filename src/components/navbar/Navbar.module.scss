@@ -47,11 +47,12 @@
     background-color: $blockBackground;
     width: 250px;
     min-height: 100vh;
-    @include flexWrapper(null, center, null, null, $boxShadowBlockColor);
+    @include flexWrapper(null, center, null, null, null);
     position: fixed;
     top: 0;
     left: -100%;
     transition: 1s;
+    box-shadow: 0 20px 20px -2px ($blockBackground / 10%);
     @include commonMenuItemsStyle(null, null, null, null);
   }
 

@@ -21,6 +21,9 @@
       &:hover {
         color: $blockColor;
         transition: 0.5s;
+        @media screen and (max-width: 1024px) {
+          color: $activeBlockTextColor;
+        }
       }
     }
   }
@@ -28,7 +31,7 @@
   .profNavActive {
     background: $blockColor;
     border-radius: 10px;
-    transition: 1s;
+    transition: 0.5s;
 
     .profNavTitle {
       color: $activeBlockTextColor;

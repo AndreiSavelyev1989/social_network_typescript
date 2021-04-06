@@ -1,0 +1,8 @@
+@import "./../../../assets/common-styles/common-mixins.scss";
+@import "./../../../assets/common-styles/common-variables";
+
+.postsContainer{
+    @include profileNavContainer;
+    @include flexWrapper(column, center, center, wrap, $boxShadowBlockColor);
+    @include testBorder;
+}

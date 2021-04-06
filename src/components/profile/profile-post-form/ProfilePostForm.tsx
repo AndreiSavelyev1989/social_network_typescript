@@ -1,6 +1,5 @@
 import style from "../../login/Login.module.css";
-import TextField from "@material-ui/core/TextField";
-import {Button} from "@material-ui/core";
+import styles from "./ProfilePostForm.module.scss";
 import React from "react";
 import {useFormik} from "formik";
 
@@ -33,19 +32,23 @@ export const ProfilePostForm: React.FC<PropsType> = ({addPost}) => {
         },
     })
     return (
-        <div>
-            <form className={style.formBlock} onSubmit={formik.handleSubmit}>
+        <div className={styles.postsContainer}>
+            <div className={styles.postsTitle}>
+                Create Post
+            </div>
+            <form className={styles.formBlock} onSubmit={formik.handleSubmit}>
                 <input
-                    className={style.input}
+                    className={styles.formInput}
                     type={"text"}
-                    placeholder={"New post"}
+                    placeholder={"Write something here..."}
                     required
                     {...formik.getFieldProps("newPost")}/>
                 {formik.touched.newPost && formik.errors.newPost ?
                     <div className={style.registrationError}>{formik.errors.newPost}</div> : null}
                 <button
                     color={"primary"}
-                    type={"submit"}>Add post</button>
+                    type={"submit"}>Add post
+                </button>
             </form>
         </div>
     )

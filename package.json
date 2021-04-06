@@ -30,7 +30,8 @@
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "webkit-autofill": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./AboutMe.module.scss";
 
 export const AboutMe = React.memo(() => {
     return (
-        <div>
+        <div className={styles.aboutMeContainer}>
             AboutMe
         </div>
     )

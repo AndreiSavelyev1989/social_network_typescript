@@ -1,0 +1,8 @@
+@import "./../../../../assets/common-styles/common-mixins";
+@import "./../../../../assets/common-styles/common-variables";
+
+.aboutMyFriendContainer {
+    @include profileNavContainer;
+    @include flexWrapper(null, center, center, wrap, $boxShadowBlockColor);
+    @include testBorder;
+}

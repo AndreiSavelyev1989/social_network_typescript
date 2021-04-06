@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./MyPosts.module.css"
+import styles from "./MyPosts.module.scss"
 import {Post} from "./post/Post";
 import {PostsType} from "../../../redux-state/profile-reducer";
 import {ProfilePostForm} from "../profile-post-form/ProfilePostForm";
@@ -26,9 +26,8 @@ export const MyPosts: React.FC<MyPostsPropsType> = React.memo(({posts, setLikesC
     />)
 
     return (
-        <div className={styles.postsWrapper}>
-            <h3>My posts</h3>
-            <ProfilePostForm addPost={addPost}/>
+        <div className={styles.postsContainer}>
+         <ProfilePostForm addPost={addPost}/>
             <div>
                 <div>New post:</div>
                 {postElements}
