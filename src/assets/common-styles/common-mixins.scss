@@ -18,6 +18,16 @@
   border-radius: 10px;
 }
 
-@mixin disableAutoFill ($bgColor){
-  -webkit-box-shadow: 0 0 0 9999px $bgColor inset !important;
+@mixin backgroundColorAutoFill($backgroundColor) {
+  -webkit-box-shadow: 0 0 0 9999px $backgroundColor inset;
+}
+
+@mixin hoverTextColorAutoFill($color) {
+  &:hover, &:focus {
+    -webkit-text-fill-color: $color !important;
+  }
+}
+
+@mixin textColorAutoFill($color) {
+  -webkit-text-fill-color: $color !important;
 }

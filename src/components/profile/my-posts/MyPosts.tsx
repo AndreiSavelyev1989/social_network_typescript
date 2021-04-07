@@ -1,17 +1,18 @@
 import React from "react";
 import styles from "./MyPosts.module.scss"
 import {Post} from "./post/Post";
-import {PostsType} from "../../../redux-state/profile-reducer";
+import {PostsType, ProfileType} from "../../../redux-state/profile-reducer";
 import {ProfilePostForm} from "../profile-post-form/ProfilePostForm";
 
-type MyPostsPropsType = {
+type PropsType = {
     posts: Array<PostsType>
     addPost: (newPostText: string) => void
     setLikesCount: (id: string, likes: number) => void
     deletePost: (id: string) => void
+    profile: ProfileType | null
 }
 
-export const MyPosts: React.FC<MyPostsPropsType> = React.memo(({posts, setLikesCount, addPost, deletePost} ) => {
+export const MyPosts: React.FC<PropsType> = React.memo(({posts, profile, setLikesCount, addPost, deletePost} ) => {
 
     const postElements =
         [...posts]
@@ -27,7 +28,7 @@ export const MyPosts: React.FC<MyPostsPropsType> = React.memo(({posts, setLikesC
 
     return (
         <div className={styles.postsContainer}>
-         <ProfilePostForm addPost={addPost}/>
+         <ProfilePostForm addPost={addPost} profile={profile}/>
             <div>
                 <div>New post:</div>
                 {postElements}

@@ -1,0 +1,39 @@
+@import "./../../../assets/common-styles/common-variables";
+
+.slidingButton {
+  text-decoration: none;
+  display: inline-block;
+  background: $blockBackground;
+  border: 0;
+  padding: 15px 30px;
+  margin: 10px 20px;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: $activeBlockTextColor;
+  text-transform: uppercase;
+  transition: .15s ease-in-out;
+  box-shadow: 0 0 40px 40px $blockColor inset, 0 0 0 0 #3756f1;
+  outline: none;
+
+  @media screen and (max-width: 400px){
+    padding: 7px 15px;
+    margin: 5px 10px;
+
+  }
+  @media screen and (max-width: 265px){
+    padding: 5px 5px;
+    margin: 5px 5px;
+
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 0 $blockColor inset, 0 0 10px 4px #3756f1;
+    color: $blockColor;
+    cursor: pointer;
+  }
+  &:active {
+    outline: none;
+  }
+}

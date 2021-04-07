@@ -2,6 +2,10 @@ import style from "../../login/Login.module.css";
 import styles from "./ProfilePostForm.module.scss";
 import React from "react";
 import {useFormik} from "formik";
+import {UniversalButton} from "../../common/universal-button/UniversalButton";
+import {UniversalInput} from "../../common/universal-input/UniversalInput";
+import {ProfileType} from "../../../redux-state/profile-reducer";
+import {Preloader} from "../../common/preloader/Preloader";
 
 type FormikErrorType = {
     newPost?: string
@@ -9,9 +13,10 @@ type FormikErrorType = {
 
 type PropsType = {
     addPost: (newPost: string) => void
+    profile: ProfileType | null
 }
 
-export const ProfilePostForm: React.FC<PropsType> = ({addPost}) => {
+export const ProfilePostForm: React.FC<PropsType> = ({addPost, profile}) => {
     const formik = useFormik({
         initialValues: {
             newPost: '',
@@ -37,18 +42,22 @@ export const ProfilePostForm: React.FC<PropsType> = ({addPost}) => {
                 Create Post
             </div>
             <form className={styles.formBlock} onSubmit={formik.handleSubmit}>
-                <input
-                    className={styles.formInput}
-                    type={"text"}
-                    placeholder={"Write something here..."}
-                    required
-                    {...formik.getFieldProps("newPost")}/>
-                {formik.touched.newPost && formik.errors.newPost ?
-                    <div className={style.registrationError}>{formik.errors.newPost}</div> : null}
-                <button
-                    color={"primary"}
-                    type={"submit"}>Add post
-                </button>
+                <div className={styles.formBlockEnterText}>
+                    {profile ? <div className={styles.userPhoto}>
+                        <img src={profile ? profile.photos.large : ""} alt="user-avatar"/>
+                    </div> : <Preloader/>}
+                    <UniversalInput type={"text"}
+                                    placeholder={"Write something here..."}
+                                    formikFieldProps={formik.getFieldProps("newPost")}/>
+                </div>
+
+                <div className={styles.formBlockSubmit}>
+                    {formik.touched.newPost && formik.errors.newPost ?
+                        <div className={style.registrationError}>{formik.errors.newPost}</div>
+                        : <div> </div>}
+                    <UniversalButton type={"submit"} title={"post"} />
+                </div>
+
             </form>
         </div>
     )

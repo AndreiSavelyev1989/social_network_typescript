@@ -3,12 +3,14 @@
 
 .loginBlock {
   @include flexWrapper(null, flex-end, center, wrap, null);
-  margin-right: 50px;
-  width: 300px;
+  min-width: 400px;
+  @media screen and (max-width: 360px){
+    min-width: 320px;
+  }
 
   .userBlock {
     width: 100%;
-    @include flexWrapper(null, space-around, center, wrap, null);
+    @include flexWrapper(row, space-between, center, wrap, null);
     color: $textColor;
 
     img {
@@ -27,6 +29,8 @@
   a {
     color: $textColor;
     text-decoration: none;
+    font-size: 1.5rem;
+    margin-right: 50px;
     &:hover{
       border-left: 2px solid $textColor;
       padding-left: 5px;

@@ -1,0 +1,13 @@
+@import "./../../../assets/common-styles/common-variables";
+@import "./../../../assets/common-styles/common-mixins";
+
+.formInput {
+  width: 100%;
+  border: 0;
+  background: $blockBackground;
+  outline: none;
+  font-size: 1rem;
+  @include backgroundColorAutoFill($blockBackground);
+  @include hoverTextColorAutoFill($textColor);
+  @include textColorAutoFill($textColor);
+}

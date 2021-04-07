@@ -6,6 +6,7 @@ import style from "../../login/Login.module.css";
 import samurai from "../../../images/profileImg.png"
 import {logoutTC} from "../../../redux-state/auth-reducer";
 import {Preloader} from "../../common/preloader/Preloader";
+import {UniversalButton} from "../../common/universal-button/UniversalButton";
 
 type LoginPropsType = {
     isAuth: boolean
@@ -33,7 +34,7 @@ export const AuthMe: React.FC<LoginPropsType> = React.memo((props) => {
                         }
                         <div className={styles.login}>{props.login}</div>
                         <div>
-                            <button onClick={logout}>Logout</button>
+                            <UniversalButton title={"Logout"} callback={logout}/>
                         </div>
                         {props.error && <div className={style.error}>{props.error}</div>}
                     </div>
