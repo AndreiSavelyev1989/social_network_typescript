@@ -4,6 +4,5 @@
 .aboutMeContainer {
   @include profileNavContainer;
   @include flexWrapper(null, center, center, wrap, $boxShadowBlockColor);
-  @include testBorder;
 }
 

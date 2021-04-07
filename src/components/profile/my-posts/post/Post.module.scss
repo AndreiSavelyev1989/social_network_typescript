@@ -1,0 +1,84 @@
+@import "./../../../../assets/common-styles/common-mixins";
+@import "./../../../../assets/common-styles/common-variables";
+
+.postContainer {
+  width: 80%;
+  background: $blockBackground;
+  border-radius: 10px;
+  margin: 10px 0;
+    @include flexWrapper(column, center, center, wrap, $boxShadowBlockColor);
+
+  .titleBlock {
+    .avatar {
+      width: 50px;
+      height: 50px;
+      padding: 10px;
+    }
+
+    .likesBlock {
+      margin: 10px;
+
+      .likes {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .imageBlock {
+    width: 95%;
+    height: 400px;
+    background: #8c91b6;
+  }
+
+  .messageBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 50px;
+
+    .message {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .date {
+      margin-top: 60px;
+    }
+  }
+}
+
+//.avatar {
+//    width: 50px;
+//    height: 50px;
+//    padding: 10px;
+//}
+
+//.likes {
+//  width: 20px;
+//  height: 20px;
+//}
+
+//.likesWrapper {
+//    margin: 10px;
+//}
+
+//.messageWrapper {
+//  display: flex;
+//  flex-direction: column;
+//  align-items: flex-start;
+//  padding-left: 50px;
+//}
+
+//.message {
+//  display: flex;
+//  width: 100%;
+//  align-items: center;
+//  margin-top: 10px;
+//}
+
+.date {
+  margin-top: 60px;
+}

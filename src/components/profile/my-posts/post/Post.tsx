@@ -1,9 +1,10 @@
 import React from "react";
-import styles from "./Post.module.css"
+import styles from "./Post.module.scss"
 import avatar from "./../../../../images/userAvatar.png"
 import {Fab, IconButton} from "@material-ui/core";
 import likes from "./../../../../images/likes.png"
 import DeleteIcon from "@material-ui/icons/Delete";
+import {ProfileType} from "../../../../redux-state/profile-reducer";
 
 type PostPropsType = {
     id: string
@@ -11,9 +12,10 @@ type PostPropsType = {
     likesCount: number
     setLikesCount: (id: string, likes: number) => void
     deletePost: (id: string) => void
+    profile: ProfileType | null
 }
 
-export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMessage, id, deletePost}) => {
+export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMessage, id, deletePost, profile}) => {
 
     const onLikesClick = () => {
         let likes = likesCount + 1
@@ -28,13 +30,13 @@ export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMe
     const date = `${today.getDate()}-${(today.getMonth() + 1)}-${today.getFullYear()}`
 
     return (
-        <div className={styles.postItem}>
-            <div>
+        <div className={styles.postContainer}>
+            <div className={styles.titleBlock}>
                 <img
                     className={styles.avatar}
-                    src={avatar}
+                    src={profile ? profile.photos.large : ""}
                     alt="avatar"/>
-                <div className={styles.likesWrapper}>
+                <div className={styles.likesBlock}>
                     <Fab
                         aria-label="like"
                         size={"small"}
@@ -49,11 +51,15 @@ export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMe
                 </div>
             </div>
 
-            <div className={styles.messageWrapper}>
+            <div className={styles.imageBlock}>
+                image
+            </div>
+
+            <div className={styles.messageBlock}>
                 <div className={styles.message}>
-                    <div>
-                        {postMessage}
-                    </div>
+
+                    {postMessage}
+
                     <IconButton aria-label="delete" onClick={onDeleteHandler}>
                         <DeleteIcon fontSize="small"/>
                     </IconButton>
@@ -62,7 +68,6 @@ export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMe
                     {date}
                 </div>
             </div>
-
         </div>
     )
 };

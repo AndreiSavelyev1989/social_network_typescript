@@ -4,5 +4,4 @@
 .postsContainer{
     @include profileNavContainer;
     @include flexWrapper(column, center, center, wrap, $boxShadowBlockColor);
-    @include testBorder;
 }
