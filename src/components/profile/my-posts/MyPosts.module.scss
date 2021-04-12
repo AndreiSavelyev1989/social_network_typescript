@@ -1,7 +1,10 @@
 @import "./../../../assets/common-styles/common-mixins.scss";
 @import "./../../../assets/common-styles/common-variables";
 
-.postsContainer{
-    @include profileNavContainer;
-    @include flexWrapper(column, center, center, wrap, $boxShadowBlockColor);
+.postsContainer {
+  @include profileNavContainer;
+  @include flexWrapper(column, center, center, wrap, $boxShadowBlockColor);
+  @media screen and (max-width: 400px) {
+      width: 100%;
+  }
 }

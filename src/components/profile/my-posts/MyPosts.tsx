@@ -8,12 +8,13 @@ import {v1} from "uuid";
 type PropsType = {
     posts: Array<PostsType>
     addPost: (newPostText: string) => void
-    setLikesCount: (id: string, likes: number) => void
+    setLikesCount: (id: string, like: number) => void
+    setDislikesCount: (id: string, dislike: number) => void
     deletePost: (id: string) => void
     profile: ProfileType | null
 }
 
-export const MyPosts: React.FC<PropsType> = React.memo(({posts, profile, setLikesCount, addPost, deletePost}) => {
+export const MyPosts: React.FC<PropsType> = React.memo(({posts, profile, setLikesCount, addPost, deletePost, setDislikesCount}) => {
 
     const postElements =
         [...posts]
@@ -25,7 +26,9 @@ export const MyPosts: React.FC<PropsType> = React.memo(({posts, profile, setLike
                 deletePost={deletePost}
                 postMessage={p.postMessage}
                 likesCount={p.likesCount}
+                dislikesCount={p.dislikesCount}
                 setLikesCount={setLikesCount}
+                setDislikesCount={setDislikesCount}
             />)
 
     return (

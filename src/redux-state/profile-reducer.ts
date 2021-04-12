@@ -8,6 +8,7 @@ export type PostsType = {
     id: string
     postMessage: string
     likesCount: number
+    dislikesCount: number
 }
 
 export type ProfileType = {
@@ -45,8 +46,8 @@ export type ProfilePageType = {
 
 const initialState: ProfilePageType = {
     posts: [
-        {id: v1(), postMessage: "Hello World", likesCount: 20},
-        {id: v1(), postMessage: "It is my first post", likesCount: 10}
+        {id: v1(), postMessage: "Hello World", likesCount: 20, dislikesCount: 0},
+        {id: v1(), postMessage: "It is my first post", likesCount: 10, dislikesCount: 0}
     ],
     profile: null,
     status: ""
@@ -60,7 +61,8 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
             let newPost: PostsType = {
                 id: newPostId,
                 postMessage: action.newPostText,
-                likesCount: 0
+                likesCount: 0,
+                dislikesCount: 0
             }
             return {
                 ...state,
@@ -74,7 +76,12 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
         case "SET_LIKES_COUNT":
             return {
                 ...state,
-                posts: state.posts.map(p => p.id === action.id ? {...p, likesCount: action.likes} : p)
+                posts: state.posts.map(p => p.id === action.id ? {...p, likesCount: action.like} : p)
+            }
+        case "SET_DISLIKES_COUNT":
+            return {
+                ...state,
+                posts: state.posts.map(p => p.id === action.id ? {...p, dislikesCount: action.dislike} : p)
             }
         case "SET_USER_PROFILE": {
             return {
@@ -100,6 +107,7 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
 export type ActionsProfileTypes =
     | ReturnType<typeof addPost>
     | ReturnType<typeof setLikesCount>
+    | ReturnType<typeof setDislikesCount>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof deletePost>
@@ -108,7 +116,8 @@ export type ActionsProfileTypes =
 
 export const addPost = (newPostText: string) => ({type: "ADD_POST", newPostText} as const)
 export const deletePost = (postId: string) => ({type: "DELETE_POST", postId} as const)
-export const setLikesCount = (id: string, likes: number) => ({type: "SET_LIKES_COUNT", id, likes} as const)
+export const setLikesCount = (id: string, like: number) => ({type: "SET_LIKES_COUNT", id, like} as const)
+export const setDislikesCount = (id: string, dislike: number) => ({type: "SET_DISLIKES_COUNT", id, dislike} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: "SET_USER_PROFILE", profile} as const)
 export const setUserStatus = (status: string) => ({type: "SET_USER_STATUS", status} as const)
 export const setUserPhoto = (photos: UserPhotosType) => ({type: "SET_USER_PHOTO", photos} as const)

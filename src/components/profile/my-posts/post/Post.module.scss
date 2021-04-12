@@ -6,21 +6,74 @@
   background: $blockBackground;
   border-radius: 10px;
   margin: 10px 0;
-    @include flexWrapper(column, center, center, wrap, $boxShadowBlockColor);
+  @include flexWrapper(column, flex-start, center, wrap, $boxShadowBlockColor);
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 
   .titleBlock {
-    .avatar {
-      width: 50px;
-      height: 50px;
-      padding: 10px;
+    width: 100%;
+    @include flexWrapper(row, flex-start, center, wrap, null);
+    height: 100px;
+    padding: 15px;
+
+    .avatarBlock {
+      width: 15%;
+      height: 80px;
+      @media screen and (max-width: 600px) {
+        width: 25%;
+      }
+
+      .avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+      }
     }
 
-    .likesBlock {
-      margin: 10px;
 
-      .likes {
-        width: 20px;
-        height: 20px;
+    .userNameDateBlock {
+      width: 25%;
+      height: 80px;
+      @include flexWrapper(column, flex-start, null, wrap, null);
+
+      .userName {
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .date {
+      }
+    }
+
+    .postMessage {
+      @include flexWrapper(null, flex-start, null, wrap, null);
+      width: 45%;
+      height: 80px;
+      font-size: 1rem;
+      @media screen and (max-width: 600px) {
+        width: 35%;
+      }
+    }
+
+    .postDeleteBlock {
+      width: 15%;
+      height: 80px;
+      @include flexWrapper(null, flex-end, flex-start, wrap, null);
+
+      .deleteButton {
+        @include flexWrapper(null, center, center, wrap, null);
+        font-size: 1.5rem;
+        width: 30px;
+        height: 30px;
+
+        &:hover {
+          background: $mainBackround;
+          box-shadow: $boxShadowBlockColor;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: 0.5s;
+        }
       }
     }
   }
@@ -28,57 +81,29 @@
   .imageBlock {
     width: 95%;
     height: 400px;
-    background: #8c91b6;
+    background-size: cover;
+    background-position: center;
   }
 
-  .messageBlock {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 50px;
+  .likesBlock {
+    width: 100%;
+    @include flexWrapper(row, null, null, wrap, null);
 
-    .message {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      margin-top: 10px;
-    }
+    .likeDislikeContainer {
+      margin: 10px;
+      @include flexWrapper(row, null, null, wrap, null);
 
-    .date {
-      margin-top: 60px;
+      .like, .dislike {
+        font-size: 1.5rem;
+        margin-left: 10px;
+
+        &:hover {
+          color: $blockColor;
+          cursor: pointer;
+          transition: 0.5s;
+        }
+      }
     }
   }
 }
 
-//.avatar {
-//    width: 50px;
-//    height: 50px;
-//    padding: 10px;
-//}
-
-//.likes {
-//  width: 20px;
-//  height: 20px;
-//}
-
-//.likesWrapper {
-//    margin: 10px;
-//}
-
-//.messageWrapper {
-//  display: flex;
-//  flex-direction: column;
-//  align-items: flex-start;
-//  padding-left: 50px;
-//}
-
-//.message {
-//  display: flex;
-//  width: 100%;
-//  align-items: center;
-//  margin-top: 10px;
-//}
-
-.date {
-  margin-top: 60px;
-}

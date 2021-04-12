@@ -10,6 +10,10 @@
   background: $blockBackground;
   border-radius: 10px;
   @include flexWrapper(column, flex-start, flex-start, wrap, $boxShadowBlockColor);
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    margin-top: 0;
+  }
 
   .postsTitle {
     width: 100%;
@@ -26,6 +30,7 @@
       border-bottom: 1px solid $textColor;
       margin-top: 20px;
       padding-bottom: 20px;
+
       .userPhoto {
         img {
           width: 80px;
@@ -34,14 +39,16 @@
           border-radius: 50%;
         }
       }
+
       input {
         padding-left: 40px;
-        @media screen and (max-width: 360px){
+        @media screen and (max-width: 360px) {
           padding-left: 0;
           font-size: 0.8rem;
         }
       }
-      @media screen and (max-width: 700px){
+
+      @media screen and (max-width: 700px) {
         @include flexWrapper(column, center, center, wrap, null);
       }
     }

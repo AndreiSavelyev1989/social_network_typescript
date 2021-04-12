@@ -1,25 +1,30 @@
 import React from "react";
 import styles from "./Post.module.scss"
 import avatar from "./../../../../images/userAvatar.png"
-import {Fab, IconButton} from "@material-ui/core";
-import likes from "./../../../../images/likes.png"
-import DeleteIcon from "@material-ui/icons/Delete";
 import {ProfileType} from "../../../../redux-state/profile-reducer";
+import postBackground from "../../../../images/postBackground.jpg";
+import {BiDislike, BiLike, MdDelete} from "react-icons/all";
 
 type PostPropsType = {
     id: string
     postMessage: string
     likesCount: number
-    setLikesCount: (id: string, likes: number) => void
+    dislikesCount: number
+    setLikesCount: (id: string, like: number) => void
+    setDislikesCount: (id: string, dislike: number) => void
     deletePost: (id: string) => void
     profile: ProfileType | null
 }
 
-export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMessage, id, deletePost, profile}) => {
+export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMessage, id, deletePost, profile, dislikesCount, setDislikesCount}) => {
 
-    const onLikesClick = () => {
-        let likes = likesCount + 1
-        setLikesCount(id, likes)
+    const onLikeClick = () => {
+        let like = likesCount + 1
+        setLikesCount(id, like)
+    }
+    const onDislikeClick = () => {
+        let dislike = dislikesCount + 1
+        setDislikesCount(id, dislike)
     }
 
     const onDeleteHandler = () => {
@@ -32,40 +37,38 @@ export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMe
     return (
         <div className={styles.postContainer}>
             <div className={styles.titleBlock}>
-                <img
-                    className={styles.avatar}
-                    src={profile ? profile.photos.large : ""}
-                    alt="avatar"/>
-                <div className={styles.likesBlock}>
-                    <Fab
-                        aria-label="like"
-                        size={"small"}
-                        color={"primary"}
-                        variant={"extended"}>
-                        <img
-                            className={styles.likes}
-                            onClick={onLikesClick}
-                            src={likes}
-                            alt="heart"/>
-                    </Fab> {likesCount}
+                <div className={styles.avatarBlock}>
+                    <img
+                        className={styles.avatar}
+                        src={profile ? profile.photos.large : avatar}
+                        alt="user-avatar"/>
+                </div>
+
+                <div className={styles.userNameDateBlock}>
+                    <div className={styles.userName}>{profile?.fullName}</div>
+                    <div className={styles.date}>{date}</div>
+                </div>
+                <div className={styles.postMessage}>{postMessage}</div>
+                <div className={styles.postDeleteBlock} onClick={onDeleteHandler}>
+                    <div className={styles.deleteButton}>
+                        <MdDelete/>
+                    </div>
                 </div>
             </div>
 
-            <div className={styles.imageBlock}>
-                image
+            <div className={styles.imageBlock} style={{backgroundImage: `url(${postBackground})`}}>
+
             </div>
 
-            <div className={styles.messageBlock}>
-                <div className={styles.message}>
+            <div className={styles.likesBlock}>
 
-                    {postMessage}
-
-                    <IconButton aria-label="delete" onClick={onDeleteHandler}>
-                        <DeleteIcon fontSize="small"/>
-                    </IconButton>
-                </div>
-                <div className={styles.date}>
-                    {date}
+                <div className={styles.likeDislikeContainer}>
+                    <div>
+                        <BiLike className={styles.like} onClick={onLikeClick}/>{likesCount}
+                    </div>
+                    <div>
+                        <BiDislike className={styles.dislike} onClick={onDislikeClick}/>{dislikesCount}
+                    </div>
                 </div>
             </div>
         </div>

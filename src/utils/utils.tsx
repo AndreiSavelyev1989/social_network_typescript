@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {UsersType} from "../redux-state/users-reducer";
+import {ProfilePageType} from "../redux-state/profile-reducer";
 
 export const followUnfollowFlow = async (dispatch: Dispatch, toogleFollowingProgress: any, followedAPI: any, userId: number, followed: any) => {
     dispatch(toogleFollowingProgress(true, userId))

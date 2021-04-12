@@ -8,5 +8,8 @@
   .profileNavPanel {
     width: 80%;
     @include flexWrapper(column, center, center, wrap, null);
+    @media screen and (max-width: 700px) {
+      width: 100%;
+    }
   }
 }
