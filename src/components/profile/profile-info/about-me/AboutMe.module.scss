@@ -3,6 +3,11 @@
 
 .aboutMeContainer {
   @include profileNavContainer;
-  @include flexWrapper(null, center, center, wrap, $boxShadowBlockColor);
+  @include flexWrapper(column, center, center, wrap, $boxShadowBlockColor);
+  .aboutBlock {
+    width: 80%;
+    border-radius: 10px;
+    @include flexWrapper(column, center, center, wrap, $boxShadowBlockColor);
+  }
 }
 

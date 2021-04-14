@@ -29,10 +29,10 @@ export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, error, 
                 changeUserPhoto={changeUserPhoto}
                 changeUserStatus={changeUserStatus}/>
             <ProfileNavigation/>
-            <div className={styles.profileNavPanel}>
-                <Route path={`${PATH.ABOUT_ME}`} render={() => <AboutMe/>}/>
+           <div className={styles.profileNavPanel}>
+                <Route path={`${PATH.ABOUT_ME}`} render={() => <AboutMe profile={profile}/>}/>
                 <Route path={`${PATH.MY_FRIENDS}`} render={() => <MyFriends/>}/>
-                <Route path={`${PATH.MY_POSTS}`} render={() => <MyPostsContainer />}/>
+                <Route path={`${PATH.MY_POSTS}`} render={() => <MyPostsContainer/>}/>
             </div>
         </div>
     )

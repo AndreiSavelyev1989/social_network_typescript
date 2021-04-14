@@ -1,6 +1,6 @@
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./redux-store";
-import {authMe} from "./auth-reducer";
+import {authMe, requestUserProfile} from "./auth-reducer";
 
 
 export type  AppInitialType = {
@@ -29,6 +29,6 @@ export const setIsInitialized = (value: boolean) => ({type: "IS_INITIALIZED", va
 type ThunkAppType = ThunkAction<void, StoreType, unknown, ActionsAppType>
 
 export const isInitializedTC = (): ThunkAppType => async (dispatch) => {
-    await dispatch(authMe())
+    await Promise.all([dispatch(authMe())])
     dispatch(setIsInitialized(true))
 }

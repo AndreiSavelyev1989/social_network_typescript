@@ -4,7 +4,7 @@ import {Header} from "./components/header/Header";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import UsersContainer from "./components/users/UsersContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {isInitializedTC} from "./redux-state/app-reducer";
@@ -33,16 +33,18 @@ const App = React.memo(() => {
             <div className={styles.appWrapper}>
                 <Header/>
                 <div className={styles.appWrapperContent}>
-                    <Route path={`${PATH.PROFILE}/:userId?`}
-                           render={withSuspense(ProfileContainer)}/>
-                    <Route path={`${PATH.DIALOGS}`}
-                           render={withSuspense(DialogsContainer)}/>
-                    <Route path={`${PATH.USERS}`}
-                           render={() => <UsersContainer/>}/>
-                    <Route path={`${PATH.NEWS}`} render={() => <News/>}/>
-                    <Route path={`${PATH.MUSIC}`} render={() => <Music/>}/>
-                    <Route path={`${PATH.SETTINGS}`} render={() => <Settings/>}/>
-                    <Route path={`${PATH.LOGIN}`} render={withSuspense(LoginContainer)}/>
+                    <Switch>
+                        <Route exact path={`${PATH.PROFILE}/:userId?`}
+                               render={withSuspense(ProfileContainer)}/>
+                        <Route path={`${PATH.DIALOGS}`}
+                               render={withSuspense(DialogsContainer)}/>
+                        <Route path={`${PATH.USERS}`}
+                               render={() => <UsersContainer/>}/>
+                        <Route path={`${PATH.NEWS}`} render={() => <News/>}/>
+                        <Route path={`${PATH.MUSIC}`} render={() => <Music/>}/>
+                        <Route path={`${PATH.SETTINGS}`} render={() => <Settings/>}/>
+                        <Route path={`${PATH.LOGIN}`} render={withSuspense(LoginContainer)}/>
+                    </Switch>
                 </div>
             </div>
         </BrowserRouter>

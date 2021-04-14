@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import {GoCloudUpload} from "react-icons/all";
 
 type PropsType = {
     changeUserPhoto: (photos: File) => void
@@ -33,7 +34,7 @@ export const UploadButton: React.FC<PropsType> = ({changeUserPhoto}) => {
             <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={onChangeUserPhoto}/>
             <label htmlFor="icon-button-file">
                 <IconButton color="primary" aria-label="upload picture" component="span" size="medium">
-                    <PhotoCamera />
+                    <GoCloudUpload style={{fontSize: "2.5rem"}}/>
                 </IconButton>
             </label>
         </div>

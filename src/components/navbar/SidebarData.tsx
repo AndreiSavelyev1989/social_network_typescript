@@ -9,9 +9,9 @@ export const PATH = {
     NEWS: "/news",
     MUSIC: "/music",
     SETTINGS: "/settings",
-    ABOUT_ME: "/profile/about-me",
-    MY_POSTS: "/profile/my-posts",
-    MY_FRIENDS: "/profile/my-friends"
+    ABOUT_ME: "/profile/about",
+    MY_POSTS: "/profile/posts",
+    MY_FRIENDS: "/profile/friends"
 }
 
 export const sidebarData = [
@@ -55,15 +55,15 @@ export const sidebarData = [
 
 export const profileNavData = [
     {
-        title: "About me",
+        title: "About",
         path: PATH.ABOUT_ME,
     },
     {
-        title: "My posts",
+        title: "Posts",
         path: PATH.MY_POSTS,
     },
     {
-        title: "My friends",
+        title: "Friends",
         path: PATH.MY_FRIENDS,
     },
 ]

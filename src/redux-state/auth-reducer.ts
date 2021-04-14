@@ -90,15 +90,19 @@ export const authMe = (): ThunkAuthType => {
             })
             .then((id) => {
                 if (isAuth) {
-                    profileAPI.getUserProfile(id)
-                        .then((res) => {
-                            if (id) {
-                                dispatch(setAuthUserProfile(res.data))
-                            }
-                        })
+                    return dispatch(requestUserProfile(id))
                 }
             })
     }
+}
+
+export const requestUserProfile = (id: number): ThunkAuthType => (dispatch) => {
+    return profileAPI.getUserProfile(id)
+        .then((res) => {
+            if (id) {
+                dispatch(setAuthUserProfile(res.data))
+            }
+        })
 }
 
 export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkAuthType => async (dispatch) => {
@@ -125,6 +129,6 @@ export const logoutTC = (): ThunkAuthType => async (dispatch) => {
             dispatch(setError(res.data.messages[0]))
         }
     } catch (e) {
-            dispatch(setError(e.message))
+        dispatch(setError(e.message))
     }
 }
