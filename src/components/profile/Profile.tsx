@@ -6,7 +6,7 @@ import {ProfileType} from "../../redux-state/profile-reducer";
 import {ProfileNavigation} from "./profile-navigation/ProfileNavigation";
 import {Route} from "react-router-dom";
 import {PATH} from "../navbar/SidebarData";
-import {AboutMe} from "./profile-info/about-me/AboutMe";
+import {About} from "./profile-info/about-me/AboutMe";
 import {MyFriends} from "./profile-info/my-friends/MyFriends";
 
 type ProfilePropsType = {
@@ -30,9 +30,9 @@ export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, error, 
                 changeUserStatus={changeUserStatus}/>
             <ProfileNavigation/>
            <div className={styles.profileNavPanel}>
-                <Route path={`${PATH.ABOUT_ME}`} render={() => <AboutMe profile={profile}/>}/>
-                <Route path={`${PATH.MY_FRIENDS}`} render={() => <MyFriends/>}/>
-                <Route path={`${PATH.MY_POSTS}`} render={() => <MyPostsContainer/>}/>
+                <Route path={`${PATH.PROFILE}${PATH.ABOUT}`} render={() => <About profile={profile}/>}/>
+                <Route path={`${PATH.PROFILE}${PATH.FRIENDS}`} render={() => <MyFriends/>}/>
+                <Route path={`${PATH.PROFILE}${PATH.POSTS}`} render={() => <MyPostsContainer/>}/>
             </div>
         </div>
     )

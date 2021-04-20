@@ -34,8 +34,10 @@ const App = React.memo(() => {
                 <Header/>
                 <div className={styles.appWrapperContent}>
                     <Switch>
-                        <Route exact path={`${PATH.PROFILE}/:userId?`}
+                        <Route path={`${PATH.PROFILE}/:userId?`}
                                render={withSuspense(ProfileContainer)}/>
+                        {/*<Route path={`${PATH.PROFILE}${PATH.ABOUT}/:userId?`}*/}
+                        {/*       render={withSuspense(ProfileContainer)}/>*/}
                         <Route path={`${PATH.DIALOGS}`}
                                render={withSuspense(DialogsContainer)}/>
                         <Route path={`${PATH.USERS}`}

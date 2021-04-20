@@ -17,24 +17,27 @@ type ProfileInfoPropsType = {
 }
 
 export const ProfileInfo: React.FC<ProfileInfoPropsType> = React.memo(({changeUserStatus, status, error, profile, changeUserPhoto, isOwner}) => {
-    if (!profile) {
-        return <Preloader/>
-    }
 
     return (
         <div className={styles.content} style={{backgroundImage: `url(${profileBackgroundImg})`}}>
-            <div className={styles.imageContainer}>
-                <img src={profile.photos.large ? profile.photos.large : samurai} alt="samuraiPhoto"/>
-                <div className={styles.fileContainer}>
-                    {isOwner && <UploadButton changeUserPhoto={changeUserPhoto}/>}
-                </div>
-            </div>
-            {/*<ProfileStatus status={props.status} changeUserStatus={props.changeUserStatus}/>*/}
-            <div className={styles.userNameTitle}>{profile.fullName}</div>
-            <ProfileStatusWithHooks status={status}
-                                    isOwner={isOwner}
-                                    error={error}
-                                    changeUserStatus={changeUserStatus}/>
+            {profile
+                ?
+                <>
+                    <div className={styles.imageContainer}>
+                        <img src={profile.photos.large ? profile.photos.large : samurai} alt="samuraiPhoto"/>
+                        <div className={styles.fileContainer}>
+                            {isOwner && <UploadButton changeUserPhoto={changeUserPhoto}/>}
+                        </div>
+                    </div>
+
+                    <div className={styles.userNameTitle}>{profile.fullName}</div>
+                    <ProfileStatusWithHooks status={status}
+                                            isOwner={isOwner}
+                                            error={error}
+                                            changeUserStatus={changeUserStatus}/>
+                </>
+                : <Preloader/>
+            }
         </div>
     )
 });

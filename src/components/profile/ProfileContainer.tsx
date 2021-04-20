@@ -71,9 +71,9 @@ class ProfileContainer extends React.PureComponent<PropsType> {
             <Profile profile={this.props.profile}
                      isOwner={
                          !this.props.match.params.userId
-                         || this.props.match.params.userId === "posts"
-                         || this.props.match.params.userId === "about"
-                         || this.props.match.params.userId === "friends"
+                         // || this.props.match.params.userId === "posts"
+                         // || this.props.match.params.userId === "about"
+                         // || this.props.match.params.userId === "friends"
                      }
                      status={this.props.status}
                      error={this.props.error}

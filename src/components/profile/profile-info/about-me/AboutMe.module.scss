@@ -1,13 +1,101 @@
 @import "./../../../../assets/common-styles/common-mixins";
 @import "./../../../../assets/common-styles/common-variables";
 
-.aboutMeContainer {
+@mixin infoBlock {
+  width: 100%;
+  @include flexWrapper(row, flex-start, flex-start, wrap, null);
+  div {
+    &:nth-child(odd) {
+      width: 30%;
+    }
+
+    &:nth-child(even) {
+      width: 70%;
+      @media screen and (max-width: 700px) {
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+.aboutContainer {
   @include profileNavContainer;
-  @include flexWrapper(column, center, center, wrap, $boxShadowBlockColor);
+  @include flexWrapper(row, center, center, wrap, $boxShadowBlockColor);
+
   .aboutBlock {
     width: 80%;
     border-radius: 10px;
-    @include flexWrapper(column, center, center, wrap, $boxShadowBlockColor);
+    padding: 10px;
+    @include flexWrapper(row, center, center, wrap, $boxShadowBlockColor);
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      @include flexWrapper(null, null, null, wrap, null);
+      min-height: 500px;
+      font-size: 0.8rem;
+    }
+
+    h2 {
+      width: 100%;
+      padding-bottom: 10px;
+      border-bottom: 1px solid $textColor;
+    }
+
+    .basicInfoBlock {
+      width: 100%;
+      padding-bottom: 10px;
+
+      .nameBlock {
+        @include infoBlock;
+      }
+
+      .aboutMeBlock {
+        @include infoBlock;
+      }
+
+      .lookingJobBlock {
+        @include infoBlock;
+      }
+
+      .jobDescBlock {
+        @include infoBlock;
+      }
+    }
+
+    .linksInfoBlock {
+      width: 100%;
+
+      .facebookBlock {
+        @include infoBlock;
+      }
+
+      .githubBlock {
+        @include infoBlock;
+      }
+
+      .instagramBlock {
+        @include infoBlock;
+      }
+
+      .mainLinkBlock {
+        @include infoBlock;
+      }
+
+      .twitterBlock {
+        @include infoBlock;
+      }
+
+      .vkBlock {
+        @include infoBlock;
+      }
+
+      .websiteBlock {
+        @include infoBlock;
+      }
+
+      .youtubeBlock {
+        @include infoBlock;
+      }
+    }
   }
 }
 
