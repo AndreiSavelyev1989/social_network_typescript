@@ -1,0 +1,32 @@
+@import "./../../assets/common-styles/common-mixins";
+@import "./../../assets/common-styles/common-variables";
+
+.dialogsContainer {
+  width: 80%;
+  min-height: 500px;
+  background: $blockBackground;
+  @include flexWrapper(row, null, null, wrap, $boxShadowBlockColor);
+  border-radius: 10px;
+
+  .dialogs {
+    width: 25%;
+    @include flexWrapper(column, null, null, wrap, null);
+    padding: 20px 0 0 40px;
+    border-right: 2px solid $textColor;
+    @media screen and (max-width: 700px){
+      padding: 0;
+    }
+  }
+  .messages {
+    width: 75%;
+    padding: 0 30px;
+    @include flexWrapper(null, null, null, wrap, null);
+    @media screen and (max-width: 700px){
+      padding: 0 10px;
+    }
+    @media screen and (max-width: 400px){
+      padding: 0;
+    }
+  }
+}
+

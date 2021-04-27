@@ -32,13 +32,12 @@ const initialState: DialogsPageType = {
         {id: v1(), message: "What a wonderful day!"}
     ],
 }
-export const newMessageId = v1()
 
 export function dialogsReducer(state = initialState, action: DialogsActionsType) {
     switch (action.type) {
         case ADD_NEW_MESSAGE:
             let newMessageText: MessagesType = {
-                id: newMessageId,
+                id: v1(),
                 message: action.newMessage,
             }
             return {

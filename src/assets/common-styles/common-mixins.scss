@@ -1,4 +1,6 @@
-@mixin flexWrapper ($direction, $justifyContent, $alignItems, $flexWrap, $boxShadow){
+@import "common-variables";
+
+@mixin flexWrapper($direction, $justifyContent, $alignItems, $flexWrap, $boxShadow) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justifyContent;
@@ -11,12 +13,13 @@
   border: 2px solid white;
 }
 
-@mixin profileNavContainer{
+@mixin profileNavContainer {
   width: 100%;
   min-height: 500px;
   margin-top: 20px;
   border-radius: 10px;
 }
+
 
 @mixin backgroundColorAutoFill($backgroundColor) {
   -webkit-box-shadow: 0 0 0 9999px $backgroundColor inset;

@@ -1,0 +1,32 @@
+@import "./../../../assets/common-styles/common-mixins";
+@import "./../../../assets/common-styles/common-variables";
+
+.dialogItemContainer {
+  @include flexWrapper(null, null, center, wrap, null);
+  width: 100%;
+  padding: 10px;
+
+  .avatarBlock {
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  .userNameBlock {
+      padding-left: 10px;
+    a {
+      color: $textColor;
+      text-decoration: none;
+
+      &:hover {
+        color: $blockColor;
+      }
+    }
+
+    .active {
+      color: $blockColor;
+    }
+  }
+}
+

@@ -1,0 +1,23 @@
+@import "src/assets/common-styles/common-mixins";
+@import "src/assets/common-styles/common-variables";
+
+.deleteBlock {
+  width: 15%;
+  height: 80px;
+  @include flexWrapper(null, flex-end, flex-start, wrap, null);
+
+  .deleteButton {
+    @include flexWrapper(null, center, center, wrap, null);
+    font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+
+    &:hover {
+      background: $mainBackround;
+      box-shadow: $boxShadowBlockColor;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+  }
+}

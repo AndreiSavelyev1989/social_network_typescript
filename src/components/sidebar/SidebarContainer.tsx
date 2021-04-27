@@ -4,6 +4,7 @@ import {StoreType} from "../../redux-state/redux-store";
 
 
 const mapStateToProps = (state: StoreType) => {
+
     return {
         users: state.usersPage.users
     }

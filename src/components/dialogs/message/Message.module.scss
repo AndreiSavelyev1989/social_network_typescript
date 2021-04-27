@@ -1,0 +1,49 @@
+@import "./../../../assets/common-styles/common-mixins";
+@import "./../../../assets/common-styles/common-variables";
+
+@mixin media360 {
+  @media screen and (max-width: 360px) {
+    @include flexWrapper(column, null, center, wrap, null);
+    padding-top: 20px;
+  }
+}
+
+.messageContainer {
+  width: 100%;
+  min-height: 50px;
+  @include flexWrapper(null, null, center, wrap, null);
+
+  &:nth-child(even) {
+    @include flexWrapper(row-reverse, null, null, wrap, null);
+    @include media360;
+  }
+
+  @include media360;
+
+  .avatar {
+    width: 20%;
+    @include flexWrapper(null, center, center, wrap, null);
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #50b5ff;
+      @media screen and (max-width: 700px) {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  .messageItem {
+    width: 80%;
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid $textColor;
+    overflow: hidden;
+    border-radius: 10px;
+    @include flexWrapper(null, space-between, flex-start, wrap, null);
+  }
+}
+

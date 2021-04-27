@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Dialogs.module.css"
+import styles from "./Dialogs.module.scss"
 import {Dialog} from "./dialog/Dialog";
 import {Message} from "./message/Message";
 import {DialogsType, MessagesType} from "../../redux-state/dialogs-reducer";
@@ -24,9 +24,9 @@ export const Dialogs: React.FC<DialogsPropsType> = React.memo(({dialogs, message
         messageId={m.id}/>)
 
     return (
-        <div className={styles.dialogs}>
-            <div>{dialogsElements}</div>
-            <div>
+        <div className={styles.dialogsContainer}>
+            <div className={styles.dialogs}>{dialogsElements}</div>
+            <div className={styles.messages}>
                 {messagesElements}
                 <DialogsMessageForm addNewMessage={addNewMessage}/>
             </div>

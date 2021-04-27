@@ -4,6 +4,7 @@ import avatar from "./../../../../images/userAvatar.png"
 import {ProfileType} from "../../../../redux-state/profile-reducer";
 import postBackground from "../../../../images/postBackground.jpg";
 import {BiDislike, BiLike, MdDelete} from "react-icons/all";
+import {DeleteButton} from "../../../common/delete-button/DeleteButton";
 
 type PostPropsType = {
     id: string
@@ -27,7 +28,7 @@ export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMe
         setDislikesCount(id, dislike)
     }
 
-    const onDeleteHandler = () => {
+    const onPostDeleteHandler = () => {
         deletePost(id)
     }
 
@@ -49,11 +50,12 @@ export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMe
                     <div className={styles.date}>{date}</div>
                 </div>
                 <div className={styles.postMessage}>{postMessage}</div>
-                <div className={styles.postDeleteBlock} onClick={onDeleteHandler}>
-                    <div className={styles.deleteButton}>
-                        <MdDelete/>
-                    </div>
-                </div>
+                <DeleteButton onDeleteHandler={onPostDeleteHandler}/>
+                {/*<div className={styles.deleteBlock} onClick={onPostDeleteHandler}>*/}
+                {/*    <div className={styles.deleteButton}>*/}
+                {/*        <MdDelete/>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
 
             <div className={styles.imageBlock} style={{backgroundImage: `url(${postBackground})`}}>
