@@ -1,8 +1,9 @@
 import {useFormik} from "formik";
 import style from "../../login/Login.module.css";
-import TextField from "@material-ui/core/TextField";
-import {Button} from "@material-ui/core";
+import styles from "./DialogsMessageForm.module.scss";
 import React from "react";
+import {UniversalInput} from "../../common/universal-input/UniversalInput";
+import {UniversalButton} from "../../common/universal-button/UniversalButton";
 
 type FormikErrorType = {
     newMessage?: string
@@ -32,22 +33,22 @@ export const DialogsMessageForm: React.FC<PropsType> = React.memo(({addNewMessag
         }
     })
     return (
-        <form className={style.formBlock} onSubmit={formik.handleSubmit}>
-            <TextField
-                className={style.input}
-                type={"text"}
-                placeholder={"New post"}
-                variant={"outlined"}
-                label={"Add new message"}
-                required
-                {...formik.getFieldProps("newMessage")}/>
-            {formik.touched.newMessage && formik.errors.newMessage ?
-                <div className={style.registrationError}>{formik.errors.newMessage}</div> : null}
-            <Button
-                variant={"contained"}
-                color={"primary"}
-                size={"small"}
-                type={"submit"}>Send message</Button>
+        <form onSubmit={formik.handleSubmit} className={styles.formBlock}>
+            <div className={styles.formContainer}>
+                <div className={styles.inputBlock}>
+                    <UniversalInput type={"text"}
+                                    placeholder={"New message"}
+                                    formikFieldProps={formik.getFieldProps("newMessage")}/>
+                    {formik.touched.newMessage && formik.errors.newMessage ?
+                        <div className={style.registrationError}>{formik.errors.newMessage}</div> : null}
+                </div>
+
+                <div className={styles.buttonBlock}>
+                    <UniversalButton
+                        title={"send"}
+                        type={"submit"}>Send message</UniversalButton>
+                </div>
+            </div>
         </form>
     )
 })

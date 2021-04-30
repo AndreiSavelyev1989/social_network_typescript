@@ -1,0 +1,45 @@
+@import "./../../../assets/common-styles/common-mixins";
+
+.formBlock {
+  width: 100%;
+  margin: 30px 0;
+
+  .formContainer {
+    @include flexWrapper(null, space-between, null, wrap, null);
+    width: 100%;
+    border-top: 1px solid $textColor;
+    border-bottom: 1px solid $textColor;
+    @media screen and (max-width: 1250px) {
+      @include flexWrapper(column, center, center, null, null);
+    }
+
+    .inputBlock {
+      width: 80%;
+      @include flexWrapper(column, center, center, null, null);
+      padding: 20px 0;
+
+      input {
+        width: 100%;
+
+        &::placeholder {
+          text-align: center;
+        }
+      }
+
+      @media screen and (max-width: 1250px) {
+        width: 90%;
+        @include flexWrapper(column, center, center, null, null);
+      }
+
+    }
+
+    .buttonBlock {
+      width: 20%;
+      @include flexWrapper(null, center, center, null, null);
+      @media screen and (max-width: 700px) {
+        width: 50%;
+        @include flexWrapper(column, center, center, null, null);
+      }
+    }
+  }
+}
