@@ -1,7 +1,7 @@
 import React from "react";
 import {User} from "./user/User";
 import {UserType} from "../../redux-state/users-reducer";
-import styles from "./Users.module.css"
+import styles from "./Users.module.scss"
 import {Pagination} from "../common/pagination/Pagination";
 import {Preloader} from "../common/preloader/Preloader";
 
@@ -20,7 +20,7 @@ type UsersPropsType = {
 
 
 export const Users = React.memo((props: UsersPropsType) => (
-    <div>
+    <div className={styles.usersContainer}>
         {props.isFetching ? <Preloader/> : null}
         <div className={styles.pagination}>
             <Pagination

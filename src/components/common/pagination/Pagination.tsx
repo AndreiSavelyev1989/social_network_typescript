@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import styles from "./Pagination.module.css";
-import {Button} from "@material-ui/core";
+import styles from "./Pagination.module.scss";
+import {UniversalButton} from "../universal-button/UniversalButton";
 
 type PaginationPropsType = {
     totalItemsCount: number
@@ -26,35 +26,27 @@ export const Pagination = React.memo((props: PaginationPropsType) => {
 
     return (
         <div className={styles.pagination}>
-            {portionNumber > 1 && <Button
-                onClick={() => setPortionNumber(portionNumber - 1)}
-                variant={"outlined"}
-                color={"primary"}
-                size={"small"}
+            {portionNumber > 1 && <UniversalButton
+                callback={() => setPortionNumber(portionNumber - 1)}
+                type={"button"}
+                title={"Prev"}
                 disabled={props.isFetching}
-            >Prev</Button>}
+            />}
             {pages
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-                .map(p => <Button
+                .map(p => <button
                     key={p}
-                    className={styles.paginationButton}
+                    className={props.currentPage === p
+                        ? styles.selectedButton
+                        : styles.paginationButton}
                     onClick={() => props.onCurrentPage(p)}
-                    variant={props.currentPage === p
-                        ? "outlined"
-                        : "text"}
-                    size={"small"}
-                    color={props.currentPage === p
-                        ? "secondary"
-                        : "primary"}
                     disabled={props.isFetching}
-                >{p} </Button>)}
-            {portionCount > portionNumber && <Button
-                onClick={() => setPortionNumber(portionNumber + 1)}
-                variant={"outlined"}
-                color={"primary"}
-                size={"small"}
+                >{p} </button>)}
+            {portionCount > portionNumber && <UniversalButton
+                callback={() => setPortionNumber(portionNumber + 1)}
                 disabled={props.isFetching}
-            >Next</Button>}
+                type={"button"}
+                title={"Next"}/>}
         </div>
     )
 });

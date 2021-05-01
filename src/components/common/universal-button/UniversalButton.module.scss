@@ -17,12 +17,12 @@
   box-shadow: 0 0 40px 40px $blockColor inset, 0 0 0 0 #3756f1;
   outline: none;
 
-  @media screen and (max-width: 400px){
+  @media screen and (max-width: 400px) {
     padding: 7px 15px;
     margin: 5px 10px;
 
   }
-  @media screen and (max-width: 265px){
+  @media screen and (max-width: 265px) {
     padding: 5px 5px;
     margin: 5px 5px;
 
@@ -33,7 +33,16 @@
     color: $blockColor;
     cursor: pointer;
   }
+
   &:active {
-    outline: none;
+    border: none;
+  }
+
+  &:disabled {
+    box-shadow: 0 0 10px 0 $blockColor inset, 0 0 10px 4px #e01616;
+
+    &:hover {
+      color: $activeBlockTextColor;
+    }
   }
 }

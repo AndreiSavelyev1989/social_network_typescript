@@ -1,0 +1,14 @@
+@import "./../../assets/common-styles/common-mixins";
+@import "./../../assets/common-styles/common-variables";
+
+.usersContainer {
+  width: 80%;
+  min-height: 500px;
+  @include  flexWrapper(null, null, null, wrap, $boxShadowBlockColor);
+  background: $blockBackground;
+  border-radius: 10px;
+  .pagination {
+    width: 100%;
+    @include  flexWrapper(null, center, null, wrap, null);
+  }
+}

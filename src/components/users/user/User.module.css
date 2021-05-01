@@ -8,6 +8,8 @@
     margin: 20px;
     border-radius: 10px;
     color: white;
+    width: 480px;
+    height: 320px;
 }
 
 .userWrapper img {

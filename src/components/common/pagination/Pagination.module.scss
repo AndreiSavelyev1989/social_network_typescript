@@ -1,0 +1,37 @@
+@import "./../../../assets/common-styles/common-mixins";
+@import "./../../../assets/common-styles/common-variables";
+
+@mixin commonButtonStyles($bgColor) {
+  margin: 0 5px;
+  width: 30px;
+  height: 30px;
+  background: $bgColor;
+  border-radius: 15%;
+  border: none;
+  color: $activeBlockTextColor;
+}
+
+.pagination {
+  @include flexWrapper(null, space-evenly, center, wrap, null);
+  margin-top: 10px;
+
+  .paginationButton {
+    @include commonButtonStyles($blockColor);
+    box-shadow: 0 0 40px 40px $blockColor inset, 0 0 0 0 #3756f1;
+
+    &:hover {
+      box-shadow: 0 0 10px 0 $blockColor inset, 0 0 10px 4px #3756f1;
+      color: $blockColor;
+      background: $blockBackground;
+      transition: 0.5s;
+      cursor: pointer;
+    }
+  }
+
+  .selectedButton {
+    box-shadow: 0 0 10px 0 $blockColor inset, 0 0 10px 4px #3756f1;
+    @include commonButtonStyles($blockBackground);
+    color: $blockColor;
+  }
+}
+
