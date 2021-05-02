@@ -23,7 +23,7 @@
       box-shadow: 0 0 10px 0 $blockColor inset, 0 0 10px 4px #3756f1;
       color: $blockColor;
       background: $blockBackground;
-      transition: 0.5s;
+      transition: .15s ease-in-out;
       cursor: pointer;
     }
   }
