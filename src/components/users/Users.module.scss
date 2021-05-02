@@ -4,11 +4,15 @@
 .usersContainer {
   width: 80%;
   min-height: 500px;
-  @include  flexWrapper(null, null, null, wrap, $boxShadowBlockColor);
+  @include flexWrapper(null, center, center, wrap, $boxShadowBlockColor);
   background: $blockBackground;
   border-radius: 10px;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
+
   .pagination {
     width: 100%;
-    @include  flexWrapper(null, center, null, wrap, null);
+    @include flexWrapper(null, center, null, wrap, null);
   }
 }

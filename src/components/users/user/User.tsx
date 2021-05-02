@@ -1,6 +1,7 @@
 import React from "react";
-import userPhoto from "../../../images/friendAvatar.png"
-import styles from "./User.module.css"
+import userPhoto from "../../../images/userAvatar.jpg"
+import userBackground from "../../../images/userBackground.jpg"
+import styles from "./User.module.scss"
 import {PhotosType} from "../../../redux-state/users-reducer";
 import {Button} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
@@ -23,11 +24,10 @@ export const User = React.memo((props: UserPropsType) => {
 
     return (
         <div className={styles.userWrapper}>
-                <div className={styles.userBlock_1}>
-                    <NavLink to={"/profile/" + props.id}>
-                        <img src={props.userPhoto.large ? props.userPhoto.large : userPhoto} alt="user-avatar"/>
-                    </NavLink>
-                    <div className={styles.button}>
+            <div className={styles.userBlock_1}>
+                <div className={styles.userBackgroud} style={{backgroundImage: `url(${userBackground})`}}></div>
+                <div className={styles.userContent}>
+                    <div className={styles.userFollowingButton}>
                         {props.followed
                             ? <Button
                                 variant={"contained"}
@@ -43,16 +43,22 @@ export const User = React.memo((props: UserPropsType) => {
                                 onClick={onFollowClick}>follow</Button>
                         }
                     </div>
+                    <div className={styles.userInfo}>
+                        <div className={styles.userFullName}>{props.fullName}</div>
+                        <div className={styles.status}>
+                            {props.status ? props.status : "I haven't a" +
+                            " status!!!"}</div>
+                    </div>
                 </div>
-                <div className={styles.userBlock_2}>
-                    <div className={styles.userFullName}><label>Name:</label> {props.fullName}</div>
-                    <div className={styles.status}><label>Status:</label> {props.status ? props.status : "I haven't a" +
-                        " status!!!"}</div>
+            </div>
+            <NavLink to={"/profile/" + props.id}>
+                <div className={styles.userBlock_2} style={{
+                    backgroundImage: props.userPhoto.large
+                        ? `url(${props.userPhoto.large})`
+                        : `url(${userPhoto})`
+                }}>
                 </div>
-                <div className={styles.userBlock_2}>
-                    <div><label>Country:</label> {"props.location.countryName"}</div>
-                    <div className={styles.cityName}><label>City:</label> {"props.location.cityName"}</div>
-                </div>
+            </NavLink>
         </div>
     )
 });

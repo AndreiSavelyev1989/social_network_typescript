@@ -51,11 +51,6 @@ export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMe
                 </div>
                 <div className={styles.postMessage}>{postMessage}</div>
                 <DeleteButton onDeleteHandler={onPostDeleteHandler}/>
-                {/*<div className={styles.deleteBlock} onClick={onPostDeleteHandler}>*/}
-                {/*    <div className={styles.deleteButton}>*/}
-                {/*        <MdDelete/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
             </div>
 
             <div className={styles.imageBlock} style={{backgroundImage: `url(${postBackground})`}}>

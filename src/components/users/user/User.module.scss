@@ -1,0 +1,86 @@
+@import "./../../../assets/common-styles/common-mixins.scss";
+@import "./../../../assets/common-styles/common-variables.scss";
+
+@mixin mediaUserContent500($padding) {
+  padding: $padding;
+  width: 100%;
+  @include flexWrapper(column, center, center, null, null);
+}
+
+.userWrapper {
+  @include flexWrapper(row, space-between, center, wrap, $boxShadowBlockColor);
+  background: $blockBackground;
+  margin: 10px;
+  border-radius: 10px;
+  color: $textColor;
+  width: 480px;
+  min-height: 320px;
+  position: relative;
+  @media screen and (max-width: 700px) {
+    width: 648.84px;
+    margin: 10px 0;
+  }
+
+  .userBlock_1 {
+    width: 100%;
+    height: 100%;
+    @include flexWrapper(column, center, center, wrap, null);
+
+    .userBackgroud {
+      width: 100%;
+      min-height: 120px;
+      background-position: center;
+      background-size: cover;
+      border-radius: 10px;
+    }
+
+    .userContent {
+      width: 100%;
+      min-height: 200px;
+      @include flexWrapper(row, flex-start, flex-end, wrap, null);
+      @media screen and (max-width: 500px) {
+        @include flexWrapper(column-reverse, center, center, null, null);
+
+      }
+
+      .userFollowingButton {
+        width: 40%;
+        height: 100%;
+        padding-left: 30px;
+        padding-bottom: 30px;
+        @media screen and (max-width: 500px) {
+          @include mediaUserContent500(20px 0 0);
+        }
+      }
+
+      .userInfo {
+        width: 60%;
+        padding-bottom: 120px;
+        font-size: 1.2rem;
+        font-weight: 300;
+        @media screen and (max-width: 500px) {
+          @include mediaUserContent500(50px 0 0);
+        }
+
+        .userFullName {
+          font-size: 1.7rem;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .userBlock_2 {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 18.75%;
+    left: 30px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    @media screen and (max-width: 500px) {
+      left: calc(50% - 60px);
+    }
+  }
+}

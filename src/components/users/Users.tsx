@@ -21,7 +21,6 @@ type UsersPropsType = {
 
 export const Users = React.memo((props: UsersPropsType) => (
     <div className={styles.usersContainer}>
-        {props.isFetching ? <Preloader/> : null}
         <div className={styles.pagination}>
             <Pagination
                 totalItemsCount={props.totalUsersCount}
@@ -32,16 +31,18 @@ export const Users = React.memo((props: UsersPropsType) => (
                 isFetching={props.isFetching}
             />
         </div>
-        {props.users.map(u => <User
-            key={u.id}
-            id={u.id}
-            userPhoto={u.photos}
-            followed={u.followed}
-            fullName={u.name}
-            status={u.status}
-            followingInProgress={props.followingInProgress}
-            follow={props.follow}
-            unfollow={props.unfollow}
-        />)}
+        {props.isFetching
+            ? <Preloader/>
+            : props.users.map(u => <User
+                key={u.id}
+                id={u.id}
+                userPhoto={u.photos}
+                followed={u.followed}
+                fullName={u.name}
+                status={u.status}
+                followingInProgress={props.followingInProgress}
+                follow={props.follow}
+                unfollow={props.unfollow}
+            />)}
     </div>
 ));
