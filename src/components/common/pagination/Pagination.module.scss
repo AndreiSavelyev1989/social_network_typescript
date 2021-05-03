@@ -12,7 +12,7 @@
 }
 
 .pagination {
-  @include flexWrapper(null, space-evenly, center, wrap, null);
+  @include flexWrapper(null, center, center, wrap, null);
   margin-top: 10px;
 
   .paginationButton {

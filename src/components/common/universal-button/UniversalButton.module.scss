@@ -5,9 +5,9 @@
   display: inline-block;
   background: $mainBackground;
   border: 0;
-  padding: 15px 30px;
+  padding: 10px 20px;
   margin: 10px 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   letter-spacing: 2px;
@@ -39,7 +39,7 @@
   }
 
   &:disabled {
-    box-shadow: 0 0 10px 0 $blockColor inset, 0 0 10px 4px #e01616;
+    box-shadow: 0 0 10px 0 $blockColor inset, 0 0 10px 4px $dangerousColor_2;
     opacity: 0.5;
     cursor: default;
 
@@ -58,10 +58,10 @@
 }
 
 .anotherButtonView {
-  @include buttonView(0 0 40px 40px #701010 inset, 0 0 0 0 #e01616, #701010, $activeBlockTextColor);
+  @include buttonView(0 0 40px 40px $dangerousColor_1 inset, 0 0 0 0 $dangerousColor_2, $dangerousColor_1, $activeBlockTextColor);
 
   &:hover {
-    @include buttonView(0 0 10px 0 #701010 inset, 0 0 10px 4px #e01616, #701010, $activeBlockTextColor);
+    @include buttonView(0 0 10px 0 $dangerousColor_1 inset, 0 0 10px 4px $dangerousColor_2, $dangerousColor_1, $activeBlockTextColor);
     opacity: 0.8;
   }
 }

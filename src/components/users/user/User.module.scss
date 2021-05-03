@@ -13,9 +13,10 @@
   margin: 10px;
   border-radius: 10px;
   color: $textColor;
-  width: 480px;
+  width: 540px;
   min-height: 320px;
   position: relative;
+  overflow: hidden;
   @media screen and (max-width: 700px) {
     width: 648.84px;
     margin: 10px 0;
