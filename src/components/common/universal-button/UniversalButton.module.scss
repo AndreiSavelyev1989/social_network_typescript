@@ -1,9 +1,9 @@
 @import "./../../../assets/common-styles/common-variables";
 
-.slidingButton {
+@mixin buttonView($boxShadow_1, $boxShadow_2, $mainBackground, $mainColor) {
   text-decoration: none;
   display: inline-block;
-  background: $blockBackground;
+  background: $mainBackground;
   border: 0;
   padding: 15px 30px;
   margin: 10px 20px;
@@ -11,10 +11,10 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   letter-spacing: 2px;
-  color: $activeBlockTextColor;
+  color: $mainColor;
   text-transform: uppercase;
   transition: .15s ease-in-out;
-  box-shadow: 0 0 40px 40px $blockColor inset, 0 0 0 0 #3756f1;
+  box-shadow: $boxShadow_1, $boxShadow_2;
   outline: none;
 
   @media screen and (max-width: 400px) {
@@ -29,8 +29,8 @@
   }
 
   &:hover {
-    box-shadow: 0 0 10px 0 $blockColor inset, 0 0 10px 4px #3756f1;
-    color: $blockColor;
+    box-shadow: $boxShadow_1, $boxShadow_2;
+    color: $mainColor;
     cursor: pointer;
   }
 
@@ -40,9 +40,28 @@
 
   &:disabled {
     box-shadow: 0 0 10px 0 $blockColor inset, 0 0 10px 4px #e01616;
+    opacity: 0.5;
+    cursor: default;
 
     &:hover {
       color: $activeBlockTextColor;
     }
+  }
+}
+
+.slidingButton {
+  @include buttonView(0 0 40px 40px $blockColor inset, 0 0 0 0 #3756f1, $blockBackground, $activeBlockTextColor);
+
+  &:hover {
+    @include buttonView(0 0 10px 0 $blockColor inset, 0 0 10px 4px #3756f1, $blockBackground, $blockColor)
+  }
+}
+
+.anotherButtonView {
+  @include buttonView(0 0 40px 40px #701010 inset, 0 0 0 0 #e01616, #701010, $activeBlockTextColor);
+
+  &:hover {
+    @include buttonView(0 0 10px 0 #701010 inset, 0 0 10px 4px #e01616, #701010, $activeBlockTextColor);
+    opacity: 0.8;
   }
 }

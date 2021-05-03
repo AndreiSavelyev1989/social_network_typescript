@@ -6,14 +6,15 @@ type PropsType = {
     title: string
     callback?: () => void
     disabled?: boolean
+    className?: boolean
 }
 
-export const UniversalButton: React.FC<PropsType> = ({type, title, callback, disabled}) => {
+export const UniversalButton: React.FC<PropsType> = ({type, title, callback, disabled, className}) => {
     return (
         <button  type={type}
                  onClick={callback}
                  disabled={disabled}
-                 className={styles.slidingButton}>
+                 className={className ? styles.anotherButtonView : styles.slidingButton}>
             {title}
         </button>
     )

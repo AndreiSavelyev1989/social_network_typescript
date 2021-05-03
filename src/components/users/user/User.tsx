@@ -3,8 +3,8 @@ import userPhoto from "../../../images/userAvatar.jpg"
 import userBackground from "../../../images/userBackground.jpg"
 import styles from "./User.module.scss"
 import {PhotosType} from "../../../redux-state/users-reducer";
-import {Button} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
+import {UniversalButton} from "../../common/universal-button/UniversalButton";
 
 type UserPropsType = {
     id: number
@@ -29,25 +29,22 @@ export const User = React.memo((props: UserPropsType) => {
                 <div className={styles.userContent}>
                     <div className={styles.userFollowingButton}>
                         {props.followed
-                            ? <Button
-                                variant={"contained"}
-                                color={"secondary"}
-                                size={"small"}
+                            ? <UniversalButton
+                                title={"unfollow"}
+                                className={true}
                                 disabled={props.followingInProgress.some(id => id === props.id)}
-                                onClick={onUnfollowClick}>unfollow</Button>
-                            : <Button
-                                variant={"contained"}
-                                color={"primary"}
-                                size={"small"}
+                                callback={onUnfollowClick}/>
+                            : <UniversalButton
+                                title={"follow"}
                                 disabled={props.followingInProgress.some(id => id === props.id)}
-                                onClick={onFollowClick}>follow</Button>
+                                callback={onFollowClick}/>
                         }
                     </div>
                     <div className={styles.userInfo}>
                         <div className={styles.userFullName}>{props.fullName}</div>
                         <div className={styles.status}>
                             {props.status ? props.status : "I haven't a" +
-                            " status!!!"}</div>
+                                " status!!!"}</div>
                     </div>
                 </div>
             </div>
