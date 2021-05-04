@@ -2,7 +2,7 @@ import React, {Dispatch} from "react";
 import {NavLink} from "react-router-dom";
 import {ProfileType} from "../../../redux-state/profile-reducer";
 import styles from "./AuthMe.module.scss";
-import style from "../../login/Login.module.css";
+import style from "../../login/Login.module.scss";
 import samurai from "../../../images/profileImg.png"
 import {logoutTC} from "../../../redux-state/auth-reducer";
 import {Preloader} from "../../common/preloader/Preloader";
@@ -34,7 +34,7 @@ export const AuthMe: React.FC<LoginPropsType> = React.memo((props) => {
                         }
                         <div className={styles.login}>{props.login}</div>
                         <div>
-                            <UniversalButton title={"Logout"} callback={logout}/>
+                            <UniversalButton title={"Log out"} callback={logout}/>
                         </div>
                         {props.error && <div className={style.error}>{props.error}</div>}
                     </div>

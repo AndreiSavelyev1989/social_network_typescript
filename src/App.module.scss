@@ -2,17 +2,15 @@
 
 .appWrapper {
   @include flexWrapper(column, null, null, wrap, null);
-  position: relative;
 
   .appWrapperContent {
     @include flexWrapper(column, flex-start, center, wrap, null);
     width: 80%;
     height: 100%;
     margin: 150px auto 0;
-    @media screen and (max-width: 700px){
+    @media screen and (max-width: 700px) {
       width: 95%;
     }
   }
-
 }
 

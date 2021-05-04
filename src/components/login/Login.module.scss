@@ -1,0 +1,233 @@
+@import "./../../assets/common-styles/common-variables";
+@import "./../../assets/common-styles/common-mixins";
+
+@mixin circleAnimationSizes($initialWidthHeight, $changingWidthHeight, $topLeft) {
+  0% {
+    width: $initialWidthHeight;
+    height: $initialWidthHeight;
+  }
+  50% {
+    width: $changingWidthHeight;
+    height: $changingWidthHeight;
+    top: $topLeft;
+    left: $topLeft;
+  }
+  100% {
+    width: $initialWidthHeight;
+    height: $initialWidthHeight;
+  }
+}
+
+@mixin circleSize($topLeft, $widthHeight, $background, $animationName, $animationDelay, $opacity) {
+  position: absolute;
+  top: $topLeft;
+  left: $topLeft;
+  width: $widthHeight;
+  height: $widthHeight;
+  background: $background;
+  border-radius: 50%;
+  transition: 0.5s ease-in-out;
+  animation-name: $animationName;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-delay: $animationDelay;
+  opacity: $opacity;
+}
+
+.loginContainer {
+  width: 100%;
+  height: 100vh;
+  @include flexWrapper(row, center, center, wrap, null);
+  z-index: 2;
+  position: relative;
+  overflow: hidden;
+  margin-top: -50px;
+
+  .loginBlock {
+    width: 40%;
+    height: 100vh;
+    @include flexWrapper(column, flex-start, center, wrap, $boxShadowBlockColor);
+    background: $blockBackground;
+    z-index: 10;
+    opacity: 0.7;
+    padding-top: 100px;
+    @media screen and (max-width: 1000px) {
+      width: 60%;
+    }
+    @media screen and (max-width: 700px) {
+      width: 80%;
+    }
+    @media screen and (max-width: 400px) {
+      width: 100%;
+    }
+    h1 {
+      font-size: 3.052em;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+  }
+}
+
+.animationContainer {
+  width: 100%;
+  height: 100vh;
+  background: $mainBackround;
+  position: absolute;
+
+  .circleSmall {
+    @include circleSize(calc(50% - 150px), 300px, #34416d, circle-small, 0s, 0.4);
+    z-index: 5;
+    @media screen and (max-width: 1000px) {
+      @include circleSize(calc(50% - 100px), 200px, #34416d, circle-small_1000, 0s, 0.4);
+    }
+    @media screen and (max-width: 700px) {
+      @include circleSize(calc(50% - 75px), 150px, #34416d, circle-small_700, 0s, 0.4);
+    }
+    @media screen and (max-width: 400px) {
+      @include circleSize(calc(50% - 50px), 100px, #34416d, circle-small_400, 0s, 0.4);
+    }
+  }
+
+  .circleMedium {
+    @include circleSize(calc(50% - 300px), 600px, #303f6b, circle-medium, 0.3s, 0.3);
+    z-index: 4;
+    @media screen and (max-width: 1000px) {
+      @include circleSize(calc(50% - 200px), 400px, #303f6b, circle-medium_1000, 0.3s, 0.3);
+    }
+    @media screen and (max-width: 700px) {
+      @include circleSize(calc(50% - 150px), 300px, #34416d, circle-medium_700, 0.3s, 0.3);
+    }
+    @media screen and (max-width: 400px) {
+      @include circleSize(calc(50% - 100px), 200px, #34416d, circle-medium_400, 0.3s, 0.3);
+    }
+  }
+
+  .circleLarge {
+    @include circleSize(calc(50% - 450px), 900px, #3d4d82, circle-large, 0.6s, 0.2);
+    @media screen and (max-width: 1000px) {
+      @include circleSize(calc(50% - 300px), 600px, #3d4d82, circle-large_1000, 0.6s, 0.2);
+    }
+    @media screen and (max-width: 700px) {
+      @include circleSize(calc(50% - 225px), 450px, #3d4d82, circle-large_700, 0.6s, 0.2);
+    }
+    @media screen and (max-width: 400px) {
+      @include circleSize(calc(50% - 150px), 300px, #3d4d82, circle-large_400, 0.6s, 0.2);
+    }
+    z-index: 3;
+  }
+
+  .circleXLarge {
+    @include circleSize(calc(50% - 600px), 1200px, #6482e2, circle-xlarge, 0.9s, 0.1);
+    @media screen and (max-width: 1000px) {
+      @include circleSize(calc(50% - 400px), 800px, #6482e2, circle-xlarge_1000, 0.9s, 0.1);
+    }
+    @media screen and (max-width: 700px) {
+      @include circleSize(calc(50% - 300px), 600px, #6482e2, circle-xlarge_700, 0.9s, 0.1);
+    }
+    @media screen and (max-width: 400px) {
+      @include circleSize(calc(50% - 200px), 400px, #6482e2, circle-xlarge_400, 0.9s, 0.1);
+    }
+    z-index: 2;
+  }
+
+  .circleXXLarge {
+    @include circleSize(calc(50% - 750px), 1500px, #18203a, circle-xxlarge, 1.2s, 0.05);
+    @media screen and (max-width: 1000px) {
+      @include circleSize(calc(50% - 500px), 1000px, #18203a, circle-xxlarge_1000, 1.2s, 0.05);
+    }
+    @media screen and (max-width: 700px) {
+      @include circleSize(calc(50% - 375px), 750px, #18203a, circle-xxlarge_700, 1.2s, 0.05);
+    }
+    @media screen and (max-width: 400px) {
+      @include circleSize(calc(50% - 250px), 500px, #18203a, circle-xxlarge_400, 1.2s, 0.05);
+    }
+  }
+}
+
+@keyframes circle-small {
+  @include circleAnimationSizes(300px, 350px, calc(50% - 175px));
+}
+
+@keyframes circle-small_1000 {
+  @include circleAnimationSizes(200px, 250px, calc(50% - 125px));
+}
+
+@keyframes circle-small_700 {
+  @include circleAnimationSizes(150px, 200px, calc(50% - 100px));
+}
+
+@keyframes circle-small_400 {
+  @include circleAnimationSizes(100px, 150px, calc(50% - 75px));
+}
+
+
+@keyframes circle-medium {
+  @include circleAnimationSizes(600px, 650px, calc(50% - 325px));
+}
+
+@keyframes circle-medium_1000 {
+  @include circleAnimationSizes(400px, 450px, calc(50% - 225px));
+}
+
+@keyframes circle-medium_700 {
+  @include circleAnimationSizes(300px, 350px, calc(50% - 175px));
+}
+
+@keyframes circle-medium_400 {
+  @include circleAnimationSizes(200px, 250px, calc(50% - 125px));
+}
+
+
+@keyframes circle-large {
+  @include circleAnimationSizes(900px, 950px, calc(50% - 475px));
+}
+
+@keyframes circle-large_1000 {
+  @include circleAnimationSizes(600px, 650px, calc(50% - 325px));
+}
+
+@keyframes circle-large_700 {
+  @include circleAnimationSizes(450px, 500px, calc(50% - 250px));
+}
+
+@keyframes circle-large_400 {
+  @include circleAnimationSizes(300px, 350px, calc(50% - 175px));
+}
+
+
+@keyframes circle-xlarge {
+  @include circleAnimationSizes(1200px, 1250px, calc(50% - 625px));
+}
+
+@keyframes circle-xlarge_1000 {
+  @include circleAnimationSizes(800px, 850px, calc(50% - 425px));
+}
+
+@keyframes circle-xlarge_700 {
+  @include circleAnimationSizes(600px, 650px, calc(50% - 325px));
+}
+
+@keyframes circle-xlarge_400 {
+  @include circleAnimationSizes(400px, 450px, calc(50% - 225px));
+}
+
+
+@keyframes circle-xxlarge {
+  @include circleAnimationSizes(1500px, 1550px, calc(50% - 775px));
+}
+
+@keyframes circle-xxlarge_1000 {
+  @include circleAnimationSizes(1000px, 1050px, calc(50% - 525px));
+}
+
+@keyframes circle-xxlarge_700 {
+  @include circleAnimationSizes(750px, 800px, calc(50% - 400px));
+}
+
+@keyframes circle-xxlarge_400 {
+  @include circleAnimationSizes(500px, 550px, calc(50% - 275px));
+}
+
+

@@ -1,5 +1,5 @@
 import {useFormik} from "formik";
-import style from "../../login/Login.module.css";
+import style from "../../login/Login.module.scss";
 import styles from "./DialogsMessageForm.module.scss";
 import React from "react";
 import {UniversalInput} from "../../common/universal-input/UniversalInput";

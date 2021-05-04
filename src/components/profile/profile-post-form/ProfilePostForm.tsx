@@ -1,4 +1,4 @@
-import style from "../../login/Login.module.css";
+import style from "./../../login/login-form/LoginForm.module.scss";
 import styles from "./ProfilePostForm.module.scss";
 import React from "react";
 import {useFormik} from "formik";

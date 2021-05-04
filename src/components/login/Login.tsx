@@ -1,6 +1,6 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
-import style from "./Login.module.css"
+import style from "./Login.module.scss"
 import {LoginForm} from "./login-form/LoginForm";
 import {Dispatch} from "redux";
 
@@ -16,10 +16,20 @@ export const Login: React.FC<PropsType> = React.memo(({dispatch, error, isAuth})
     }
     return (
         <>
-            <div className={style.commonContainer}>
-                <h1 className={style.title}>Login Here</h1>
-                <LoginForm dispatch={dispatch} error={error}/>
+            <div className={style.loginContainer}>
+                <div className={style.loginBlock}>
+                    <h1 className={style.title}>Log in </h1>
+                    <LoginForm dispatch={dispatch} error={error}/>
+                </div>
+                <div className={style.animationContainer}>
+                    <div className={style.circleSmall}></div>
+                    <div className={style.circleMedium}></div>
+                    <div className={style.circleLarge}></div>
+                    <div className={style.circleXLarge}></div>
+                    <div className={style.circleXXLarge}></div>
+                </div>
             </div>
+
         </>
     )
 })

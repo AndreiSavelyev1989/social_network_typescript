@@ -1,0 +1,61 @@
+@import "./../../../assets/common-styles/common-variables";
+@import "./../../../assets/common-styles/common-mixins";
+
+.formBlock {
+  width: 100%;
+  padding: 0 20px;
+  @include flexWrapper(column, null, null, wrap, null);
+
+  .descriptionBlock {
+    p {
+      display: block;
+      margin-bottom: 1rem;
+      font-size: 16px;
+    }
+  }
+
+  .emailTitle, {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size: 16px;
+
+  }
+
+  .passwordBlock {
+    @include flexWrapper(row, space-between, null, wrap, null);
+    margin-bottom: 0.5rem;
+
+    .passwordTitle {
+      display: inline-block;
+      font-size: 16px;
+
+    }
+
+    .forgotPasswordTitle {
+      font-size: 16px;
+
+      &:hover {
+        transition: 0.3s ease-in-out;
+        color: $blockColor;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .confirmBlock {
+    @include flexWrapper(row, space-between, center, wrap, null);
+    width: 100%;
+
+    .button {
+      margin-right: -20px;
+      @media screen and (max-width: 425px) {
+        margin-right: -10px;
+      }
+    }
+  }
+
+  .registrationError, .error {
+    color: $dangerousColor_2;
+  }
+}
+

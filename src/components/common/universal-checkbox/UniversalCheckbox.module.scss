@@ -1,14 +1,15 @@
 @import "./../../../assets/common-styles/common-mixins";
+@import "./../../../assets/common-styles/common-variables";
 
 .wrapper {
-  @include flexWrapper(column, center, center, null, null);
+  //@include flexWrapper(column, center, center, null, null);
 
   .box {
     input[type="checkbox"] {
       display: none;
 
       &:checked + label div {
-        background-color: #3498db;
+        background-color: $blockColor;
         border-radius: 50%;
       }
 
@@ -19,9 +20,8 @@
     }
 
     label {
-      font-family: 'Roboto', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 500;
 
       &:hover {
         cursor: pointer;
@@ -29,17 +29,17 @@
 
       div {
         display: inline-block;
-        margin: 10px;
-        font-size: 20px;
+        margin: 10px 10px 10px 0;
+        font-size: 14px;
         vertical-align: middle;
         border-radius: 15%;
         padding: 3px 9px;
         background-color: transparent;
         transition: all 0.4s;
-        border: 2px solid #3498db;
+        border: 2px solid $inputBorderColor;
 
         i {
-          color: #fff;
+          color: $activeBlockTextColor;
           transition: all 0.3s;
           transform: scale(0);
         }

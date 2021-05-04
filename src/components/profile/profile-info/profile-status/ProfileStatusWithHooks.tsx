@@ -1,6 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import {Preloader} from "../../../common/preloader/Preloader";
-import style from "../../../login/Login.module.css";
+import style from "../../../login/Login.module.scss";
 
 type PropsType = {
     status: string

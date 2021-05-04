@@ -1,13 +1,35 @@
 @import "./../../../assets/common-styles/common-variables";
 @import "./../../../assets/common-styles/common-mixins";
 
-.formInput {
-  width: 100%;
-  border: 0;
-  background: $blockBackground;
-  outline: none;
-  font-size: 1rem;
-  @include backgroundColorAutoFill($blockBackground);
-  @include hoverTextColorAutoFill($textColor);
-  @include textColorAutoFill($textColor);
-}
+  .formInput {
+    width: 100%;
+    border: 0;
+    background: $blockBackground;
+    outline: none;
+    font-size: 1rem;
+    @include backgroundColorAutoFill($blockBackground);
+    @include hoverTextColorAutoFill($textColor);
+    @include textColorAutoFill($textColor);
+  }
+
+  .loginInput {
+    width: 100%;
+    border: 2px solid $inputBorderColor;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 15px 5px;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    @include backgroundColorAutoFill($blockBackground);
+    @include hoverTextColorAutoFill($textColor);
+    @include textColorAutoFill($textColor);
+
+    &:focus {
+      border: 2px solid $blockColor;
+      outline: none;
+    }
+  }
+
+
+

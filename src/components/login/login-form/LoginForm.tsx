@@ -1,8 +1,11 @@
-import style from "../Login.module.css";
+import style from "./LoginForm.module.scss";
 import React from "react";
 import {useFormik} from "formik";
 import {Dispatch} from "redux";
 import {loginTC} from "../../../redux-state/auth-reducer";
+import {UniversalInput} from "../../common/universal-input/UniversalInput";
+import {UniversalCheckbox} from "../../common/universal-checkbox/UniversalCheckbox";
+import {UniversalButton} from "../../common/universal-button/UniversalButton";
 
 type FormikErrorType = {
     email?: string
@@ -46,33 +49,47 @@ export const LoginForm: React.FC<PropsType> = React.memo(({dispatch, error}) => 
     })
     return (
         <form className={style.formBlock} onSubmit={formik.handleSubmit}>
-            <input
-                className={style.input}
+            <div className={style.descriptionBlock}>
+                <p>Enter your email address and password to access admin panel.</p>
+            </div>
+            <label htmlFor={"inputEmail"} className={style.emailTitle}>
+                Email address
+            </label>
+            <UniversalInput
+                id={"inputEmail"}
                 type={"text"}
                 placeholder={"Email"}
-                required
-                {...formik.getFieldProps("email")}/>
+                className={"login"}
+                formikFieldProps={formik.getFieldProps("email")}/>
             {formik.touched.email && formik.errors.email ?
                 <div className={style.registrationError}>{formik.errors.email}</div> : null}
+            <div className={style.passwordBlock}>
+                <label htmlFor={"inputPassword"} className={style.passwordTitle}>
+                    Password
+                </label>
+                <div className={style.forgotPasswordTitle}>
+                    Forgot password?
+                </div>
+            </div>
 
-            <input
-                className={style.input}
+            <UniversalInput
+                id={"inputPassword"}
                 type={"password"}
                 placeholder={"Password"}
-                required
-                {...formik.getFieldProps("password")}/>
+                className={"login"}
+                formikFieldProps={formik.getFieldProps("password")}/>
             {formik.touched.password && formik.errors.password ?
                 <div className={style.registrationError}>{formik.errors.password}</div> : null}
 
-            <div className={style.checkbox}>
-                <input
-                    className={style.input}
-                    type={"checkbox"}
-                    {...formik.getFieldProps("rememberMe")}/>
-                <span>RememberMe</span>
+            <div className={style.confirmBlock}>
+                <UniversalCheckbox title={"Remember me"}/>
+                <div className={style.button}>
+                    <UniversalButton title={"Log in"}/>
+                </div>
             </div>
+
             <div className={style.error}>{error ? error : null}</div>
-            <button type={"submit"}>Login</button>
+
         </form>
     )
 })
