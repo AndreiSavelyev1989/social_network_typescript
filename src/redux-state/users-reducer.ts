@@ -1,7 +1,17 @@
 import {usersAPI} from "../components/api/api";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./redux-store";
-import {followUnfollowCase, followUnfollowFlow} from "../utils/utils";
+import {followUnfollowCase, followUnfollowFlow, randomBackground} from "../utils/utils";
+import userBackground_1 from "./../images/user-backgrounds/userBackground_1.jpg"
+import userBackground_2 from "./../images/user-backgrounds/userBackground_2.jpg"
+import userBackground_3 from "./../images/user-backgrounds/userBackground_3.jpg"
+import userBackground_4 from "./../images/user-backgrounds/userBackground_4.jpg"
+import userBackground_5 from "./../images/user-backgrounds/userBackground_5.jpg"
+import userBackground_6 from "./../images/user-backgrounds/userBackground_6.jpg"
+import userBackground_7 from "./../images/user-backgrounds/userBackground_7.jpg"
+import userBackground_8 from "./../images/user-backgrounds/userBackground_8.jpg"
+import userBackground_9 from "./../images/user-backgrounds/userBackground_9.jpg"
+import userBackground_10 from "./../images/user-backgrounds/userBackground_10.jpg"
 
 export type UserType = {
     id: number
@@ -24,6 +34,7 @@ export type UsersType = {
     portionSize: number
     isFetching: boolean
     followingInProgress: Array<number>
+    userBackground: string
 }
 
 const initialState: UsersType = {
@@ -33,8 +44,11 @@ const initialState: UsersType = {
     currentPage: 1,
     portionSize: 10,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [],
+    userBackground: ""
 }
+
+const userBackgrounds = [userBackground_1, userBackground_2, userBackground_3, userBackground_4, userBackground_5, userBackground_6, userBackground_7, userBackground_8, userBackground_9, userBackground_10]
 
 export const usersReducer = (state = initialState, action: ActionsUsersType) => {
     switch (action.type) {
@@ -55,6 +69,11 @@ export const usersReducer = (state = initialState, action: ActionsUsersType) => 
         case "SET_TOTAL_USERS_COUNT":
             return {
                 ...state, totalUsersCount: action.totalUsersCount
+            }
+        case "SET_USER_BACKGROUND":
+            return {
+                ...state,
+                userBackground: action.background
             }
         case "SET_CURRENT_PAGE":
             return {
@@ -85,10 +104,12 @@ export type ActionsUsersType =
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof toogleIsFetching>
     | ReturnType<typeof toogleFollowingProgress>
+    | ReturnType<typeof setUserBackground>
 
 export const followSuccess = (userId: number) => ({type: "FOLLOW", userId} as const)
 export const unfollowSuccess = (userId: number) => ({type: "UNFOLLOW", userId} as const)
 export const setUsers = (users: Array<UserType>) => ({type: "SET_USERS", users} as const)
+export const setUserBackground = (background: string) => ({type: "SET_USER_BACKGROUND", background} as const)
 export const setTotalUsersCount = (totalUsersCount: number) => ({
     type: "SET_TOTAL_USERS_COUNT",
     totalUsersCount
@@ -109,6 +130,7 @@ export const requestUsers = (pageSize: number, currentPage: number): ThunkUsersT
     let res = await usersAPI.getUsers(pageSize, currentPage)
     dispatch(toogleIsFetching(false))
     dispatch(setUsers(res.data.items))
+    dispatch(setUserBackground(randomBackground(userBackgrounds)))
     dispatch(setTotalUsersCount(res.data.totalCount))
 }
 

@@ -3,12 +3,19 @@ import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./redux-store";
 import {profileAPI, UserPhotosType} from "../components/api/api";
 import {authMe, setError} from "./auth-reducer";
+import postBackground_1 from "../images/post-backgrounds/postBackground_1.jpg";
+import postBackground_2 from "../images/post-backgrounds/postBackground_2.jpg";
+import postBackground_3 from "../images/post-backgrounds/postBackground_3.jpg";
+import postBackground_4 from "../images/post-backgrounds/postBackground_4.jpg";
+import postBackground_5 from "../images/post-backgrounds/postBackground_5.jpg";
+import {randomBackground} from "../utils/utils";
 
-export type PostsType = {
+export type PostType = {
     id: string
     postMessage: string
     likesCount: number
     dislikesCount: number
+    postBackground: string
 }
 
 export type ProfileType = {
@@ -38,16 +45,17 @@ export type ProfileContactsType = {
 }
 
 export type ProfilePageType = {
-    posts: Array<PostsType>
+    posts: Array<PostType>
     profile: ProfileType | null
     status: string
 }
 
+const postBackgrounds = [postBackground_1, postBackground_2, postBackground_3, postBackground_4, postBackground_5]
 
 const initialState: ProfilePageType = {
     posts: [
-        {id: v1(), postMessage: "Hello World", likesCount: 20, dislikesCount: 0},
-        {id: v1(), postMessage: "It is my first post", likesCount: 10, dislikesCount: 0}
+        {id: v1(), postMessage: "Hello World", likesCount: 20, dislikesCount: 0, postBackground: randomBackground(postBackgrounds)},
+        {id: v1(), postMessage: "It is my first post", likesCount: 10, dislikesCount: 0, postBackground: randomBackground(postBackgrounds)}
     ],
     profile: null,
     status: ""
@@ -58,11 +66,12 @@ export const newPostId = v1()
 export function profileReducer(state = initialState, action: ActionsProfileTypes) {
     switch (action.type) {
         case "ADD_POST":
-            let newPost: PostsType = {
+            let newPost: PostType = {
                 id: newPostId,
                 postMessage: action.newPostText,
                 likesCount: 0,
-                dislikesCount: 0
+                dislikesCount: 0,
+                postBackground: randomBackground(postBackgrounds)
             }
             return {
                 ...state,

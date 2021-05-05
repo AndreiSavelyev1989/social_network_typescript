@@ -16,6 +16,7 @@ type UsersPropsType = {
     followingInProgress: Array<number>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
+    userBackground: string
 }
 
 
@@ -36,6 +37,7 @@ export const Users = React.memo((props: UsersPropsType) => (
             : props.users.map(u => <User
                 key={u.id}
                 id={u.id}
+                userBackground={props.userBackground}
                 userPhoto={u.photos}
                 followed={u.followed}
                 fullName={u.name}

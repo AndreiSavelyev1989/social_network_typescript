@@ -9,7 +9,7 @@ import {
     getCurrentPage, getFollowingInProgress, getIsFetching,
     getPageSize,
     getPortionSize,
-    getTotalUsersCount,
+    getTotalUsersCount, getUserBackgroud,
     getUsers
 } from "../../redux-state/selectors/users-selectors";
 
@@ -25,6 +25,7 @@ type UsersContainerPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     requestUsers: (pageSize: number, currentPage: number) => void
+    userBackground: string
 }
 
 class UsersContainer extends React.PureComponent<UsersContainerPropsType, {}> {
@@ -42,6 +43,7 @@ class UsersContainer extends React.PureComponent<UsersContainerPropsType, {}> {
 
         return <Users
             users={this.props.users}
+            userBackground={this.props.userBackground}
             pageSize={this.props.pageSize}
             totalUsersCount={this.props.totalUsersCount}
             currentPage={this.props.currentPage}
@@ -75,6 +77,7 @@ const mapStateToProps = (state: StoreType) => {
         portionSize: getPortionSize(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state),
+        userBackground: getUserBackgroud(state)
     }
 }
 

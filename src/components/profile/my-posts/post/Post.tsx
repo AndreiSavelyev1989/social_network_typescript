@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./Post.module.scss"
 import avatar from "./../../../../images/userAvatar.png"
 import {ProfileType} from "../../../../redux-state/profile-reducer";
-import postBackground from "../../../../images/postBackground.jpg";
-import {BiDislike, BiLike, MdDelete} from "react-icons/all";
+import {BiDislike, BiLike} from "react-icons/all";
 import {DeleteButton} from "../../../common/delete-button/DeleteButton";
+import {Preloader} from "../../../common/preloader/Preloader";
 
 type PostPropsType = {
     id: string
@@ -15,9 +15,10 @@ type PostPropsType = {
     setDislikesCount: (id: string, dislike: number) => void
     deletePost: (id: string) => void
     profile: ProfileType | null
+    postBackground: string
 }
 
-export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMessage, id, deletePost, profile, dislikesCount, setDislikesCount}) => {
+export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMessage, id, deletePost, profile, dislikesCount, setDislikesCount, postBackground}) => {
 
     const onLikeClick = () => {
         let like = likesCount + 1
@@ -39,10 +40,12 @@ export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMe
         <div className={styles.postContainer}>
             <div className={styles.titleBlock}>
                 <div className={styles.avatarBlock}>
-                    <img
-                        className={styles.avatar}
-                        src={profile ? profile.photos.large : avatar}
-                        alt="user-avatar"/>
+                    {profile
+                        ? <img
+                            className={styles.avatar}
+                            src={profile.photos.large}
+                            alt="user-avatar"/>
+                        : <Preloader/>}
                 </div>
 
                 <div className={styles.userNameDateBlock}>

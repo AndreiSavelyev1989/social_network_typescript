@@ -1,6 +1,5 @@
 import React from "react";
-import userPhoto from "../../../images/userAvatar.jpg"
-import userBackground from "../../../images/userBackground.jpg"
+import userAvatar from "../../../images/userAvatar.jpg"
 import styles from "./User.module.scss"
 import {PhotosType} from "../../../redux-state/users-reducer";
 import {NavLink} from "react-router-dom";
@@ -15,12 +14,13 @@ type UserPropsType = {
     followingInProgress: Array<number>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
+    userBackground: string
 }
 
-export const User = React.memo((props: UserPropsType) => {
+export const User: React.FC<UserPropsType> = React.memo(({id, userBackground, fullName, status, unfollow, follow, followingInProgress, followed, userPhoto}) => {
 
-    const onFollowClick = () => props.follow(props.id)
-    const onUnfollowClick = () => props.unfollow(props.id)
+    const onFollowClick = () => follow(id)
+    const onUnfollowClick = () => unfollow(id)
 
     return (
         <div className={styles.userWrapper}>
@@ -28,31 +28,31 @@ export const User = React.memo((props: UserPropsType) => {
                 <div className={styles.userBackgroud} style={{backgroundImage: `url(${userBackground})`}}></div>
                 <div className={styles.userContent}>
                     <div className={styles.userFollowingButton}>
-                        {props.followed
+                        {followed
                             ? <UniversalButton
                                 title={"unfollow"}
                                 className={true}
-                                disabled={props.followingInProgress.some(id => id === props.id)}
+                                disabled={followingInProgress.some(id => id === id)}
                                 callback={onUnfollowClick}/>
                             : <UniversalButton
                                 title={"follow"}
-                                disabled={props.followingInProgress.some(id => id === props.id)}
+                                disabled={followingInProgress.some(id => id === id)}
                                 callback={onFollowClick}/>
                         }
                     </div>
                     <div className={styles.userInfo}>
-                        <div className={styles.userFullName}>{props.fullName}</div>
+                        <div className={styles.userFullName}>{fullName}</div>
                         <div className={styles.status}>
-                            {props.status ? props.status : "I haven't a" +
+                            {status ? status : "I haven't a" +
                                 " status!!!"}</div>
                     </div>
                 </div>
             </div>
-            <NavLink to={"/profile/" + props.id}>
+            <NavLink to={"/profile/" + id}>
                 <div className={styles.userBlock_2} style={{
-                    backgroundImage: props.userPhoto.large
-                        ? `url(${props.userPhoto.large})`
-                        : `url(${userPhoto})`
+                    backgroundImage: userPhoto.large
+                        ? `url(${userPhoto.large})`
+                        : `url(${userAvatar})`
                 }}>
                 </div>
             </NavLink>

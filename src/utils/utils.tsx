@@ -19,3 +19,7 @@ export const followUnfollowCase = (state: UsersType, userId: number, followed: b
         return u
     })
 }
+
+export const randomBackground = (backgrounds: Array<string>) => {
+    return backgrounds[Math.floor(Math.random() * backgrounds.length)];
+}
