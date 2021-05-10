@@ -14,6 +14,7 @@ type LoginPropsType = {
     userProfile: ProfileType | null
     dispatch: Dispatch<any>
     error: string
+    loginSidebar: boolean
 }
 
 export const AuthMe: React.FC<LoginPropsType> = React.memo((props) => {
@@ -33,7 +34,7 @@ export const AuthMe: React.FC<LoginPropsType> = React.memo((props) => {
                             : <Preloader/>
                         }
                         <div className={styles.login}>{props.login}</div>
-                        <div>
+                        <div className={styles.logout}>
                             <UniversalButton title={"Log out"} callback={logout}/>
                         </div>
                         {props.error && <div className={style.error}>{props.error}</div>}

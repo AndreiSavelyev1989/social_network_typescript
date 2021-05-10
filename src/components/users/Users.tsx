@@ -36,7 +36,7 @@ export const Users = React.memo((props: UsersPropsType) => (
             ? <Preloader/>
             : props.users.map(u => <User
                 key={u.id}
-                id={u.id}
+                userId={u.id}
                 userBackground={props.userBackground}
                 userPhoto={u.photos}
                 followed={u.followed}

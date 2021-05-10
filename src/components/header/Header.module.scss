@@ -14,7 +14,8 @@
     @include flexWrapper(null, space-between, center, wrap, null);
 
     .headerNavBlock {
-      @include flexWrapper(null, center, center, null, null);
+      @include flexWrapper(null, flex-start, center, null, null);
+      width: 35%;
 
       .mainLogo {
         @include flexWrapper(null, center, center, null, null);
@@ -23,6 +24,68 @@
 
         .mainLogoText {
           font-size: 2rem;
+        }
+      }
+    }
+
+    .loginBlock {
+      min-width: 400px;
+      @include flexWrapper(null, space-between, center, wrap, null);
+      @media screen and (max-width: 700px) {
+        display: none;
+      }
+    }
+
+    .loginBurger {
+      display: none;
+      @media screen and (max-width: 700px) {
+        min-width: 70px;
+        @include flexWrapper(null, center, center, wrap, null);
+        .burgerWrapper {
+          width: 40px;
+          height: 40px;
+          position: relative;
+
+          .burger {
+            width: 30px;
+            height: 30px;
+            color: $blockColor;
+            top: calc(50% - 15px);
+            left: calc(50% - 15px);
+            position: absolute;
+            z-index: 100;
+            opacity: 1;
+          }
+
+          .burgerBackground {
+            width: 40px;
+            height: 40px;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            position: absolute;
+            background: $textColor;
+            opacity: 0.2;
+            border-radius: 5px;
+            &:hover {
+              box-shadow: $boxShadowBlockColor;
+              opacity: 0.3;
+              transition: 0.3s ease-in-out;
+            }
+          }
+          .burgerLoginBlock {
+            position: absolute;
+            @include flexWrapper(null, center, center, wrap, null);
+            width: 360px;
+            min-height: 80px;
+            top: 69px;
+            right: -410px;
+            background: $blockBackground;
+            transition: 0.5s;
+          }
+          .burgerLoginBlock.burgerActive {
+            top: 69px;
+            right: -15px;
+          }
         }
       }
     }

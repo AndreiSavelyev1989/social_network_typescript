@@ -3,15 +3,15 @@ import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./redux-store";
 import {followUnfollowCase, followUnfollowFlow, randomBackground} from "../utils/utils";
 import userBackground_1 from "./../images/user-backgrounds/userBackground_1.jpg"
-import userBackground_2 from "./../images/user-backgrounds/userBackground_2.jpg"
+import userBackground_2 from "./../images/user-backgrounds/userBackground_2.jpeg"
 import userBackground_3 from "./../images/user-backgrounds/userBackground_3.jpg"
-import userBackground_4 from "./../images/user-backgrounds/userBackground_4.jpg"
-import userBackground_5 from "./../images/user-backgrounds/userBackground_5.jpg"
-import userBackground_6 from "./../images/user-backgrounds/userBackground_6.jpg"
-import userBackground_7 from "./../images/user-backgrounds/userBackground_7.jpg"
-import userBackground_8 from "./../images/user-backgrounds/userBackground_8.jpg"
-import userBackground_9 from "./../images/user-backgrounds/userBackground_9.jpg"
-import userBackground_10 from "./../images/user-backgrounds/userBackground_10.jpg"
+import userBackground_4 from "./../images/user-backgrounds/userBackground_4.jpeg"
+import userBackground_5 from "./../images/user-backgrounds/userBackground_5.jpeg"
+import userBackground_6 from "./../images/user-backgrounds/userBackground_6.jpeg"
+import userBackground_7 from "./../images/user-backgrounds/userBackground_7.jpeg"
+import userBackground_8 from "./../images/user-backgrounds/userBackground_8.jpeg"
+import userBackground_9 from "./../images/user-backgrounds/userBackground_9.jpeg"
+import userBackground_10 from "./../images/user-backgrounds/userBackground_10.jpeg"
 
 export type UserType = {
     id: number

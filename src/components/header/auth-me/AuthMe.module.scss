@@ -3,26 +3,40 @@
 
 .loginBlock {
   @include flexWrapper(null, flex-end, center, wrap, null);
-  min-width: 400px;
-  @media screen and (max-width: 360px){
-    min-width: 320px;
+  width: 100%;
+  @media screen and (max-width: 360px) {
+    width: 320px;
   }
 
   .userBlock {
     width: 100%;
-    @include flexWrapper(row, space-between, center, wrap, null);
+    @include flexWrapper(row, center, center, null, null);
     color: $textColor;
 
     img {
       display: block;
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
     }
 
     .login {
       font-weight: bold;
       padding-top: 5px;
+    }
+
+    img, .login, .logout {
+      margin-right: 40px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .logout {
+      button {
+        margin: 0;
+      }
     }
   }
 
@@ -31,13 +45,11 @@
     text-decoration: none;
     font-size: 1.5rem;
     margin-right: 50px;
-    &:hover{
+
+    &:hover {
       border-left: 2px solid $textColor;
       padding-left: 5px;
       transition: 0.3s;
     }
   }
 }
-
-
-

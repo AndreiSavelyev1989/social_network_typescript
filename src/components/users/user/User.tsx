@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 import {UniversalButton} from "../../common/universal-button/UniversalButton";
 
 type UserPropsType = {
-    id: number
+    userId: number
     userPhoto: PhotosType
     fullName: string
     followed: boolean
@@ -17,10 +17,10 @@ type UserPropsType = {
     userBackground: string
 }
 
-export const User: React.FC<UserPropsType> = React.memo(({id, userBackground, fullName, status, unfollow, follow, followingInProgress, followed, userPhoto}) => {
+export const User: React.FC<UserPropsType> = React.memo(({userId, userBackground, fullName, status, unfollow, follow, followingInProgress, followed, userPhoto}) => {
 
-    const onFollowClick = () => follow(id)
-    const onUnfollowClick = () => unfollow(id)
+    const onFollowClick = () => follow(userId)
+    const onUnfollowClick = () => unfollow(userId)
 
     return (
         <div className={styles.userWrapper}>
@@ -32,11 +32,11 @@ export const User: React.FC<UserPropsType> = React.memo(({id, userBackground, fu
                             ? <UniversalButton
                                 title={"unfollow"}
                                 className={true}
-                                disabled={followingInProgress.some(id => id === id)}
+                                disabled={followingInProgress.some(id => id === userId)}
                                 callback={onUnfollowClick}/>
                             : <UniversalButton
                                 title={"follow"}
-                                disabled={followingInProgress.some(id => id === id)}
+                                disabled={followingInProgress.some(id => id === userId)}
                                 callback={onFollowClick}/>
                         }
                     </div>
@@ -48,7 +48,7 @@ export const User: React.FC<UserPropsType> = React.memo(({id, userBackground, fu
                     </div>
                 </div>
             </div>
-            <NavLink to={"/profile/" + id}>
+            <NavLink to={"/profile/" + userId}>
                 <div className={styles.userBlock_2} style={{
                     backgroundImage: userPhoto.large
                         ? `url(${userPhoto.large})`
