@@ -1,48 +1,62 @@
 @import "./../../../assets/common-styles/common-mixins";
 @import "./../../../assets/common-styles/common-variables";
 
-.content {
+.contentContainer {
   min-width: 80%;
   min-height: 337px;
   border-radius: 10px;
   background-position: center;
   background-size: cover;
+  opacity: .8;
   @include flexWrapper(column, center, center, null, $boxShadowBlockColor);
   @media screen and (max-width: 700px) {
     min-width: 100%;
   }
 
-  .imageContainer {
-    width: 128px;
-    position: relative;
+  .contentBlock {
+    background: $blockBackground;
     @include flexWrapper(column, center, center, null, null);
-    z-index: 1;
+    width: 100%;
+    height: 337px;
+    border-radius: 10px;
+    opacity: 0.9;
 
-    img {
-      max-width: 128px;
-      max-height: 128px;
-      border-radius: 50%;
-      display: block;
-      z-index: 2;
-    }
-    &:hover .fileContainer{
-      opacity: 0.8;
-      transition: 1s ease-in-out;
-      z-index: 3;
-      cursor: pointer;
-    }
-
-    .fileContainer {
-      position: absolute;
-      @include flexWrapper(null, center, center, null, null);
+    .imageContainer {
       width: 128px;
-      height: 128px;
-      border-radius: 50%;
-      background: $textColor;
+      position: relative;
+      @include flexWrapper(column, center, center, null, null);
+      z-index: 1;
+
+      img {
+        max-width: 128px;
+        max-height: 128px;
+        border-radius: 50%;
+        display: block;
+        z-index: 2;
+      }
+
+      &:hover .fileContainer {
+        opacity: 0.8;
+        transition: 1s ease-in-out;
+        z-index: 3;
+        cursor: pointer;
+      }
+
+      .fileContainer {
+        position: absolute;
+        @include flexWrapper(null, center, center, null, null);
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+        background: $textColor;
+      }
+    }
+
+    .userNameTitle {
+      width: 100%;
+      @include flexWrapper(null, center, center, null, null);
+      font-size: 2rem;
     }
   }
 
-  .userNameTitle {
-    font-size: 2rem;
-  }
 }

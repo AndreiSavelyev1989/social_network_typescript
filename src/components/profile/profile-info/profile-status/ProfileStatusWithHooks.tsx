@@ -45,18 +45,18 @@ export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, 
                     ? <UniversalInput
                         type="text"
                         className={"status"}
-                             autoFocus={true}
-                             onChange={onChangeStatusHandler}
-                             onBlur={deactivateEditMode}
-                             onKeyUp={onKeyDeactivateEditMode}
-                             value={localStatus}/>
+                        autoFocus={true}
+                        onChange={onChangeStatusHandler}
+                        onBlur={deactivateEditMode}
+                        onKeyUp={onKeyDeactivateEditMode}
+                        value={localStatus}/>
                     :
                     <div className={styles.statusBlock}>
                         <span className={styles.status}
-                              onDoubleClick={activateEditMode}>{status === localStatus ? status || "Empty status" :
+                              onClick={activateEditMode}>{status === localStatus ? status || "Empty status" :
                             <Preloader/>}</span>
                         <span className={isOwner ? styles.statusDescription : styles.noDesc}>
-                            DoubleClick to change status
+                            Click to change status !!!
                         </span>
                     </div>
                 }

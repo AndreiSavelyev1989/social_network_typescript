@@ -3,6 +3,7 @@
 .statusContainer {
   width: 100%;
   @include flexWrapper(null, center, center, wrap, null);
+  opacity: 1;
 
   .statusBlock {
     width: 100%;
@@ -12,7 +13,7 @@
     .statusDescription {
       position: absolute;
       top: -15px;
-      left: calc(50% - 90px);
+      left: calc(50% - 76px);
       width: 100%;
       display: none;
       font-size: 0.9rem;
@@ -30,7 +31,11 @@
     }
 
     .status {
+      width: 100%;
+      @include flexWrapper(null, center, center, wrap, null);
       font-size: 1.5rem;
+      cursor: pointer;
+      color: $blockColor;
 
       &:hover + .statusDescription {
         display: block;
@@ -45,7 +50,7 @@
   }
   50% {
     font-size: 0.95rem;
-    left: calc(50% - 95px);
+    left: calc(50% - 83px);
   }
   100% {
     font-size: 0.9rem;

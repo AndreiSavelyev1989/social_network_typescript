@@ -15,16 +15,13 @@ export const Header = React.memo(() => {
 
     const dispatch = useDispatch()
     const {isAuth, login, isLoggedIn, error} = useSelector<StoreType, AuthUserType>(state => state.auth)
-    const userProfile = useSelector<StoreType, ProfileType | null>(state => {
-        const {profile} = state.profilePage;
-        return profile;
-    })
+    const userProfile = useSelector<StoreType, ProfileType | null>(state => state.auth.authProfile)
     const [loginSidebar, setLoginSidebar] = useState(false)
     const showLoginSidebar = () => setLoginSidebar(!loginSidebar)
 
     useEffect(() => {
         dispatch(authMe())
-    }, [isLoggedIn])
+    }, [isLoggedIn, userProfile])
 
     return (
         <header className={styles.header}>
