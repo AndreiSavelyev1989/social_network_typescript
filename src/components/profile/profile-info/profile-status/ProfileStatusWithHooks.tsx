@@ -1,6 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import {Preloader} from "../../../common/preloader/Preloader";
 import style from "../../../login/Login.module.scss";
+import styles from "./ProfileStatusWithHooks.module.scss";
+import {UniversalInput} from "../../../common/universal-input/UniversalInput";
 
 type PropsType = {
     status: string
@@ -38,17 +40,25 @@ export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, 
     }
     return (
         <>
-            <div>Status:
+            <div className={styles.statusContainer}>
                 {editMode && isOwner
-                    ? <input type="text"
+                    ? <UniversalInput
+                        type="text"
+                        className={"status"}
                              autoFocus={true}
                              onChange={onChangeStatusHandler}
                              onBlur={deactivateEditMode}
                              onKeyUp={onKeyDeactivateEditMode}
                              value={localStatus}/>
                     :
-                    <span onDoubleClick={activateEditMode}>{status === localStatus ? status || "Empty status" :
-                        <Preloader/>}</span>
+                    <div className={styles.statusBlock}>
+                        <span className={styles.status}
+                              onDoubleClick={activateEditMode}>{status === localStatus ? status || "Empty status" :
+                            <Preloader/>}</span>
+                        <span className={isOwner ? styles.statusDescription : styles.noDesc}>
+                            DoubleClick to change status
+                        </span>
+                    </div>
                 }
             </div>
             {error && <div className={style.error}>{error}</div>}

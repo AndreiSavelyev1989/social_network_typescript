@@ -1,0 +1,53 @@
+@import "./../../../../assets/common-styles/common-mixins";
+
+.statusContainer {
+  width: 100%;
+  @include flexWrapper(null, center, center, wrap, null);
+
+  .statusBlock {
+    width: 100%;
+    @include flexWrapper(null, center, center, wrap, null);
+    position: relative;
+
+    .statusDescription {
+      position: absolute;
+      top: -15px;
+      left: calc(50% - 90px);
+      width: 100%;
+      display: none;
+      font-size: 0.9rem;
+      color: $blockColor;
+      animation-name: statusDesc;
+      animation-duration: 4s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-delay: 0s;
+      transition: 1s ease-in-out;
+    }
+
+    .noDesc {
+      display: none;
+    }
+
+    .status {
+      font-size: 1.5rem;
+
+      &:hover + .statusDescription {
+        display: block;
+      }
+    }
+  }
+}
+
+@keyframes statusDesc {
+  0% {
+    font-size: 0.9rem;
+  }
+  50% {
+    font-size: 0.95rem;
+    left: calc(50% - 95px);
+  }
+  100% {
+    font-size: 0.9rem;
+  }
+}

@@ -25,9 +25,9 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = React.memo(({changeUs
                 <>
                     <div className={styles.imageContainer}>
                         <img src={profile.photos.large ? profile.photos.large : samurai} alt="samuraiPhoto"/>
-                        <div className={styles.fileContainer}>
+                        <label className={isOwner ? styles.fileContainer : ""} htmlFor="icon-button-file">
                             {isOwner && <UploadButton changeUserPhoto={changeUserPhoto}/>}
-                        </div>
+                        </label>
                     </div>
 
                     <div className={styles.userNameTitle}>{profile.fullName}</div>

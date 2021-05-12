@@ -5,7 +5,13 @@
   height: 100vh;
   @include flexWrapper(null, center, center, null, null);
   font-size: 7rem;
+  @media screen and (max-width: 360px){
+    font-size: 5rem;
+  }
   .mainLogoText {
     font-size: 5rem;
+    @media screen and (max-width: 360px){
+      font-size: 3rem;
+    }
   }
 }

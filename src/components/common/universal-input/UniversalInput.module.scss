@@ -1,29 +1,28 @@
 @import "./../../../assets/common-styles/common-variables";
 @import "./../../../assets/common-styles/common-mixins";
 
+
+@mixin commonInput ($width, $border, $background, $padding, $borderRadius, $marginBottom){
+  width: $width;
+  border: $border;
+  background: $background;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: $padding;
+  border-radius: $borderRadius;
+  margin-bottom: $marginBottom;
+  @include backgroundColorAutoFill($blockBackground);
+  @include hoverTextColorAutoFill($textColor);
+  @include textColorAutoFill($textColor);
+}
+
   .formInput {
-    width: 100%;
-    border: 0;
-    background: $blockBackground;
-    outline: none;
-    font-size: 1rem;
-    @include backgroundColorAutoFill($blockBackground);
-    @include hoverTextColorAutoFill($textColor);
-    @include textColorAutoFill($textColor);
+    @include commonInput(100%, 0, $blockBackground, 0, 0, 0);
   }
 
   .loginInput {
-    width: 100%;
-    border: 2px solid $inputBorderColor;
-    outline: none;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 15px 5px;
-    border-radius: 2px;
-    margin-bottom: 1rem;
-    @include backgroundColorAutoFill($blockBackground);
-    @include hoverTextColorAutoFill($textColor);
-    @include textColorAutoFill($textColor);
+    @include commonInput(100%, 2px solid $inputBorderColor, none, 15px 5px, 2px, 1rem);
 
     &:focus {
       border: 2px solid $blockColor;
@@ -31,5 +30,13 @@
     }
   }
 
+  .statusInput {
+    @include commonInput(40%, 2px solid $inputBorderColor, none, 10px 5px, 2px, 1rem);
+
+    &:focus {
+      border: 2px solid $blockColor;
+      outline: none;
+    }
+  }
 
 
