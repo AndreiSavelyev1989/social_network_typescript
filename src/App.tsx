@@ -12,7 +12,7 @@ import {StoreType} from "./redux-state/redux-store";
 import {withSuspense} from "./components/hoc/withSuspense";
 import {PATH} from "./components/navbar/SidebarData";
 import {MainPreloaderPage} from "./components/common/preloader/MainPreloaderPage";
-import {ErrorModal} from "./components/common/modal/ErrorModal";
+import {ErrorModal} from "./components/common/modal/modal-error/ErrorModal";
 
 const ProfileContainer = React.lazy(() => import("./components/profile/ProfileContainer"));
 const DialogsContainer = React.lazy(() => import("./components/dialogs/DialogsContainer"));

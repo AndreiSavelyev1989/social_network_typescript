@@ -43,6 +43,7 @@
     border: 1px solid $textColor;
     overflow: hidden;
     border-radius: 10px;
+    position: relative;
     @include flexWrapper(null, space-between, flex-start, wrap, null);
   }
 }

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {StoreType} from "../../../redux-state/redux-store";
-import {AuthUserType, setError} from "../../../redux-state/auth-reducer";
+import {StoreType} from "../../../../redux-state/redux-store";
+import {AuthUserType, setError} from "../../../../redux-state/auth-reducer";
 import styles from "./ErrorModal.module.scss";
-import {UniversalButton} from "../universal-button/UniversalButton";
+import {UniversalButton} from "../../universal-button/UniversalButton";
 
 export const ErrorModal = () => {
 

@@ -1,0 +1,40 @@
+@import "../../../../assets/common-styles/common-mixins";
+@import "../../../../assets/common-styles/common-variables";
+
+.modalContainer {
+  width: 350px;
+  height: 200px;
+  @include flexWrapper(column, space-around, center, wrap, $boxShadowBlockColor);
+  background: $blockBackground;
+  position: absolute;
+  top: 200px;
+  left: calc(50% - 175px);
+  border-radius: 10px;
+  z-index: 100;
+
+  @media screen and (max-width: 360px){
+    width: 250px;
+    height: 100px;
+    left: calc(50% - 125px);
+
+  }
+  .text {
+    color: $dangerousColor_2;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+  }
+  .confirmBlock {
+    width: 100%;
+    @include flexWrapper(row, space-around, center, wrap, null);
+    button {
+      width: 120px;
+      @media screen and (max-width: 360px){
+        width: 90px;
+      }
+    }
+  }
+}
+
+.noModal {
+  display: none;
+}

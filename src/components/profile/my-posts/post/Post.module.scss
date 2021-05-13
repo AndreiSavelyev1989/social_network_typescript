@@ -1,7 +1,7 @@
 @import "./../../../../assets/common-styles/common-mixins";
 @import "./../../../../assets/common-styles/common-variables";
 
-@mixin likeDislikeView($color, $boxShadow_1, $boxShadow_2) {
+@mixin likeDislikeView($color) {
   font-size: 1.5rem;
   margin-left: 10px;
 
@@ -9,8 +9,6 @@
     color: $color;
     cursor: pointer;
     transition: 0.5s;
-    box-shadow: $boxShadow_1, $boxShadow_2;
-    border-radius: 50%;
   }
 }
 
@@ -19,6 +17,7 @@
   background: $blockBackground;
   border-radius: 10px;
   margin: 20px 0 0;
+  position: relative;
   @include flexWrapper(column, flex-start, center, wrap, $boxShadowBlockColor);
   &:last-child {
     margin: 20px 0 20px 0;
@@ -92,11 +91,11 @@
       @include flexWrapper(row, null, null, wrap, null);
 
       .like {
-        @include likeDislikeView($blockColor, 0 0 10px 0 $blockColor inset,  0 0 10px 4px #3756f1)
+        @include likeDislikeView($blockColor)
       }
 
       .dislike {
-        @include likeDislikeView($dangerousColor_2, 0 0 10px 0 $dangerousColor_2 inset,  0 0 10px 4px $dangerousColor_1)
+        @include likeDislikeView($dangerousColor_1)
       }
     }
   }
