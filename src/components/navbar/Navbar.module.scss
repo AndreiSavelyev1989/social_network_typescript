@@ -52,7 +52,8 @@
     top: 0;
     left: -100%;
     transition: 1s;
-    box-shadow: 0 20px 20px -2px ($blockBackground / 10%);
+    box-shadow: 0 20px 20px 0 $blockBackground;
+    //box-shadow: $boxShadowBlockColor;
     @include commonMenuItemsStyle(null, null, null, null);
   }
 
