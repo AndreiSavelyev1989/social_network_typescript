@@ -23,7 +23,6 @@ type MapStatePropsType = {
     status: string
     id: number | null
     isAuth: boolean
-    error: string
 }
 
 type MapDispatchPropsType = {
@@ -76,7 +75,6 @@ class ProfileContainer extends React.PureComponent<PropsType> {
                          // || this.props.match.params.userId === "friends"
                      }
                      status={this.props.status}
-                     error={this.props.error}
                      changeUserPhoto={this.props.changeUserPhoto}
                      changeUserStatus={this.props.changeUserStatus}/>
         )
@@ -85,8 +83,8 @@ class ProfileContainer extends React.PureComponent<PropsType> {
 
 const mapStateToProps = (state: StoreType): MapStatePropsType => {
     const {profile, status} = state.profilePage;
-    const {id, error, isAuth} = state.auth;
-    return {profile, status, id, isAuth, error};
+    const {id, isAuth} = state.auth;
+    return {profile, status, id, isAuth};
 }
 
 export default compose<React.ComponentType>(

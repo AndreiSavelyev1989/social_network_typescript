@@ -21,6 +21,7 @@
     "@types/uuid": "^8.3.0",
     "antd": "^4.8.0",
     "axios": "^0.20.0",
+    "caniuse-lite": "^1.0.30001228",
     "formik": "^2.2.6",
     "gh-pages": "^3.1.0",
     "node-sass": "^4.0.0",

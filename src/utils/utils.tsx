@@ -1,13 +1,17 @@
 import {Dispatch} from "redux";
 import {UsersType} from "../redux-state/users-reducer";
-import {ProfilePageType} from "../redux-state/profile-reducer";
+import {setError} from "../redux-state/auth-reducer";
 
 export const followUnfollowFlow = async (dispatch: Dispatch, toogleFollowingProgress: any, followedAPI: any, userId: number, followed: any) => {
     dispatch(toogleFollowingProgress(true, userId))
-    let res = await followedAPI(userId)
-    if (res.data.resultCode === 0) {
-        dispatch(followed(userId))
-        dispatch(toogleFollowingProgress(false, userId))
+    try {
+        let res = await followedAPI(userId)
+        if (res.data.resultCode === 0) {
+            dispatch(followed(userId))
+            dispatch(toogleFollowingProgress(false, userId))
+        }
+    } catch (e) {
+        dispatch(setError(e.message))
     }
 }
 

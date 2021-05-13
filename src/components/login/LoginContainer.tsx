@@ -6,10 +6,10 @@ import {AuthUserType} from "../../redux-state/auth-reducer";
 
 const LoginContainer = React.memo(() => {
     const dispatch = useDispatch()
-    const {error, isAuth} = useSelector<StoreType, AuthUserType>(state => state.auth);
+    const {isAuth} = useSelector<StoreType, AuthUserType>(state => state.auth);
 
     return (
-        <Login dispatch={dispatch} error={error} isAuth={isAuth}/>
+        <Login dispatch={dispatch} isAuth={isAuth}/>
     )
 })
 

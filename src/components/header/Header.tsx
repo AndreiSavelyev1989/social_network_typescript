@@ -14,14 +14,17 @@ import {NavLink} from "react-router-dom";
 export const Header = React.memo(() => {
 
     const dispatch = useDispatch()
-    const {isAuth, login, isLoggedIn, error} = useSelector<StoreType, AuthUserType>(state => state.auth)
+    const {isAuth, login, isLoggedIn} = useSelector<StoreType, AuthUserType>(state => state.auth)
     const userProfile = useSelector<StoreType, ProfileType | null>(state => state.auth.authProfile)
     const [loginSidebar, setLoginSidebar] = useState(false)
     const showLoginSidebar = () => setLoginSidebar(!loginSidebar)
 
     useEffect(() => {
         dispatch(authMe())
-    }, [isLoggedIn, userProfile])
+        if (!userProfile) {
+            dispatch(authMe())
+        }
+    }, [isLoggedIn])
 
     return (
         <header className={styles.header}>
@@ -38,7 +41,6 @@ export const Header = React.memo(() => {
                 <div className={styles.loginBlock}>
                     <AuthMe
                         loginSidebar={loginSidebar}
-                        error={error}
                         isAuth={isAuth}
                         login={login}
                         userProfile={userProfile}
@@ -49,10 +51,10 @@ export const Header = React.memo(() => {
                         <div className={styles.burgerWrapper}>
                             <RiMenu3Line className={styles.burger}/>
                             <div className={styles.burgerBackground}></div>
-                            <div className={loginSidebar ? `${styles.burgerLoginBlock} ${styles.burgerActive}` : styles.burgerLoginBlock}>
+                            <div
+                                className={loginSidebar ? `${styles.burgerLoginBlock} ${styles.burgerActive}` : styles.burgerLoginBlock}>
                                 <AuthMe
                                     loginSidebar={loginSidebar}
-                                    error={error}
                                     isAuth={isAuth}
                                     login={login}
                                     userProfile={userProfile}

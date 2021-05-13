@@ -6,10 +6,9 @@ import {Dispatch} from "redux";
 
 type PropsType = {
     dispatch: Dispatch<any>
-    error: string
     isAuth: boolean
 }
-export const Login: React.FC<PropsType> = React.memo(({dispatch, error, isAuth}) => {
+export const Login: React.FC<PropsType> = React.memo(({dispatch, isAuth}) => {
 
     if (isAuth) {
         return <Redirect to={"/profile"}/>
@@ -19,7 +18,7 @@ export const Login: React.FC<PropsType> = React.memo(({dispatch, error, isAuth})
             <div className={style.loginContainer}>
                 <div className={style.loginBlock}>
                     <h1 className={style.title}>Log in </h1>
-                    <LoginForm dispatch={dispatch} error={error}/>
+                    <LoginForm dispatch={dispatch}/>
                 </div>
                 <div className={style.animationContainer}>
                     <div className={style.circleSmall}></div>

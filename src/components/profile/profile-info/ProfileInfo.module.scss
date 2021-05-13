@@ -7,7 +7,7 @@
   border-radius: 10px;
   background-position: center;
   background-size: cover;
-  opacity: .8;
+  opacity: 0.8;
   @include flexWrapper(column, center, center, null, $boxShadowBlockColor);
   @media screen and (max-width: 700px) {
     min-width: 100%;

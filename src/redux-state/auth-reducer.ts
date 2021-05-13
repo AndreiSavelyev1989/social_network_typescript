@@ -90,7 +90,7 @@ export const authMe = (): ThunkAuthType => {
             })
             .then((id) => {
                 if (isAuth) {
-                    return dispatch(requestUserProfile(id))
+                    dispatch(requestUserProfile(id))
                 }
             })
     }

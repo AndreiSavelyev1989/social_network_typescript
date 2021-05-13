@@ -12,6 +12,7 @@ import userBackground_7 from "./../images/user-backgrounds/userBackground_7.jpeg
 import userBackground_8 from "./../images/user-backgrounds/userBackground_8.jpeg"
 import userBackground_9 from "./../images/user-backgrounds/userBackground_9.jpeg"
 import userBackground_10 from "./../images/user-backgrounds/userBackground_10.jpeg"
+import {setError} from "./auth-reducer";
 
 export type UserType = {
     id: number
@@ -105,6 +106,7 @@ export type ActionsUsersType =
     | ReturnType<typeof toogleIsFetching>
     | ReturnType<typeof toogleFollowingProgress>
     | ReturnType<typeof setUserBackground>
+    | ReturnType<typeof setError>
 
 export const followSuccess = (userId: number) => ({type: "FOLLOW", userId} as const)
 export const unfollowSuccess = (userId: number) => ({type: "UNFOLLOW", userId} as const)
@@ -127,11 +129,15 @@ type ThunkUsersType = ThunkAction<void, StoreType, unknown, ActionsUsersType>
 
 export const requestUsers = (pageSize: number, currentPage: number): ThunkUsersType => async (dispatch) => {
     dispatch(toogleIsFetching(true))
-    let res = await usersAPI.getUsers(pageSize, currentPage)
-    dispatch(toogleIsFetching(false))
-    dispatch(setUsers(res.data.items))
-    dispatch(setUserBackground(randomBackground(userBackgrounds)))
-    dispatch(setTotalUsersCount(res.data.totalCount))
+    try {
+        let res = await usersAPI.getUsers(pageSize, currentPage)
+        dispatch(toogleIsFetching(false))
+        dispatch(setUsers(res.data.items))
+        dispatch(setUserBackground(randomBackground(userBackgrounds)))
+        dispatch(setTotalUsersCount(res.data.totalCount))
+    } catch (e) {
+        dispatch(setError(e.message))
+    }
 }
 
 export const follow = (userId: number): ThunkUsersType => async (dispatch) => {

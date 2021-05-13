@@ -13,7 +13,6 @@ type LoginPropsType = {
     login: string | null
     userProfile: ProfileType | null
     dispatch: Dispatch<any>
-    error: string
     loginSidebar: boolean
 }
 
@@ -37,7 +36,6 @@ export const AuthMe: React.FC<LoginPropsType> = React.memo((props) => {
                         <div className={styles.logout}>
                             <UniversalButton title={"Log out"} callback={logout}/>
                         </div>
-                        {props.error && <div className={style.error}>{props.error}</div>}
                     </div>
                     : <div className={styles.loginLink}>
                         <NavLink to={'/login'}>Login</NavLink>

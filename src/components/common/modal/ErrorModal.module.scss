@@ -1,0 +1,23 @@
+@import "./../../../assets/common-styles/common-mixins";
+@import "./../../../assets/common-styles/common-variables";
+
+.modalContainer {
+  width: 350px;
+  height: 200px;
+  @include flexWrapper(column, space-around, center, wrap, $boxShadowBlockColor);
+  background: $blockBackground;
+  position: absolute;
+  top: 200px;
+  left: calc(50% - 175px);
+  border-radius: 10px;
+  z-index: 100;
+  .text {
+    color: $dangerousColor_2;
+    text-transform: uppercase;
+    margin-top: 40px;
+  }
+}
+
+.noModal {
+  display: none;
+}

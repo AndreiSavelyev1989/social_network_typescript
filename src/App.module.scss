@@ -2,6 +2,7 @@
 
 .appWrapper {
   @include flexWrapper(column, null, null, wrap, null);
+  position: relative;
 
   .appWrapperContent {
     @include flexWrapper(column, flex-start, center, wrap, null);

@@ -1,17 +1,15 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import {Preloader} from "../../../common/preloader/Preloader";
-import style from "../../../login/Login.module.scss";
 import styles from "./ProfileStatusWithHooks.module.scss";
 import {UniversalInput} from "../../../common/universal-input/UniversalInput";
 
 type PropsType = {
     status: string
-    error: string
     changeUserStatus: (status: string) => void
     isOwner: boolean
 }
 
-export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, changeUserStatus, error, isOwner}) => {
+export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, changeUserStatus, isOwner}) => {
     const [editMode, setEditMode] = React.useState(false)
     const [localStatus, setLocalStatus] = React.useState(status)
 
@@ -53,15 +51,17 @@ export const ProfileStatusWithHooks: React.FC<PropsType> = React.memo(({status, 
                     :
                     <div className={styles.statusBlock}>
                         <span className={styles.status}
-                              onClick={activateEditMode}>{status === localStatus ? status || "Empty status" :
-                            <Preloader/>}</span>
+                              onClick={activateEditMode}>
+                            {status === localStatus
+                                ? status || "Empty status"
+                                : <Preloader/>}
+                        </span>
                         <span className={isOwner ? styles.statusDescription : styles.noDesc}>
                             Click to change status !!!
                         </span>
                     </div>
                 }
             </div>
-            {error && <div className={style.error}>{error}</div>}
         </>
     )
 })

@@ -15,10 +15,9 @@ type FormikErrorType = {
 
 type PropsType = {
     dispatch: Dispatch<any>
-    error: string
 }
 
-export const LoginForm: React.FC<PropsType> = React.memo(({dispatch, error}) => {
+export const LoginForm: React.FC<PropsType> = React.memo(({dispatch}) => {
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -87,9 +86,6 @@ export const LoginForm: React.FC<PropsType> = React.memo(({dispatch, error}) => 
                     <UniversalButton title={"Log in"}/>
                 </div>
             </div>
-
-            <div className={style.error}>{error ? error : null}</div>
-
         </form>
     )
 })

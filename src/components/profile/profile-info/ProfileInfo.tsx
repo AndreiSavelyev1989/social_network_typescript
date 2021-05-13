@@ -10,13 +10,12 @@ import userAvatar from "../../../images/userAvatar.jpg";
 type ProfileInfoPropsType = {
     profile: ProfileType | null
     status: string
-    error: string
     changeUserStatus: (status: string) => void
     changeUserPhoto: (photos: File) => void
     isOwner: boolean
 }
 
-export const ProfileInfo: React.FC<ProfileInfoPropsType> = React.memo(({changeUserStatus, status, error, profile, changeUserPhoto, isOwner}) => {
+export const ProfileInfo: React.FC<ProfileInfoPropsType> = React.memo(({changeUserStatus, status, profile, changeUserPhoto, isOwner}) => {
 
     return (
         <div className={styles.contentContainer} style={{backgroundImage: `url(${profileBackgroundImg})`}}>
@@ -34,7 +33,6 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = React.memo(({changeUs
                         <div className={styles.userNameTitle}>{profile.fullName}</div>
                         <ProfileStatusWithHooks status={status}
                                                 isOwner={isOwner}
-                                                error={error}
                                                 changeUserStatus={changeUserStatus}/>
                     </>
                     : <Preloader/>

@@ -12,19 +12,17 @@ import {MyFriends} from "./profile-info/my-friends/MyFriends";
 type ProfilePropsType = {
     profile: ProfileType | null
     status: string
-    error: string
     changeUserStatus: (status: string) => void
     changeUserPhoto: (photos: File) => void
     isOwner: boolean
 }
 
-export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, error, status, changeUserStatus, changeUserPhoto, isOwner}) => {
+export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, status, changeUserStatus, changeUserPhoto, isOwner}) => {
     return (
         <div className={styles.profileWrapper}>
             <ProfileInfo
                 isOwner={isOwner}
                 profile={profile}
-                error={error}
                 status={status}
                 changeUserPhoto={changeUserPhoto}
                 changeUserStatus={changeUserStatus}/>
