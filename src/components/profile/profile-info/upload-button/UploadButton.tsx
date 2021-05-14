@@ -1,7 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import {GoCloudUpload} from "react-icons/all";
 
 type PropsType = {
