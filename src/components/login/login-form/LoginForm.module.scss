@@ -54,8 +54,8 @@
     }
   }
 
-  .registrationError{
-    color: $dangerousColor_2;
+  .error{
+    @include error;
   }
 }
 

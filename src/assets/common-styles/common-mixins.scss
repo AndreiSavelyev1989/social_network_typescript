@@ -34,3 +34,7 @@
 @mixin textColorAutoFill($color) {
   -webkit-text-fill-color: $color !important;
 }
+
+@mixin error {
+  color: $dangerousColor_1
+}

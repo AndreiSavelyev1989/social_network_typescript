@@ -61,7 +61,7 @@ export const LoginForm: React.FC<PropsType> = React.memo(({dispatch}) => {
                 className={"login"}
                 formikFieldProps={formik.getFieldProps("email")}/>
             {formik.touched.email && formik.errors.email ?
-                <div className={style.registrationError}>{formik.errors.email}</div> : null}
+                <div className={style.error}>{formik.errors.email}</div> : null}
             <div className={style.passwordBlock}>
                 <label htmlFor={"inputPassword"} className={style.passwordTitle}>
                     Password
@@ -78,7 +78,7 @@ export const LoginForm: React.FC<PropsType> = React.memo(({dispatch}) => {
                 className={"login"}
                 formikFieldProps={formik.getFieldProps("password")}/>
             {formik.touched.password && formik.errors.password ?
-                <div className={style.registrationError}>{formik.errors.password}</div> : null}
+                <div className={style.error}>{formik.errors.password}</div> : null}
 
             <div className={style.confirmBlock}>
                 <UniversalCheckbox title={"Remember me"}/>

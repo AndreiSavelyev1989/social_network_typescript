@@ -1,4 +1,3 @@
-import style from "./../../login/login-form/LoginForm.module.scss";
 import styles from "./ProfilePostForm.module.scss";
 import React from "react";
 import {useFormik} from "formik";
@@ -53,7 +52,7 @@ export const ProfilePostForm: React.FC<PropsType> = ({addPost, profile}) => {
 
                 <div className={styles.formBlockSubmit}>
                     {formik.touched.newPost && formik.errors.newPost ?
-                        <div className={style.registrationError}>{formik.errors.newPost}</div>
+                        <div className={styles.error}>{formik.errors.newPost}</div>
                         : <div> </div>}
                     <UniversalButton type={"submit"} title={"post"} />
                 </div>

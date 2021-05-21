@@ -1,5 +1,4 @@
 import {useFormik} from "formik";
-import style from "../../login/Login.module.scss";
 import styles from "./DialogsMessageForm.module.scss";
 import React from "react";
 import {UniversalInput} from "../../common/universal-input/UniversalInput";
@@ -40,7 +39,7 @@ export const DialogsMessageForm: React.FC<PropsType> = React.memo(({addNewMessag
                                     placeholder={"New message"}
                                     formikFieldProps={formik.getFieldProps("newMessage")}/>
                     {formik.touched.newMessage && formik.errors.newMessage ?
-                        <div className={style.registrationError}>{formik.errors.newMessage}</div> : null}
+                        <div className={styles.error}>{formik.errors.newMessage}</div> : null}
                 </div>
 
                 <div className={styles.buttonBlock}>

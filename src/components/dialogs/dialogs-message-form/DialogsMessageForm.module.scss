@@ -31,6 +31,9 @@
         @include flexWrapper(column, center, center, null, null);
       }
 
+      .error {
+        @include error;
+      }
     }
 
     .buttonBlock {
