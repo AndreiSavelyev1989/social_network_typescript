@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styles from "./Post.module.scss"
-import avatar from "./../../../../images/userAvatar.png"
+import userAvatar from "./../../../../images/userAvatar.jpg"
 import {ProfileType} from "../../../../redux-state/profile-reducer";
 import {BiDislike, BiLike} from "react-icons/all";
 import {DeleteButton} from "../../../common/delete-button/DeleteButton";
@@ -17,9 +17,14 @@ type PostPropsType = {
     deletePost: (id: string) => void
     profile: ProfileType | null
     postBackground: string
+    authUserId: number | null
 }
 
-export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMessage, id, deletePost, profile, dislikesCount, setDislikesCount, postBackground}) => {
+export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount,
+                                                  postMessage, id,
+                                                  deletePost, profile,
+                                                  dislikesCount, setDislikesCount,
+                                                  postBackground, authUserId}) => {
 
     const [confirm, setConfirm] = useState(false)
 
@@ -53,7 +58,7 @@ export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMe
                     {profile
                         ? <img
                             className={styles.avatar}
-                            src={profile.photos.large}
+                            src={profile.photos.large ? profile.photos.large : userAvatar}
                             alt="user-avatar"/>
                         : <Preloader/>}
                 </div>
@@ -63,7 +68,7 @@ export const Post: React.FC<PostPropsType> = ({likesCount, setLikesCount, postMe
                     <div className={styles.date}>{date}</div>
                 </div>
                 <div className={styles.postMessage}>{postMessage}</div>
-                <DeleteButton onDeleteHandler={onModalDeleteHandler}/>
+                <DeleteButton onDeleteHandler={onModalDeleteHandler} disabled={authUserId !== profile?.userId}/>
             </div>
 
             <div className={styles.imageBlock} style={{backgroundImage: `url(${postBackground})`}}>

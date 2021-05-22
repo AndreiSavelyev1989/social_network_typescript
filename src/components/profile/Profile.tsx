@@ -5,8 +5,8 @@ import {MyPostsContainer} from "./my-posts/MyPostsContainer";
 import {ProfileType} from "../../redux-state/profile-reducer";
 import {ProfileNavigation} from "./profile-navigation/ProfileNavigation";
 import {Route} from "react-router-dom";
-import {PATH} from "../navbar/SidebarData";
-import {About} from "./profile-info/about-me/AboutMe";
+import {PATH} from "../common/SidebarData";
+import {About} from "./profile-info/about-me/About";
 import {MyFriends} from "./profile-info/my-friends/MyFriends";
 
 type ProfilePropsType = {
@@ -15,9 +15,10 @@ type ProfilePropsType = {
     changeUserStatus: (status: string) => void
     changeUserPhoto: (photos: File) => void
     isOwner: boolean
+    paramsUserId: number
 }
 
-export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, status, changeUserStatus, changeUserPhoto, isOwner}) => {
+export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, status, changeUserStatus, changeUserPhoto, isOwner, paramsUserId}) => {
     return (
         <div className={styles.profileWrapper}>
             <ProfileInfo
@@ -26,11 +27,11 @@ export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, status,
                 status={status}
                 changeUserPhoto={changeUserPhoto}
                 changeUserStatus={changeUserStatus}/>
-            <ProfileNavigation/>
+            <ProfileNavigation userId={isOwner ? profile?.userId : paramsUserId}/>
            <div className={styles.profileNavPanel}>
-                <Route path={`${PATH.PROFILE}${PATH.ABOUT}`} render={() => <About profile={profile}/>}/>
-                <Route path={`${PATH.PROFILE}${PATH.FRIENDS}`} render={() => <MyFriends/>}/>
-                <Route path={`${PATH.PROFILE}${PATH.POSTS}`} render={() => <MyPostsContainer/>}/>
+                <Route path={`${PATH.PROFILE}/${paramsUserId}${PATH.ABOUT}`} render={() => <About profile={profile}/>}/>
+                <Route path={`${PATH.PROFILE}/${paramsUserId}${PATH.FRIENDS}`} render={() => <MyFriends/>}/>
+                <Route path={`${PATH.PROFILE}/${paramsUserId}${PATH.POSTS}`} render={() => <MyPostsContainer/>}/>
             </div>
         </div>
     )

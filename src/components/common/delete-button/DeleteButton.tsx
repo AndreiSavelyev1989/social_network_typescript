@@ -4,13 +4,16 @@ import React from "react";
 
 type PropsType = {
     onDeleteHandler: () => void
+    disabled?: boolean
 }
 
-export const DeleteButton: React.FC<PropsType> = ({onDeleteHandler}) => {
+export const DeleteButton: React.FC<PropsType> = ({onDeleteHandler, disabled}) => {
     return (
-        <div className={styles.deleteBlock} onClick={onDeleteHandler}>
+        <div className={styles.deleteBlock} >
             <div className={styles.deleteButton}>
-                <MdDelete/>
+                <button disabled={disabled} onClick={onDeleteHandler}>
+                    <MdDelete className={styles.icon}/>
+                </button>
             </div>
         </div>
     )

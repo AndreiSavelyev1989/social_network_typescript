@@ -7,7 +7,8 @@ import React from "react";
 
 const mapStateToProps = (state: StoreType) => {
     const {posts, profile} = state.profilePage;
-    return { posts, profile }
+    const authUserId = state.auth.id;
+    return { posts, profile, authUserId}
 }
 
 export const MyPostsContainer = React.memo(connect(mapStateToProps, {

@@ -1,14 +1,17 @@
 import React from "react";
-import {profileNavData} from "../../navbar/SidebarData";
+import {PATH, profileNavData} from "../../common/SidebarData";
 import {NavLink} from "react-router-dom";
 import styles from "./ProfileNavigation.module.scss"
+type PropsType = {
+    userId: number | undefined
+}
 
-export const ProfileNavigation = () => {
+export const ProfileNavigation: React.FC<PropsType> = ({userId}) => {
     return (
         <div className={styles.profNavContainer}>
             {profileNavData.map((item, index) => {
                 return (
-                    <NavLink to={item.path}
+                    <NavLink to={`${PATH.PROFILE}/${userId}${item.path}`}
                              key={index}
                              activeClassName={styles.profNavActive}
                              className={styles.profNavItem}>

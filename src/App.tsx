@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {isInitializedTC} from "./redux-state/app-reducer";
 import {StoreType} from "./redux-state/redux-store";
 import {withSuspense} from "./components/hoc/withSuspense";
-import {PATH} from "./components/navbar/SidebarData";
+import {PATH} from "./components/common/SidebarData";
 import {MainPreloaderPage} from "./components/common/preloader/MainPreloaderPage";
 import {ErrorModal} from "./components/common/modal/modal-error/ErrorModal";
 
@@ -39,8 +39,6 @@ const App = React.memo(() => {
                                render={withSuspense(ProfileContainer)}/>
                         <Route path={`${PATH.PROFILE}/:userId?`}
                                render={withSuspense(ProfileContainer)}/>
-                        {/*<Route path={`${PATH.PROFILE}${PATH.ABOUT}/:userId?`}*/}
-                        {/*       render={withSuspense(ProfileContainer)}/>*/}
                         <Route path={`${PATH.DIALOGS}`}
                                render={withSuspense(DialogsContainer)}/>
                         <Route path={`${PATH.USERS}`}

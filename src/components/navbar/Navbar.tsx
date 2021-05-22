@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Link, NavLink} from "react-router-dom";
 import style from "./Navbar.module.scss";
 import {IconContext} from "react-icons/lib";
-import {sidebarData} from "./SidebarData";
+import {sidebarData} from "../common/SidebarData";
 import {VscThreeBars} from "react-icons/all";
 
 

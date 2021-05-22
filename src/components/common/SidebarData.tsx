@@ -56,14 +56,14 @@ export const sidebarData = [
 export const profileNavData = [
     {
         title: "About",
-        path: PATH.PROFILE + PATH.ABOUT,
+        path: PATH.ABOUT,
     },
     {
         title: "Posts",
-        path: PATH.PROFILE + PATH.POSTS,
+        path: PATH.POSTS,
     },
     {
         title: "Friends",
-        path: PATH.PROFILE + PATH.FRIENDS,
+        path: PATH.FRIENDS,
     },
 ]

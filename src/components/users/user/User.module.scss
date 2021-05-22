@@ -27,7 +27,7 @@
     height: 100%;
     @include flexWrapper(column, center, center, wrap, null);
 
-    .userBackgroud {
+    .userBackground {
       width: 100%;
       min-height: 120px;
       background-position: center;

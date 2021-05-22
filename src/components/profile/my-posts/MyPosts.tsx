@@ -12,9 +12,10 @@ type PropsType = {
     setDislikesCount: (id: string, dislike: number) => void
     deletePost: (id: string) => void
     profile: ProfileType | null
+    authUserId: number | null
 }
 
-export const MyPosts: React.FC<PropsType> = React.memo(({posts, profile, setLikesCount, addPost, deletePost, setDislikesCount}) => {
+export const MyPosts: React.FC<PropsType> = React.memo(({posts, profile, setLikesCount, addPost, deletePost, setDislikesCount, authUserId}) => {
 
     const postElements =
         [...posts]
@@ -30,11 +31,12 @@ export const MyPosts: React.FC<PropsType> = React.memo(({posts, profile, setLike
                 dislikesCount={p.dislikesCount}
                 setLikesCount={setLikesCount}
                 setDislikesCount={setDislikesCount}
+                authUserId={authUserId}
             />)
 
     return (
         <div className={styles.postsContainer}>
-            <ProfilePostForm addPost={addPost} profile={profile}/>
+            <ProfilePostForm addPost={addPost} profile={profile} id={authUserId}/>
             {postElements}
         </div>
     )

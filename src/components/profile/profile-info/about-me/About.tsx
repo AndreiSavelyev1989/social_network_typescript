@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./AboutMe.module.scss";
+import styles from "./About.module.scss";
 import {ProfileType} from "../../../../redux-state/profile-reducer";
 import {Preloader} from "../../../common/preloader/Preloader";
 import {AboutItem} from "./about-item/AboutItem";

@@ -7,15 +7,27 @@
   @include flexWrapper(null, flex-end, flex-start, wrap, null);
 
   .deleteButton {
-    @include flexWrapper(null, center, center, wrap, null);
-    font-size: 1.5rem;
-    width: 30px;
-    height: 30px;
 
-    &:hover {
-      cursor: pointer;
-      transition: 0.5s;
-      color: $dangerousColor_1;
+    button {
+      width: 50px;
+      height: 50px;
+      background: transparent;
+      border: 0;
+      @include flexWrapper(null, flex-end, flex-start, null, null);
+      &:disabled {
+        opacity: 0.1;
+      }
+
+      .icon {
+        font-size: 2rem;
+        color: $textColor;
+
+        &:hover {
+          cursor: pointer;
+          transition: 0.5s;
+          color: $dangerousColor_1;
+        }
+      }
     }
   }
 }

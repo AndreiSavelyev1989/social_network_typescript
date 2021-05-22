@@ -17,7 +17,17 @@ type UserPropsType = {
     userBackground: string
 }
 
-export const User: React.FC<UserPropsType> = React.memo(({userId, userBackground, fullName, status, unfollow, follow, followingInProgress, followed, userPhoto}) => {
+export const User: React.FC<UserPropsType> = React.memo(({
+                                                             userId,
+                                                             userBackground,
+                                                             fullName,
+                                                             status,
+                                                             unfollow,
+                                                             follow,
+                                                             followingInProgress,
+                                                             followed,
+                                                             userPhoto
+                                                         }) => {
 
     const onFollowClick = () => follow(userId)
     const onUnfollowClick = () => unfollow(userId)
@@ -25,7 +35,7 @@ export const User: React.FC<UserPropsType> = React.memo(({userId, userBackground
     return (
         <div className={styles.userWrapper}>
             <div className={styles.userBlock_1}>
-                <div className={styles.userBackgroud} style={{backgroundImage: `url(${userBackground})`}}></div>
+                <div className={styles.userBackground} style={{backgroundImage: `url(${userBackground})`}}></div>
                 <div className={styles.userContent}>
                     <div className={styles.userFollowingButton}>
                         {followed
@@ -48,7 +58,7 @@ export const User: React.FC<UserPropsType> = React.memo(({userId, userBackground
                     </div>
                 </div>
             </div>
-            <NavLink to={"/profile/" + userId}>
+            <NavLink to={`/profile/${userId}/about`}>
                 <div className={styles.userBlock_2} style={{
                     backgroundImage: userPhoto.large
                         ? `url(${userPhoto.large})`
