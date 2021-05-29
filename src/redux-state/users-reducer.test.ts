@@ -2,8 +2,8 @@ import {
     followSuccess,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers, toogleFollowingProgress,
-    toogleIsFetching,
+    setUsers, toggleFollowingProgress,
+    toggleIsFetching,
     usersReducer,
     UsersType
 } from "./users-reducer";
@@ -191,7 +191,7 @@ test('currentPage should be changing', () => {
 
 test('isFetching should be changing', () => {
 
-    const action = toogleIsFetching(true);
+    const action = toggleIsFetching(true);
 
     const endState = usersReducer(startState, action)
 
@@ -220,7 +220,7 @@ test('isFetching should be changing', () => {
 
 test('followingInProgress should be changing', () => {
 
-    const action = toogleFollowingProgress(true, 6251);
+    const action = toggleFollowingProgress(true, 6251);
 
     const endState = usersReducer(startState, action)
 

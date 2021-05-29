@@ -5,7 +5,7 @@ import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
 import {HashRouter, Route, Switch} from "react-router-dom";
-import UsersContainer from "./components/users/UsersContainer";
+import {UsersContainer} from "./components/users/UsersContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {isInitializedTC} from "./redux-state/app-reducer";
 import {StoreType} from "./redux-state/redux-store";

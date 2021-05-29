@@ -44,7 +44,7 @@ export const Profile: React.FC<ProfilePropsType> = React.memo(({
                     isOwner={isOwner}
                     changeUserProfile={changeUserProfile}
                     profile={profile}/>}/>
-                <Route path={`${PATH.PROFILE}/${paramsUserId}${PATH.FRIENDS}`} render={() => <MyFriends/>}/>
+                <Route path={`${PATH.PROFILE}/${paramsUserId}${PATH.FRIENDS}`} render={() => <MyFriends isOwner={isOwner}/>}/>
                 <Route path={`${PATH.PROFILE}/${paramsUserId}${PATH.POSTS}`} render={() => <MyPostsContainer/>}/>
             </div>
         </div>

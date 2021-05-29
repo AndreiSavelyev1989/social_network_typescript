@@ -2,6 +2,15 @@
 @import "./../../../../assets/common-styles/common-variables";
 
 .aboutMyFriendContainer {
-    @include profileNavContainer;
-    @include flexWrapper(null, center, center, wrap, $boxShadowBlockColor);
+  @include profileNavContainer;
+  @include flexWrapper(null, center, center, wrap, $boxShadowBlockColor);
+
+  & > div {
+    width: 100%;
+  }
+
+  .notFriend {
+    font-size: 2rem;
+    text-align: center;
+  }
 }

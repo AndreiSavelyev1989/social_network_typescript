@@ -28,7 +28,7 @@ export const getFollowingInProgress = (state: StoreType) => {
     return state.usersPage.followingInProgress
 }
 
-export const getUserBackgroud = (state: StoreType) => {
+export const getUserBackground = (state: StoreType) => {
     return state.usersPage.userBackground
 }
 

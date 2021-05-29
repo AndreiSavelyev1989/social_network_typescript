@@ -20,8 +20,9 @@ type UsersPropsType = {
 }
 
 
-export const Users = React.memo((props: UsersPropsType) => (
-    <div className={styles.usersContainer}>
+export const Users = React.memo((props: UsersPropsType) => {
+
+    return <div className={styles.usersContainer}>
         <div className={styles.pagination}>
             <Pagination
                 totalItemsCount={props.totalUsersCount}
@@ -47,4 +48,4 @@ export const Users = React.memo((props: UsersPropsType) => (
                 unfollow={props.unfollow}
             />)}
     </div>
-));
+});

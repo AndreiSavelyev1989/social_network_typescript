@@ -26,11 +26,11 @@
   position: relative;
 
   .aboutBlock {
-    width: 80%;
     border-radius: 10px;
     padding: 10px;
     margin: 20px;
-    @include flexWrapper(row, center, center, wrap, $boxShadowBlockColor);
+    width: 100%;
+    @include flexWrapper(row, center, center, wrap, null);
     @media screen and (max-width: 700px) {
       width: 100%;
       @include flexWrapper(null, null, null, wrap, null);

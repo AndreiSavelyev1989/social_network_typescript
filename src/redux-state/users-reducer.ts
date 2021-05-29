@@ -40,7 +40,7 @@ export type UsersType = {
 
 const initialState: UsersType = {
     users: [],
-    pageSize: 10,
+    pageSize: 12,
     totalUsersCount: 0,
     currentPage: 1,
     portionSize: 10,
@@ -80,11 +80,11 @@ export const usersReducer = (state = initialState, action: ActionsUsersType) => 
             return {
                 ...state, currentPage: action.page
             }
-        case "TOOGLE_IS_FETCHING":
+        case "TOGGLE_IS_FETCHING":
             return {
                 ...state, isFetching: action.isFetching
             }
-        case "TOOGLE_FOLLOWING_PROGRESS":
+        case "TOGGLE_FOLLOWING_PROGRESS":
             return {
                 ...state,
                 followingInProgress: action.isFetching
@@ -103,8 +103,8 @@ export type ActionsUsersType =
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof setCurrentPage>
-    | ReturnType<typeof toogleIsFetching>
-    | ReturnType<typeof toogleFollowingProgress>
+    | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof toggleFollowingProgress>
     | ReturnType<typeof setUserBackground>
     | ReturnType<typeof setError>
 
@@ -117,9 +117,9 @@ export const setTotalUsersCount = (totalUsersCount: number) => ({
     totalUsersCount
 } as const)
 export const setCurrentPage = (page: number) => ({type: "SET_CURRENT_PAGE", page} as const)
-export const toogleIsFetching = (isFetching: boolean) => ({type: "TOOGLE_IS_FETCHING", isFetching} as const)
-export const toogleFollowingProgress = (isFetching: boolean, userId: number) => ({
-    type: "TOOGLE_FOLLOWING_PROGRESS",
+export const toggleIsFetching = (isFetching: boolean) => ({type: "TOGGLE_IS_FETCHING", isFetching} as const)
+export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({
+    type: "TOGGLE_FOLLOWING_PROGRESS",
     isFetching, userId
 } as const)
 
@@ -127,11 +127,11 @@ export const toogleFollowingProgress = (isFetching: boolean, userId: number) => 
 //thunk-creators
 type ThunkUsersType = ThunkAction<void, StoreType, unknown, ActionsUsersType>
 
-export const requestUsers = (pageSize: number, currentPage: number): ThunkUsersType => async (dispatch) => {
-    dispatch(toogleIsFetching(true))
+export const requestUsers = (pageSize: number, currentPage: number, isFriend?: boolean): ThunkUsersType => async (dispatch) => {
+    dispatch(toggleIsFetching(true))
     try {
-        let res = await usersAPI.getUsers(pageSize, currentPage)
-        dispatch(toogleIsFetching(false))
+        let res = await usersAPI.getUsers(pageSize, currentPage, isFriend)
+        dispatch(toggleIsFetching(false))
         dispatch(setUsers(res.data.items))
         dispatch(setUserBackground(randomBackground(userBackgrounds)))
         dispatch(setTotalUsersCount(res.data.totalCount))
@@ -141,9 +141,9 @@ export const requestUsers = (pageSize: number, currentPage: number): ThunkUsersT
 }
 
 export const follow = (userId: number): ThunkUsersType => async (dispatch) => {
-    return followUnfollowFlow(dispatch, toogleFollowingProgress, usersAPI.follow, userId, followSuccess)
+    return followUnfollowFlow(dispatch, toggleFollowingProgress, usersAPI.follow, userId, followSuccess)
 }
 
 export const unfollow = (userId: number): ThunkUsersType => async (dispatch) => {
-    return followUnfollowFlow(dispatch, toogleFollowingProgress, usersAPI.unfollow, userId, unfollowSuccess)
+    return followUnfollowFlow(dispatch, toggleFollowingProgress, usersAPI.unfollow, userId, unfollowSuccess)
 }

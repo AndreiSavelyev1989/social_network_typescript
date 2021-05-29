@@ -4,6 +4,7 @@ import styles from "./User.module.scss"
 import {PhotosType} from "../../../redux-state/users-reducer";
 import {NavLink} from "react-router-dom";
 import {UniversalButton} from "../../common/universal-button/UniversalButton";
+import {useDispatch} from "react-redux";
 
 type UserPropsType = {
     userId: number
@@ -29,8 +30,9 @@ export const User: React.FC<UserPropsType> = React.memo(({
                                                              userPhoto
                                                          }) => {
 
-    const onFollowClick = () => follow(userId)
-    const onUnfollowClick = () => unfollow(userId)
+    const dispatch = useDispatch()
+    const onFollowClick = () => dispatch(follow(userId))
+    const onUnfollowClick = () => dispatch(unfollow(userId))
 
     return (
         <div className={styles.userWrapper}>
