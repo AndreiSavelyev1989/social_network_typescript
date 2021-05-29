@@ -48,17 +48,31 @@ export type ProfilePageType = {
     posts: Array<PostType>
     profile: ProfileType | null
     status: string
+    profileEditMode: boolean
 }
 
 const postBackgrounds = [postBackground_1, postBackground_2, postBackground_3, postBackground_4, postBackground_5]
 
 const initialState: ProfilePageType = {
     posts: [
-        {id: v1(), postMessage: "Hello World", likesCount: 20, dislikesCount: 0, postBackground: randomBackground(postBackgrounds)},
-        {id: v1(), postMessage: "It is my first post", likesCount: 10, dislikesCount: 0, postBackground: randomBackground(postBackgrounds)}
+        {
+            id: v1(),
+            postMessage: "Hello World",
+            likesCount: 20,
+            dislikesCount: 0,
+            postBackground: randomBackground(postBackgrounds)
+        },
+        {
+            id: v1(),
+            postMessage: "It is my first post",
+            likesCount: 10,
+            dislikesCount: 0,
+            postBackground: randomBackground(postBackgrounds)
+        }
     ],
     profile: null,
-    status: ""
+    status: "",
+    profileEditMode: false
 }
 
 export const newPostId = v1()
@@ -107,6 +121,11 @@ export function profileReducer(state = initialState, action: ActionsProfileTypes
                 ...state,
                 profile: {...state.profile, photos: action.photos}
             }
+        case "SET_PROFILE_EDIT_MODE":
+            return {
+                ...state,
+                profileEditMode: action.editMode
+            }
         default:
             return state
     }
@@ -122,6 +141,7 @@ export type ActionsProfileTypes =
     | ReturnType<typeof deletePost>
     | ReturnType<typeof setError>
     | ReturnType<typeof setUserPhoto>
+    | ReturnType<typeof setUserProfileEditMode>
 
 export const addPost = (newPostText: string) => ({type: "ADD_POST", newPostText} as const)
 export const deletePost = (postId: string) => ({type: "DELETE_POST", postId} as const)
@@ -130,6 +150,7 @@ export const setDislikesCount = (id: string, dislike: number) => ({type: "SET_DI
 export const setUserProfile = (profile: ProfileType) => ({type: "SET_USER_PROFILE", profile} as const)
 export const setUserStatus = (status: string) => ({type: "SET_USER_STATUS", status} as const)
 export const setUserPhoto = (photos: UserPhotosType) => ({type: "SET_USER_PHOTO", photos} as const)
+export const setUserProfileEditMode = (editMode: boolean) => ({type: "SET_PROFILE_EDIT_MODE", editMode} as const)
 
 
 //thunk-creators
@@ -139,6 +160,25 @@ export const requestUserProfile = (userId: number): ThunkProfileType => async (d
     try {
         const res = await profileAPI.getUserProfile(userId)
         dispatch(setUserProfile(res.data))
+    } catch (e) {
+        dispatch(setError(e.message))
+    }
+}
+
+export const changeUserProfile = (profile: ProfileType): ThunkProfileType => async (dispatch, getState) => {
+    const userId = getState().auth.id
+    try {
+        const res = await profileAPI.updateUserProfile(profile)
+        if (res.data.resultCode === 0) {
+            if (userId) {
+                dispatch(setUserProfileEditMode(false))
+                dispatch(requestUserProfile(userId))
+            }
+        } else {
+            dispatch(setError(res.data.messages[0]))
+            dispatch(setUserProfileEditMode(true))
+            // return Promise.reject(res.data.messages[0])
+        }
     } catch (e) {
         dispatch(setError(e.message))
     }

@@ -14,11 +14,19 @@ type ProfilePropsType = {
     status: string
     changeUserStatus: (status: string) => void
     changeUserPhoto: (photos: File) => void
+    changeUserProfile: (profile: ProfileType) => void
+    setUserProfileEditMode: (editMode: boolean) => void
     isOwner: boolean
     paramsUserId: number
+    error: string
+    profileEditMode: boolean
 }
 
-export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, status, changeUserStatus, changeUserPhoto, isOwner, paramsUserId}) => {
+export const Profile: React.FC<ProfilePropsType> = React.memo(({
+                                                                   profile, status, changeUserStatus,
+                                                                   changeUserPhoto, isOwner, paramsUserId,
+                                                                   changeUserProfile, error, profileEditMode, setUserProfileEditMode
+                                                               }) => {
     return (
         <div className={styles.profileWrapper}>
             <ProfileInfo
@@ -28,8 +36,14 @@ export const Profile: React.FC<ProfilePropsType> = React.memo(({profile, status,
                 changeUserPhoto={changeUserPhoto}
                 changeUserStatus={changeUserStatus}/>
             <ProfileNavigation userId={isOwner ? profile?.userId : paramsUserId}/>
-           <div className={styles.profileNavPanel}>
-                <Route path={`${PATH.PROFILE}/${paramsUserId}${PATH.ABOUT}`} render={() => <About profile={profile}/>}/>
+            <div className={styles.profileNavPanel}>
+                <Route path={`${PATH.PROFILE}/${paramsUserId}${PATH.ABOUT}`} render={() => <About
+                    error={error}
+                    setUserProfileEditMode={setUserProfileEditMode}
+                    profileEditMode={profileEditMode}
+                    isOwner={isOwner}
+                    changeUserProfile={changeUserProfile}
+                    profile={profile}/>}/>
                 <Route path={`${PATH.PROFILE}/${paramsUserId}${PATH.FRIENDS}`} render={() => <MyFriends/>}/>
                 <Route path={`${PATH.PROFILE}/${paramsUserId}${PATH.POSTS}`} render={() => <MyPostsContainer/>}/>
             </div>

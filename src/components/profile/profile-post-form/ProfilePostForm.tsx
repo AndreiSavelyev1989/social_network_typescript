@@ -57,12 +57,12 @@ export const ProfilePostForm: React.FC<PropsType> = ({addPost, profile, id}) => 
                     <div className={styles.formBlockSubmit}>
                         {formik.touched.newPost && formik.errors.newPost ?
                             <div className={styles.error}>{formik.errors.newPost}</div>
-                            : <div></div>}
+                            : null}
                         <UniversalButton type={"submit"} title={"post"}/>
                     </div>
                 </form>
             </div>
-            : <div></div>
+            : null
         }
     </>
 }

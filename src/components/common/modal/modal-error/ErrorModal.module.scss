@@ -7,7 +7,7 @@
   @include flexWrapper(column, space-around, center, wrap, $boxShadowBlockColor);
   background: $blockBackground;
   position: absolute;
-  top: 200px;
+  top: calc(50% - 100px);
   left: calc(50% - 175px);
   border-radius: 10px;
   font-size: 1.5rem;
@@ -17,6 +17,7 @@
   @media screen and(max-width: 360px) {
     width: 250px;
     min-height: 100px;
+    top: calc(50% - 50px);
     left: calc(50% - 125px);
     font-size: 1rem;
   }

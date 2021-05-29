@@ -3,16 +3,18 @@
 
 @mixin infoBlock {
   width: 100%;
+  padding: 5px;
   @include flexWrapper(row, flex-start, flex-start, wrap, null);
   div {
     &:nth-child(odd) {
       width: 30%;
+      text-transform: uppercase;
     }
 
     &:nth-child(even) {
       width: 70%;
       @media screen and (max-width: 700px) {
-        padding-left: 10px;
+        padding-left: 20px;
       }
     }
   }
@@ -21,11 +23,13 @@
 .aboutContainer {
   @include profileNavContainer;
   @include flexWrapper(row, center, center, wrap, $boxShadowBlockColor);
+  position: relative;
 
   .aboutBlock {
     width: 80%;
     border-radius: 10px;
     padding: 10px;
+    margin: 20px;
     @include flexWrapper(row, center, center, wrap, $boxShadowBlockColor);
     @media screen and (max-width: 700px) {
       width: 100%;
@@ -42,7 +46,7 @@
 
     .basicInfoBlock {
       width: 100%;
-      padding-bottom: 10px;
+      padding: 10px;
 
       .nameBlock {
         @include infoBlock;
@@ -56,6 +60,10 @@
         @include infoBlock;
       }
 
+      .lookingJobEditModeBlock {
+        width: 100%;
+      }
+
       .jobDescBlock {
         @include infoBlock;
       }
@@ -64,35 +72,8 @@
     .linksInfoBlock {
       width: 100%;
 
-      .facebookBlock {
-        @include infoBlock;
-      }
-
-      .githubBlock {
-        @include infoBlock;
-      }
-
-      .instagramBlock {
-        @include infoBlock;
-      }
-
-      .mainLinkBlock {
-        @include infoBlock;
-      }
-
-      .twitterBlock {
-        @include infoBlock;
-      }
-
-      .vkBlock {
-        @include infoBlock;
-      }
-
-      .websiteBlock {
-        @include infoBlock;
-      }
-
-      .youtubeBlock {
+      .contactBlock {
+        padding: 10px;
         @include infoBlock;
       }
     }
