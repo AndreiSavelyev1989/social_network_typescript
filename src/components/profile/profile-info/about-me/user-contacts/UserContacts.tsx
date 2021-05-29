@@ -1,5 +1,5 @@
 import {ProfileType} from "../../../../../redux-state/profile-reducer";
-import React, {useState} from "react";
+import React from "react";
 import styles from "../About.module.scss";
 import {AboutItem} from "../about-item/AboutItem";
 import {Contact} from "./contact/Contact";
@@ -17,7 +17,6 @@ type UserContactsPropsType = {
 
 export const UserContacts: React.FC<UserContactsPropsType> = ({profile, changeUserProfile, isOwner,
                                                                   error, profileEditMode, setUserProfileEditMode}) => {
-    // const [editMode, setEditMode] = useState(false)
 
     const setEditMode = () => {
         setUserProfileEditMode(true)
