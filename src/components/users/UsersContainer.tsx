@@ -61,7 +61,6 @@ import React, {useEffect} from "react";
 //     }
 // }
 //
-//
 // export default compose<React.ComponentType>(
 //     connect(mapStateToProps, {follow, unfollow, requestUsers, setCurrentPage}),
 //         // withAuthRedirect

@@ -28,8 +28,9 @@ export const AuthMe: React.FC<LoginPropsType> = React.memo((props) => {
                 {props.isAuth
                     ? <div className={styles.userBlock}>
                         {props.userProfile
-                            ? <img src={props.userProfile ? props.userProfile.photos.large : samurai}
-                                   alt={'userPhoto'}/>
+                            ? <NavLink to={"/profile"}><img src={props.userProfile ? props.userProfile.photos.large : samurai}
+                                                  alt={'userPhoto'}/></NavLink>
+
                             : <Preloader/>
                         }
                         <div className={styles.login}>{props.login}</div>

@@ -21,10 +21,7 @@ export const Header = React.memo(() => {
 
     useEffect(() => {
         dispatch(authMe())
-        if (!userProfile) {
-            dispatch(authMe())
-        }
-    }, [isLoggedIn])
+    }, [isLoggedIn, login])
 
     return (
         <header className={styles.header}>

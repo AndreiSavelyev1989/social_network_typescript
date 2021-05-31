@@ -76,8 +76,7 @@ export const setAuthUserProfile = (profile: ProfileType) => ({type: "SET_AUTH_US
 type ThunkAuthType = ThunkAction<void, StoreType, unknown, ActionsAuthType>
 
 export const authMe = (): ThunkAuthType => {
-    return (dispatch, getState) => {
-        const isAuth = getState().auth.isAuth
+    return (dispatch) => {
         return authAPI.authMe()
             .then((res) => {
                 let {id, email, login} = res.data.data
@@ -89,9 +88,7 @@ export const authMe = (): ThunkAuthType => {
                 return id
             })
             .then((id) => {
-                if (isAuth) {
                     dispatch(requestUserProfile(id))
-                }
             })
     }
 }
