@@ -11,18 +11,21 @@ type FormikErrorType = {
     email?: string
     password?: string
     rememberMe?: boolean
+    captcha?: string
 }
 
 type PropsType = {
     dispatch: Dispatch<any>
+    captchaUrl: string
 }
 
-export const LoginForm: React.FC<PropsType> = React.memo(({dispatch}) => {
+export const LoginForm: React.FC<PropsType> = React.memo(({dispatch, captchaUrl}) => {
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
+            captcha: ''
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
@@ -39,11 +42,12 @@ export const LoginForm: React.FC<PropsType> = React.memo(({dispatch}) => {
             } else if (values.password.length < 8) {
                 errors.password = 'Password must be 8 characters or more ';
             }
+
             return errors;
         },
 
         onSubmit: values => {
-            dispatch(loginTC(values.email, values.password, values.rememberMe))
+            dispatch(loginTC(values.email, values.password, values.rememberMe, values.captcha))
         },
     })
     return (
@@ -70,7 +74,6 @@ export const LoginForm: React.FC<PropsType> = React.memo(({dispatch}) => {
                     Forgot password?
                 </div>
             </div>
-
             <UniversalInput
                 id={"inputPassword"}
                 type={"password"}
@@ -80,12 +83,29 @@ export const LoginForm: React.FC<PropsType> = React.memo(({dispatch}) => {
             {formik.touched.password && formik.errors.password ?
                 <div className={style.error}>{formik.errors.password}</div> : null}
 
+            {captchaUrl && <div>
+                <img src={captchaUrl} alt="captcha-image"/></div>}
+            {captchaUrl && <div>
+                <label htmlFor={"inputCaptcha"} className={style.emailTitle}>
+                    Captcha
+                </label>
+                <UniversalInput
+                    id={"inputCaptcha"}
+                    type={"text"}
+                    placeholder={"Captcha"}
+                    className={"login"}
+                    formikFieldProps={formik.getFieldProps("captcha")}/>
+                {formik.touched.captcha && formik.errors.captcha ?
+                    <div className={style.error}>{formik.errors.captcha}</div> : null}
+            </div>}
+
             <div className={style.confirmBlock}>
                 <UniversalCheckbox title={"Remember me"}/>
                 <div className={style.button}>
-                    <UniversalButton title={"Log in"}/>
+                    <UniversalButton title={"Log in"} type={"submit"}/>
                 </div>
             </div>
+
         </form>
     )
 })

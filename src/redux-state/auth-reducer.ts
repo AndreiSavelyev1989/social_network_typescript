@@ -1,4 +1,4 @@
-import {authAPI, profileAPI} from "../components/api/api";
+import {authAPI, profileAPI, securityAPI} from "../components/api/api";
 import {ProfileType, setUserProfile} from "./profile-reducer";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./redux-store";
@@ -11,6 +11,7 @@ export type AuthUserType = {
     error: string
     isLoggedIn: boolean
     authProfile: ProfileType | null
+    captcha: string
 }
 
 const initialState: AuthUserType = {
@@ -20,7 +21,8 @@ const initialState: AuthUserType = {
     isAuth: false,
     error: '',
     isLoggedIn: false,
-    authProfile: null
+    authProfile: null,
+    captcha: ''
 }
 
 export function authReducer(state = initialState, action: ActionsAuthType) {
@@ -50,6 +52,11 @@ export function authReducer(state = initialState, action: ActionsAuthType) {
                 ...state,
                 authProfile: action.profile
             }
+        case "SET_CAPTCHA":
+            return {
+                ...state,
+                captcha: action.captcha
+            }
         default:
             return state
     }
@@ -61,6 +68,7 @@ export type ActionsAuthType =
     | ReturnType<typeof setIsLoggedIn>
     | ReturnType<typeof setError>
     | ReturnType<typeof setIsAuth>
+    | ReturnType<typeof setCaptcha>
 
 //action-creators
 export const setAuthUserData = (id: number, email: string, login: string) => ({
@@ -71,6 +79,7 @@ export const setIsLoggedIn = (isLoggedIn: boolean) => ({type: "SET_IS_LOGGED_IN"
 export const setError = (error: string) => ({type: "SET_ERROR", error} as const)
 export const setIsAuth = (isAuth: boolean) => ({type: "SET_IS_AUTH", isAuth} as const)
 export const setAuthUserProfile = (profile: ProfileType) => ({type: "SET_AUTH_USER_PROFILE", profile} as const)
+export const setCaptcha = (captcha: string) => ({type: "SET_CAPTCHA", captcha} as const)
 
 //thunk-creators
 type ThunkAuthType = ThunkAction<void, StoreType, unknown, ActionsAuthType>
@@ -88,7 +97,7 @@ export const authMe = (): ThunkAuthType => {
                 return id
             })
             .then((id) => {
-                    dispatch(requestUserProfile(id))
+                dispatch(requestUserProfile(id))
             })
     }
 }
@@ -102,12 +111,15 @@ export const requestUserProfile = (id: number): ThunkAuthType => (dispatch) => {
         })
 }
 
-export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkAuthType => async (dispatch) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean, captcha?: string): ThunkAuthType => async (dispatch) => {
     try {
-        const res = await authAPI.login(email, password, rememberMe)
+        const res = await authAPI.login(email, password, rememberMe, captcha)
         if (res.data.resultCode === 0) {
             dispatch(setIsLoggedIn(true))
         } else {
+            if (res.data.fieldsErrors.length > 0) {
+                dispatch(captchaTC())
+            }
             dispatch(setError(res.data.messages[0]))
         }
     } catch (e) {
@@ -121,10 +133,20 @@ export const logoutTC = (): ThunkAuthType => async (dispatch) => {
         if (res.data.resultCode === 0) {
             dispatch(setIsLoggedIn(false))
             dispatch(setIsAuth(false))
-            dispatch(setError(""))
+            dispatch(setError(''))
+            dispatch(setCaptcha(''))
         } else {
             dispatch(setError(res.data.messages[0]))
         }
+    } catch (e) {
+        dispatch(setError(e.message))
+    }
+}
+
+export const captchaTC = (): ThunkAuthType => async (dispatch) => {
+    try {
+        const res = await securityAPI.captcha()
+        dispatch(setCaptcha(res.data.url))
     } catch (e) {
         dispatch(setError(e.message))
     }
