@@ -39,8 +39,8 @@ export const LoginForm: React.FC<PropsType> = React.memo(({dispatch, captchaUrl}
                 errors.password = 'Required';
             } else if (values.password.length > 15) {
                 errors.password = 'Password must be 15 characters or less';
-            } else if (values.password.length < 8) {
-                errors.password = 'Password must be 8 characters or more ';
+            } else if (values.password.length < 3) {
+                errors.password = 'Password must be 3 characters or more ';
             }
 
             return errors;
